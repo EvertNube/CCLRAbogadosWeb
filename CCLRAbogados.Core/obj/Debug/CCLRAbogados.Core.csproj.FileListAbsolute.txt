@@ -1,0 +1,14 @@
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\CCLRAbogados.Core.dll
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\CCLRAbogados.Core.pdb
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\obj\Debug\CCLRAbogados.Core.dll
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\obj\Debug\CCLRAbogados.Core.pdb
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\obj\Debug\CCLRAbogados.Core.csprojResolveAssemblyReference.cache
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\CCLRAbogados.Data.dll
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\CCLRAbogados.Helpers.dll
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\EntityFramework.dll
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\CCLRAbogados.Data.pdb
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\CCLRAbogados.Helpers.pdb
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\EntityFramework.xml
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\CCLRAbogados.Core.dll.config
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogados.Core\bin\Debug\EntityFramework.SqlServer.xml

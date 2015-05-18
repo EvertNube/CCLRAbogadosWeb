@@ -1,2 +1,0 @@
-C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\PortalUARM.Helpers.Razor\obj\Debug\CCLRAbogadosWeb.Helpers.Razor.csprojResolveAssemblyReference.cache
-C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb\CCLRAbogadosWeb.Helpers.Razor\obj\Debug\CCLRAbogadosWeb.Helpers.Razor.csprojResolveAssemblyReference.cache
