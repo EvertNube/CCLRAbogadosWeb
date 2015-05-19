@@ -87,6 +87,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CCLRAbogados.Data\CCLRAbogados.Data.csproj">
+      <Project>{738dd01e-b529-4f58-b93a-211fe4acc197}</Project>
+      <Name>CCLRAbogados.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

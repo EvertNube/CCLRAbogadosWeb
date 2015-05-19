@@ -27,8 +27,7 @@ namespace CCLRAbogados.Helpers.Razor
             return MvcHtmlString.Create(hide);
         }
 
-        public static MvcHtmlString showAlertMessage(this HtmlHelper htmlHelper, string status_field, string message = "")
-        {
+        public static MvcHtmlString showAlertMessage(this HtmlHelper htmlHelper, string status_field, string message = ""){
             if (status_field != null && !String.IsNullOrWhiteSpace(status_field))
             {
                 StringBuilder sb = new StringBuilder();
