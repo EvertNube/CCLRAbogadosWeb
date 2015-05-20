@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Archivos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section scripts{
+    @Scripts.Render("~/Content/themes/admin/js/zclip/jquery.zclip.min.js")
+    <script>
+        $(document).ready(function(){
+            //$('a.btn-getlink').zclip({
+            //    path:"@Url.Content("~/Content/themes/admin/js/zclip/js/ZeroClipboard.swf")",
+            //    copy: $(this).attr("data-target"),
+            //    afterCopy:function(){
+            //        alert("texto copiado: " + $(this).attr("data-target"));
+            //    }
+            //});
+            $('a.btn-getlink').click(
+                function () {
+                    $(this).addClass("hide");
+                    var input = $(this).parent().find(".getLink");
+                    input.addClass("show");
+                    input.select();
+            });
+        });
+    </script>
+    }
+@model IList<CCLRAbogados.Data.Archivo>
+
+
+<h2>Archivos</h2>
+    <section class="panel panel-default">
+    <div class="row text-sm wrapper">
+        <div class="col-sm-6">
+            <a class="btn btn-sm btn-success" href="@Url.Action("Subir")"><i class="fa fa-upload"></i> Subir Archivos</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped m-b-none">
+        <thead>
+            <tr>
+            <th width="40%">Archivo</th>
+            <th width="30%">Enlace</th>
+            @if (ViewBag.EsSuperAdmin){<th width="30%">Enlace de Rastreo</th>}
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var archivo in Model){
+            <tr>
+                <td>
+                    <a class="" data-toggle="popover" data-html="true" data-placement="top" data-content="<div class='scrollable thumb-popup'><img src='@Url.Action("Index","Archivo", new { path=archivo.Uri})'/></div>">@archivo.Nombre</a>
+                    
+                <td><a class="btn btn-s-md btn-rounded btn-getlink" data-target="@Url.Action("Index","Archivo", new { path=archivo.Uri}, this.Request.Url.Scheme)"><i class="fa fa-link"></i> Obtener Enlace</a><input type="text" value="@Url.Action("Index","Archivo", new { path=archivo.Uri}, this.Request.Url.Scheme)" class="form-control getLink hide" /></td>
+                @if (ViewBag.EsSuperAdmin){<td><a class="btn btn-s-md btn-rounded btn-getlink btn-gettrack" data-target="@archivo.ShortUrl"><i class="fa fa-link"></i> Enlace de Rastreo</a><input type="text" value="@if (!String.IsNullOrWhiteSpace(archivo.ShortUrl)) { @archivo.ShortUrl } else { @Html.Raw("No tiene URL de rastreo") }" class="form-control getLink hide" /></td>}
+                
+            </tr>
+            }
+        </tbody>
+        </table>
+    </div>
+    </section>
+
+    

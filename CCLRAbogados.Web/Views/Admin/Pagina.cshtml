@@ -1,0 +1,162 @@
+﻿@{
+    ViewBag.Title = "Pagina";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using CCLRAbogados.Helpers;
+@section styles{
+    @Styles.Render("~/Content/themes/admin/js/datatables/datatables.css")
+    }
+@section scripts{
+    @Scripts.Render("~/Content/themes/admin/js/ckeditor2/ckeditor.js")
+    }
+@model CCLRAbogados.Core.PaginaDTO
+     
+        <h2>@Model.Nombre</h2>
+    
+    <div class="row m-b">
+        <div class="col-xs-12 col-md-6">   
+        @Html.Partial("_showAlertMessages")
+    @if (ViewBag.EsAdmin){
+        using (Html.BeginForm("PageUpdate", "Admin", FormMethod.Post))
+        {
+        <section class="panel panel-default">
+            <header class="panel-heading">
+                @Model.PathNames 
+            </header>
+            <div class="row text-sm wrapper">
+                <div class="col-sm-12">
+                    <a class="btn btn-sm btn-dark" href="@Model.Path" target="_blank"><i class="fa fa-search"></i> Ir a la página</a>
+                    <a class="btn btn-sm btn-default" href="@Url.Action("Index")">Salir</a>
+                    @if (!ViewBag.TieneHighlight){
+                        <a class="btn btn-sm btn-default pull-right" href="@Url.Action("Highlight", new { id = Model.IdPagina } )"><i class="fa fa-bookmark-o"></i>  Crear Hightlight</a>
+                    }else{
+                        <a class="btn btn-sm btn-warning pull-right" href="@Url.Action("Highlight", new { id = Model.IdPagina } )"><i class="fa fa-bookmark-o"></i>  Hightlight</a>
+                    }
+                </div>
+            </div>
+            <header class="panel-heading font-bold">Parámetros</header>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    @Html.TextBoxFor(p => p.Nombre, new { @class="form-control", @placeholder="Ej. Maestrías Presenciales", @type="text", @maxlength="300"})
+                    @Html.ValidationMessageFor(p => p.Nombre)
+                </div>
+                <div class="line line-dashed line-lg pull-in"></div>
+                <div class="form-group">
+                    <label>Título SEO</label>
+                    @Html.TextBoxFor(p => p.Titulo, new { @class="form-control", @placeholder="Ingrese el título para SEO", @type="text", @maxlength="100"})
+                    @Html.ValidationMessageFor(p => p.Titulo)
+                </div>
+                <div class="form-group">
+                    <label>Nombre Ruta SEO</label>
+                    @Html.TextBoxFor(p => p.Uri, new { @class="form-control", @placeholder="Ej. maestrias-presenciales", @type="text", @maxlength="300"})
+                    @Html.ValidationMessageFor(p => p.Uri)
+                </div>
+                <div class="line line-dashed line-lg pull-in"></div>
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(p => p.MostrarCover)
+                         Mostrar Imagen de Banner.</label>
+                    @Html.ValidationMessageFor(p => p.MostrarCover)
+                </div>
+                <div class="form-group">
+                    <label>Url Banner</label>
+                    @Html.TextBoxFor(p => p.Cover, new { @class="form-control", @placeholder="http://", @type="text", @maxlength="50"})
+                    @Html.ValidationMessageFor(p => p.Cover)
+                </div>
+                <div class="line line-dashed line-lg pull-in"></div>
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(p => p.OnNavigation)
+                         Mostrar en Menu de Navegación.</label>
+                    @Html.ValidationMessageFor(p => p.OnNavigation)
+                </div>
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(p => p.OnSideBar)
+                         Mostrar en panel lateral.</label>
+                    @Html.ValidationMessageFor(p => p.OnSideBar)
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-3">
+                        <label>Orden</label>
+                        @Html.TextBoxFor(p => p.Orden, new { @class="form-control", @placeholder="1", @type="number", @min="1", @value="1"})
+                        @Html.ValidationMessageFor(p => p.Orden)
+                    </div>
+                </div>
+                <div class="line line-dashed line-lg pull-in"></div>
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(p => p.EsEnlaceExterno)
+                         Es enlace externo.</label>
+                    @Html.ValidationMessageFor(p => p.EsEnlaceExterno)
+                </div>
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(p => p.EnlaceExternoTarget)
+                         Mostrar en nueva ventana.</label>
+                    @Html.ValidationMessageFor(p => p.EnlaceExternoTarget)
+                </div>
+                <div class="form-group">
+                    <label>Url Externo</label>
+                    @Html.TextBoxFor(p => p.EnlaceExterno, new { @class="form-control", @placeholder="http://", @type="text", @maxlength="200"})
+                    @Html.ValidationMessageFor(p => p.EnlaceExterno)
+                </div>
+                
+                <div class="line line-dashed line-lg pull-in"></div>
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(p => p.MostrarHighlights)
+                        Mostrar Highlights</label>
+                    @Html.ValidationMessageFor(p => p.MostrarHighlights)
+                </div>
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(p => p.LandingNotNull)
+                        Tiene páginas internas.</label>
+                    @Html.ValidationMessageFor(p => p.LandingNotNull)
+                </div>
+                <div class="checkbox">
+                    <label>@Html.CheckBoxFor(p => p.EstadoNotNull)
+                         Activo.</label>
+                    @Html.ValidationMessageFor(p => p.EstadoNotNull)
+                </div>
+                <div class="line line-dashed line-lg pull-in"></div>
+                @Html.HiddenFor(p=>p.IdPagina)
+                @Html.HiddenFor(p => p.Padre)
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Guardar Cambios</button>
+                <a class="btn btn-sm btn-danger" href="@Url.Action("Index")">Salir</a>
+            </div>
+        </section>
+        }
+    }
+</div></div>
+        
+        @using (Html.BeginForm("PageUpdateContent", "Admin", FormMethod.Post))
+        {
+        <section class="panel panel-default">
+            <div class="row text-sm wrapper">
+                <div class="col-sm-12">
+                    <a class="btn btn-sm btn-dark" href="@Model.Path" target="_blank"><i class="fa fa-search"></i> Ir a la página</a>
+                    @if (ViewBag.EsAdmin){
+                    <a class="btn btn-sm btn-default pull-right" href="@Url.Action("RecoverPage", new { id = Model.IdPagina})"><i class="fa fa-undo"></i>  Recuperar versión anterior</a>
+                    }
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped m-b-none">
+                <thead>
+                    <tr>
+                        <th width="100%">Contenido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.Raw(HttpUtility.HtmlDecode(@Html.TextAreaFor(p => p.Contenido, new { @class="ckeditor form-control", @rows="12"}).ToHtmlString()))
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+                
+            </div>
+            <div class="row"><div class="col-sm-12"><div class="dataTables_info">
+                @Html.HiddenFor(p=>p.IdPagina)
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-save"></i> Guardar Cambios</button>
+                <a class="btn btn-sm btn-danger" href="@Url.Action("Index")">Salir</a>
+            </div></div></div>
+        </section>
+        }

@@ -155,6 +155,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_HighLight_Pagina">
+    <End Role="Pagina" Type="Self.Pagina" Multiplicity="1" />
+    <End Role="HighLight" Type="Self.HighLight" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pagina">
+        <PropertyRef Name="IdPagina" />
+      </Principal>
+      <Dependent Role="HighLight">
+        <PropertyRef Name="IdPagina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Pagina_CategoriaPagina">
     <End Role="CategoriaPagina" Type="Self.CategoriaPagina" Multiplicity="0..1" />
     <End Role="Pagina" Type="Self.Pagina" Multiplicity="*" />
@@ -164,18 +176,6 @@
       </Principal>
       <Dependent Role="Pagina">
         <PropertyRef Name="IdCategoriaPagina" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Pagina_HighLight">
-    <End Role="HighLight" Type="Self.HighLight" Multiplicity="1" />
-    <End Role="Pagina" Type="Self.Pagina" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="HighLight">
-        <PropertyRef Name="IdPagina" />
-      </Principal>
-      <Dependent Role="Pagina">
-        <PropertyRef Name="IdPagina" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -287,12 +287,12 @@
       <End Role="TipoDynamicContent" EntitySet="TipoDynamicContent" />
       <End Role="DynamicContent" EntitySet="DynamicContent" />
     </AssociationSet>
+    <AssociationSet Name="FK_HighLight_Pagina" Association="Self.FK_HighLight_Pagina">
+      <End Role="Pagina" EntitySet="Pagina" />
+      <End Role="HighLight" EntitySet="HighLight" />
+    </AssociationSet>
     <AssociationSet Name="FK_Pagina_CategoriaPagina" Association="Self.FK_Pagina_CategoriaPagina">
       <End Role="CategoriaPagina" EntitySet="CategoriaPagina" />
-      <End Role="Pagina" EntitySet="Pagina" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Pagina_HighLight" Association="Self.FK_Pagina_HighLight">
-      <End Role="HighLight" EntitySet="HighLight" />
       <End Role="Pagina" EntitySet="Pagina" />
     </AssociationSet>
     <AssociationSet Name="FK_Pagina_Pagina" Association="Self.FK_Pagina_Pagina">

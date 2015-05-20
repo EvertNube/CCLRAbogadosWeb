@@ -10,21 +10,21 @@
         <EntityTypeShape EntityType="CCLRA.WebDbModel.CategoriaPagina" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Configuracion" Width="1.5" PointX="2.75" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.DynamicContent" Width="1.5" PointX="10" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCLRA.WebDbModel.HighLight" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCLRA.WebDbModel.Pagina" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Rol" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.TipoDynamicContent" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_CategoriaPagina" ManuallyRouted="false" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_DynamicContent_TipoDynamicContent" ManuallyRouted="false" />
-        <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_HighLight" ManuallyRouted="false" />
-        <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_Pagina" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Usuario" Width="1.5" PointX="3" PointY="3.5" />
-        <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_Usuario" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Usuario_Rol" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.PaginaHistorial" Width="1.5" PointX="7.5" PointY="4.125" />
-        <AssociationConnector Association="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_PaginaHistorial_Usuario" />
+        <EntityTypeShape EntityType="CCLRA.WebDbModel.HighLight" Width="1.5" PointX="7.5" PointY="0.75" />
+        <EntityTypeShape EntityType="CCLRA.WebDbModel.Pagina" Width="1.5" PointX="5.25" PointY="1.125" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_CategoriaPagina" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_HighLight_Pagina" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_Pagina" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_Usuario" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

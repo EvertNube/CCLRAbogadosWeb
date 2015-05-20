@@ -33,7 +33,7 @@
     </Key>
     <Property Name="IdCategoriaPagina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Pagina" Relationship="Self.FK_Pagina_CategoriaPagina" FromRole="CategoriaPagina" ToRole="Pagina" />
+    <NavigationProperty Name="Pagina" Relationship="CCLRA.WebDbModel.FK_Pagina_CategoriaPagina" FromRole="CategoriaPagina" ToRole="Pagina" />
   </EntityType>
   <EntityType Name="Configuracion">
     <Key>
@@ -57,51 +57,6 @@
     <Property Name="Orden" Type="Int32" />
     <Property Name="Descripcion" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="TipoDynamicContent" Relationship="Self.FK_DynamicContent_TipoDynamicContent" FromRole="DynamicContent" ToRole="TipoDynamicContent" />
-  </EntityType>
-  <EntityType Name="HighLight">
-    <Key>
-      <PropertyRef Name="IdPagina" />
-    </Key>
-    <Property Name="IdPagina" Type="Int32" Nullable="false" />
-    <Property Name="Descripcion" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
-    <Property Name="Resumen" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
-    <Property Name="Css" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Orden" Type="Int32" />
-    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Estado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Pagina" Relationship="Self.FK_Pagina_HighLight" FromRole="HighLight" ToRole="Pagina" />
-  </EntityType>
-  <EntityType Name="Pagina">
-    <Key>
-      <PropertyRef Name="IdPagina" />
-    </Key>
-    <Property Name="IdPagina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="Uri" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Contenido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Padre" Type="Int32" />
-    <Property Name="Estado" Type="Boolean" />
-    <Property Name="Landing" Type="Boolean" />
-    <Property Name="Orden" Type="Int32" />
-    <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
-    <Property Name="IdUsuarioActualizacion" Type="Int32" />
-    <Property Name="OnSideBar" Type="Boolean" Nullable="false" />
-    <Property Name="IdCategoriaPagina" Type="Int32" />
-    <Property Name="EnlaceExterno" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="EsEnlaceExterno" Type="Boolean" Nullable="false" />
-    <Property Name="MostrarHighlights" Type="Boolean" Nullable="false" />
-    <Property Name="OnNavigation" Type="Boolean" Nullable="false" />
-    <Property Name="EnlaceExternoTarget" Type="Boolean" Nullable="false" />
-    <Property Name="Cover" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MostrarCover" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="CategoriaPagina" Relationship="Self.FK_Pagina_CategoriaPagina" FromRole="Pagina" ToRole="CategoriaPagina" />
-    <NavigationProperty Name="HighLight" Relationship="Self.FK_Pagina_HighLight" FromRole="Pagina" ToRole="HighLight" />
-    <NavigationProperty Name="Pagina1" Relationship="Self.FK_Pagina_Pagina" FromRole="Pagina" ToRole="Pagina1" />
-    <NavigationProperty Name="Pagina2" Relationship="Self.FK_Pagina_Pagina" FromRole="Pagina1" ToRole="Pagina" />
-    <NavigationProperty Name="Usuario" Relationship="CCLRA.WebDbModel.FK_Pagina_Usuario" FromRole="Pagina" ToRole="Usuario" />
-    <NavigationProperty Name="PaginaHistorial" Relationship="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina" FromRole="Pagina" ToRole="PaginaHistorial" />
   </EntityType>
   <EntityType Name="Rol">
     <Key>
@@ -130,18 +85,6 @@
     <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="DynamicContent" Relationship="Self.FK_DynamicContent_TipoDynamicContent" FromRole="TipoDynamicContent" ToRole="DynamicContent" />
   </EntityType>
-  <Association Name="FK_Pagina_CategoriaPagina">
-    <End Role="CategoriaPagina" Type="Self.CategoriaPagina" Multiplicity="0..1" />
-    <End Role="Pagina" Type="Self.Pagina" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CategoriaPagina">
-        <PropertyRef Name="IdCategoriaPagina" />
-      </Principal>
-      <Dependent Role="Pagina">
-        <PropertyRef Name="IdCategoriaPagina" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_DynamicContent_TipoDynamicContent">
     <End Role="TipoDynamicContent" Type="Self.TipoDynamicContent" Multiplicity="1" />
     <End Role="DynamicContent" Type="Self.DynamicContent" Multiplicity="*" />
@@ -154,56 +97,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Pagina_HighLight">
-    <End Role="HighLight" Type="Self.HighLight" Multiplicity="1" />
-    <End Role="Pagina" Type="Self.Pagina" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="HighLight">
-        <PropertyRef Name="IdPagina" />
-      </Principal>
-      <Dependent Role="Pagina">
-        <PropertyRef Name="IdPagina" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Pagina_Pagina">
-    <End Role="Pagina" Type="Self.Pagina" Multiplicity="0..1" />
-    <End Role="Pagina1" Type="Self.Pagina" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pagina">
-        <PropertyRef Name="IdPagina" />
-      </Principal>
-      <Dependent Role="Pagina1">
-        <PropertyRef Name="Padre" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="CCLRAbogadosEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Agenda" EntityType="Self.Agenda" />
     <EntitySet Name="Archivo" EntityType="Self.Archivo" />
     <EntitySet Name="CategoriaPagina" EntityType="Self.CategoriaPagina" />
     <EntitySet Name="Configuracion" EntityType="Self.Configuracion" />
     <EntitySet Name="DynamicContent" EntityType="Self.DynamicContent" />
-    <EntitySet Name="HighLight" EntityType="Self.HighLight" />
-    <EntitySet Name="Pagina" EntityType="Self.Pagina" />
     <EntitySet Name="Rol" EntityType="Self.Rol" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="TipoDynamicContent" EntityType="Self.TipoDynamicContent" />
-    <AssociationSet Name="FK_Pagina_CategoriaPagina" Association="Self.FK_Pagina_CategoriaPagina">
-      <End Role="CategoriaPagina" EntitySet="CategoriaPagina" />
-      <End Role="Pagina" EntitySet="Pagina" />
-    </AssociationSet>
     <AssociationSet Name="FK_DynamicContent_TipoDynamicContent" Association="Self.FK_DynamicContent_TipoDynamicContent">
       <End Role="TipoDynamicContent" EntitySet="TipoDynamicContent" />
       <End Role="DynamicContent" EntitySet="DynamicContent" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Pagina_HighLight" Association="Self.FK_Pagina_HighLight">
-      <End Role="HighLight" EntitySet="HighLight" />
-      <End Role="Pagina" EntitySet="Pagina" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Pagina_Pagina" Association="Self.FK_Pagina_Pagina">
-      <End Role="Pagina" EntitySet="Pagina" />
-      <End Role="Pagina1" EntitySet="Pagina" />
     </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -236,21 +141,35 @@
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
     <EntitySet Name="Usuario" EntityType="CCLRA.WebDbModel.Usuario" />
-    <AssociationSet Name="FK_Pagina_Usuario" Association="CCLRA.WebDbModel.FK_Pagina_Usuario">
-      <End Role="Usuario" EntitySet="Usuario" />
-      <End Role="Pagina" EntitySet="Pagina" />
-    </AssociationSet>
     <AssociationSet Name="FK_Usuario_Rol" Association="CCLRA.WebDbModel.FK_Usuario_Rol">
       <End Role="Rol" EntitySet="Rol" />
       <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
     <EntitySet Name="PaginaHistorial" EntityType="CCLRA.WebDbModel.PaginaHistorial" />
-    <AssociationSet Name="FK_PaginaHistorial_Pagina" Association="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina">
-      <End Role="Pagina" EntitySet="Pagina" />
-      <End Role="PaginaHistorial" EntitySet="PaginaHistorial" />
-    </AssociationSet>
     <AssociationSet Name="FK_PaginaHistorial_Usuario" Association="CCLRA.WebDbModel.FK_PaginaHistorial_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="PaginaHistorial" EntitySet="PaginaHistorial" />
+    </AssociationSet>
+    <EntitySet Name="HighLight" EntityType="CCLRA.WebDbModel.HighLight" />
+    <EntitySet Name="Pagina" EntityType="CCLRA.WebDbModel.Pagina" />
+    <AssociationSet Name="FK_Pagina_CategoriaPagina" Association="CCLRA.WebDbModel.FK_Pagina_CategoriaPagina">
+      <End Role="CategoriaPagina" EntitySet="CategoriaPagina" />
+      <End Role="Pagina" EntitySet="Pagina" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HighLight_Pagina" Association="CCLRA.WebDbModel.FK_HighLight_Pagina">
+      <End Role="Pagina" EntitySet="Pagina" />
+      <End Role="HighLight" EntitySet="HighLight" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pagina_Pagina" Association="CCLRA.WebDbModel.FK_Pagina_Pagina">
+      <End Role="Pagina" EntitySet="Pagina" />
+      <End Role="Pagina1" EntitySet="Pagina" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pagina_Usuario" Association="CCLRA.WebDbModel.FK_Pagina_Usuario">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Pagina" EntitySet="Pagina" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaginaHistorial_Pagina" Association="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina">
+      <End Role="Pagina" EntitySet="Pagina" />
       <End Role="PaginaHistorial" EntitySet="PaginaHistorial" />
     </AssociationSet>
   </EntityContainer>
@@ -279,22 +198,10 @@
     <Property Name="FechaRegistro" Type="DateTime" Precision="3" />
     <Property Name="IdRol" Type="Int32" />
     <Property Name="IdCargo" Type="Int32" />
-    <NavigationProperty Name="Pagina" Relationship="CCLRA.WebDbModel.FK_Pagina_Usuario" FromRole="Usuario" ToRole="Pagina" />
     <NavigationProperty Name="Rol" Relationship="CCLRA.WebDbModel.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
     <NavigationProperty Name="PaginaHistorial" Relationship="CCLRA.WebDbModel.FK_PaginaHistorial_Usuario" FromRole="Usuario" ToRole="PaginaHistorial" />
+    <NavigationProperty Name="Pagina" Relationship="CCLRA.WebDbModel.FK_Pagina_Usuario" FromRole="Usuario" ToRole="Pagina" />
   </EntityType>
-  <Association Name="FK_Pagina_Usuario">
-    <End Type="CCLRA.WebDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
-    <End Type="CCLRA.WebDbModel.Pagina" Role="Pagina" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="IdUsuario" />
-      </Principal>
-      <Dependent Role="Pagina">
-        <PropertyRef Name="IdUsuarioActualizacion" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Usuario_Rol">
     <End Type="CCLRA.WebDbModel.Rol" Role="Rol" Multiplicity="0..1" />
     <End Type="CCLRA.WebDbModel.Usuario" Role="Usuario" Multiplicity="*" />
@@ -315,21 +222,9 @@
     <Property Name="Contenido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
     <Property Name="IdUsuarioActualizacion" Type="Int32" />
-    <NavigationProperty Name="Pagina" Relationship="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina" FromRole="PaginaHistorial" ToRole="Pagina" />
     <NavigationProperty Name="Usuario" Relationship="CCLRA.WebDbModel.FK_PaginaHistorial_Usuario" FromRole="PaginaHistorial" ToRole="Usuario" />
+    <NavigationProperty Name="Pagina" Relationship="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina" FromRole="PaginaHistorial" ToRole="Pagina" />
   </EntityType>
-  <Association Name="FK_PaginaHistorial_Pagina">
-    <End Type="CCLRA.WebDbModel.Pagina" Role="Pagina" Multiplicity="1" />
-    <End Type="CCLRA.WebDbModel.PaginaHistorial" Role="PaginaHistorial" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Pagina">
-        <PropertyRef Name="IdPagina" />
-      </Principal>
-      <Dependent Role="PaginaHistorial">
-        <PropertyRef Name="IdPagina" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_PaginaHistorial_Usuario">
     <End Type="CCLRA.WebDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
     <End Type="CCLRA.WebDbModel.PaginaHistorial" Role="PaginaHistorial" Multiplicity="*" />
@@ -339,6 +234,111 @@
       </Principal>
       <Dependent Role="PaginaHistorial">
         <PropertyRef Name="IdUsuarioActualizacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="HighLight">
+    <Key>
+      <PropertyRef Name="IdPagina" />
+    </Key>
+    <Property Name="IdPagina" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="Resumen" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+    <Property Name="Css" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Orden" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Pagina" Relationship="CCLRA.WebDbModel.FK_HighLight_Pagina" FromRole="HighLight" ToRole="Pagina" />
+  </EntityType>
+  <EntityType Name="Pagina">
+    <Key>
+      <PropertyRef Name="IdPagina" />
+    </Key>
+    <Property Name="IdPagina" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Uri" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Contenido" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Padre" Type="Int32" />
+    <Property Name="Estado" Type="Boolean" />
+    <Property Name="Landing" Type="Boolean" />
+    <Property Name="Orden" Type="Int32" />
+    <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+    <Property Name="IdUsuarioActualizacion" Type="Int32" />
+    <Property Name="OnSideBar" Type="Boolean" Nullable="false" />
+    <Property Name="IdCategoriaPagina" Type="Int32" />
+    <Property Name="EnlaceExterno" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EsEnlaceExterno" Type="Boolean" Nullable="false" />
+    <Property Name="MostrarHighlights" Type="Boolean" Nullable="false" />
+    <Property Name="OnNavigation" Type="Boolean" Nullable="false" />
+    <Property Name="EnlaceExternoTarget" Type="Boolean" Nullable="false" />
+    <Property Name="Cover" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MostrarCover" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="CategoriaPagina" Relationship="CCLRA.WebDbModel.FK_Pagina_CategoriaPagina" FromRole="Pagina" ToRole="CategoriaPagina" />
+    <NavigationProperty Name="HighLight" Relationship="CCLRA.WebDbModel.FK_HighLight_Pagina" FromRole="Pagina" ToRole="HighLight" />
+    <NavigationProperty Name="Pagina1" Relationship="CCLRA.WebDbModel.FK_Pagina_Pagina" FromRole="Pagina" ToRole="Pagina1" />
+    <NavigationProperty Name="Pagina2" Relationship="CCLRA.WebDbModel.FK_Pagina_Pagina" FromRole="Pagina1" ToRole="Pagina" />
+    <NavigationProperty Name="Usuario" Relationship="CCLRA.WebDbModel.FK_Pagina_Usuario" FromRole="Pagina" ToRole="Usuario" />
+    <NavigationProperty Name="PaginaHistorial" Relationship="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina" FromRole="Pagina" ToRole="PaginaHistorial" />
+  </EntityType>
+  <Association Name="FK_Pagina_CategoriaPagina">
+    <End Type="CCLRA.WebDbModel.CategoriaPagina" Role="CategoriaPagina" Multiplicity="0..1" />
+    <End Type="CCLRA.WebDbModel.Pagina" Role="Pagina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoriaPagina">
+        <PropertyRef Name="IdCategoriaPagina" />
+      </Principal>
+      <Dependent Role="Pagina">
+        <PropertyRef Name="IdCategoriaPagina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HighLight_Pagina">
+    <End Type="CCLRA.WebDbModel.Pagina" Role="Pagina" Multiplicity="1" />
+    <End Type="CCLRA.WebDbModel.HighLight" Role="HighLight" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pagina">
+        <PropertyRef Name="IdPagina" />
+      </Principal>
+      <Dependent Role="HighLight">
+        <PropertyRef Name="IdPagina" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pagina_Pagina">
+    <End Type="CCLRA.WebDbModel.Pagina" Role="Pagina" Multiplicity="0..1" />
+    <End Type="CCLRA.WebDbModel.Pagina" Role="Pagina1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pagina">
+        <PropertyRef Name="IdPagina" />
+      </Principal>
+      <Dependent Role="Pagina1">
+        <PropertyRef Name="Padre" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pagina_Usuario">
+    <End Type="CCLRA.WebDbModel.Usuario" Role="Usuario" Multiplicity="0..1" />
+    <End Type="CCLRA.WebDbModel.Pagina" Role="Pagina" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuario">
+        <PropertyRef Name="IdUsuario" />
+      </Principal>
+      <Dependent Role="Pagina">
+        <PropertyRef Name="IdUsuarioActualizacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaginaHistorial_Pagina">
+    <End Type="CCLRA.WebDbModel.Pagina" Role="Pagina" Multiplicity="1" />
+    <End Type="CCLRA.WebDbModel.PaginaHistorial" Role="PaginaHistorial" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Pagina">
+        <PropertyRef Name="IdPagina" />
+      </Principal>
+      <Dependent Role="PaginaHistorial">
+        <PropertyRef Name="IdPagina" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

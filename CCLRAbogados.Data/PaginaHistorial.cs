@@ -19,7 +19,7 @@ namespace CCLRAbogados.Data
         public Nullable<System.DateTime> FechaActualizacion { get; set; }
         public Nullable<int> IdUsuarioActualizacion { get; set; }
     
-        public virtual Pagina Pagina { get; set; }
         public virtual Usuario Usuario { get; set; }
+        public virtual Pagina Pagina { get; set; }
     }
 }

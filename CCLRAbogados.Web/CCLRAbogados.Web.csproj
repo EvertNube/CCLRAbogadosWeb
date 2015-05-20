@@ -141,6 +141,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\themes\admin\css\animate.css" />
     <Content Include="Content\themes\admin\css\app.css" />
     <Content Include="Content\themes\admin\css\bootstrap.css" />
@@ -648,6 +652,36 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\themes\cclra\animations\css\animations.min.css" />
+    <Content Include="Content\themes\cclra\animations\js\animations.min.js" />
+    <Content Include="Content\themes\cclra\carouselowl\owl.carousel.css" />
+    <Content Include="Content\themes\cclra\carouselowl\owl.carousel.js" />
+    <Content Include="Content\themes\cclra\carouselowl\owl.transitions.css" />
+    <Content Include="Content\themes\cclra\cubeportfolio\cubeportfolio.min.css" />
+    <Content Include="Content\themes\cclra\cubeportfolio\jquery.cubeportfolio.min.js" />
+    <Content Include="Content\themes\cclra\cubeportfolio\main.js" />
+    <Content Include="Content\themes\cclra\form\jquery.form.min.js" />
+    <Content Include="Content\themes\cclra\form\jquery.validate.min.js" />
+    <Content Include="Content\themes\cclra\form\sky-forms.css" />
+    <Content Include="Content\themes\cclra\mainmenu\bootstrap.min.css" />
+    <Content Include="Content\themes\cclra\mainmenu\bootstrap.min.js" />
+    <Content Include="Content\themes\cclra\mainmenu\customeUI.js" />
+    <Content Include="Content\themes\cclra\mainmenu\menu.css" />
+    <Content Include="Content\themes\cclra\mainmenu\modernizr.custom.75180.js" />
+    <Content Include="Content\themes\cclra\mainmenu\sticky.js" />
+    <Content Include="Content\themes\cclra\masterslider\jquery.easing.min.js" />
+    <Content Include="Content\themes\cclra\masterslider\masterslider.js" />
+    <Content Include="Content\themes\cclra\masterslider\masterslider.min.js" />
+    <Content Include="Content\themes\cclra\masterslider\skins\style.css" />
+    <Content Include="Content\themes\cclra\masterslider\style\masterslider.css" />
+    <Content Include="Content\themes\cclra\scrolltotop\totop.js" />
+    <Content Include="Content\themes\cclra\style-switcher\jquery-1.js" />
+    <Content Include="Content\themes\cclra\style-switcher\styleselector.js" />
+    <Content Include="Content\themes\cclra\tabs\css\responsive-tabs2.css" />
+    <Content Include="Content\themes\cclra\tabs\js\responsive-tabs.min.js" />
+    <Content Include="Content\themes\cclra\universal\custom.js" />
+    <Content Include="Content\themes\cclra\universal\jquery.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\admin\fonts\fontawesome-webfont.eot" />
@@ -724,9 +758,19 @@
     <Content Include="Content\themes\admin\src\less\app.widgets.less" />
     <Content Include="Content\themes\admin\src\less\less.php" />
     <Content Include="Content\themes\admin\src\less\lessc.inc.php" />
-    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.8.2.js" />
-    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Icon.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
@@ -739,6 +783,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -756,6 +801,18 @@
     <Content Include="Views\Admin\Ingresar.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\_showAlertMessages.cshtml" />
+    <Content Include="Views\Admin\Agenda.cshtml" />
+    <Content Include="Views\Admin\Archivos.cshtml" />
+    <Content Include="Views\Admin\Elemento.cshtml" />
+    <Content Include="Views\Admin\Evento.cshtml" />
+    <Content Include="Views\Admin\Highlight.cshtml" />
+    <Content Include="Views\Admin\Home.cshtml" />
+    <Content Include="Views\Admin\NuevaPagina.cshtml" />
+    <Content Include="Views\Admin\Pagina.cshtml" />
+    <Content Include="Views\Admin\Subir.cshtml" />
+    <Content Include="Views\Admin\UpdateHighlight.cshtml" />
+    <Content Include="Views\Admin\Usuario.cshtml" />
+    <Content Include="Views\Admin\Usuarios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -241,7 +241,44 @@
     </footer>
 
     <a href="#" class="scrollup" style="display: none;">Scroll</a><!-- end scroll to top of the page-->
-
-
-
 </div>
+
+<script src="~/Content/themes/cclra/universal/jquery.js"></script>
+<script src="~/Content/themes/cclra/style-switcher/jquery-1.js"></script>
+<script src="~/Content/themes/cclra/style-switcher/styleselector.js"></script>
+<script src="~/Content/themes/cclra/animations/js/animations.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Content/themes/cclra/mainmenu/customeUI.js"></script>
+<script src="~/Content/themes/cclra/masterslider/jquery.easing.min.js"></script>
+<script src="~/Content/themes/cclra/masterslider/masterslider.min.js"></script>
+<script type="text/javascript">
+    (function ($) {
+        "use strict";
+
+        var slider = new MasterSlider();
+        // adds Arrows navigation control to the slider.
+        slider.control('arrows');
+        slider.control('bullets');
+
+        slider.setup('masterslider', {
+            width: 1400,    // slider standard width
+            height: 580,   // slider standard height
+            space: 0,
+            speed: 45,
+            layout: 'fullwidth',
+            loop: true,
+            preload: 0,
+            autoplay: true,
+            view: "basic"
+        });
+
+    })(jQuery);
+</script>
+<script src="~/Content/themes/cclra/scrolltotop/totop.js"></script>
+<script src="~/Content/themes/cclra/mainmenu/sticky.js"></script>
+<script src="~/Content/themes/cclra/mainmenu/modernizr.custom.75180.js"></script>
+<link href="~/Content/themes/cclra/cubeportfolio/cubeportfolio.min.css" rel="stylesheet" />
+<script src="~/Content/themes/cclra/cubeportfolio/main.js"></script>
+<script src="~/Content/themes/cclra/carouselowl/owl.carousel.js"></script>
+<script src="~/Content/themes/cclra/tabs/js/responsive-tabs.min.js"></script>
+<script src="~/Content/themes/cclra/universal/custom.js"></script>

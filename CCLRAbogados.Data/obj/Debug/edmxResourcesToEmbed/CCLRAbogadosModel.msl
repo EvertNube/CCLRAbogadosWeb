@@ -62,46 +62,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HighLight">
-      <EntityTypeMapping TypeName="CCLRA.WebDbModel.HighLight">
-        <MappingFragment StoreEntitySet="HighLight">
-          <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Resumen" ColumnName="Resumen" />
-          <ScalarProperty Name="Css" ColumnName="Css" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Orden" ColumnName="Orden" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Pagina">
-      <EntityTypeMapping TypeName="CCLRA.WebDbModel.Pagina">
-        <MappingFragment StoreEntitySet="Pagina">
-          <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="Uri" ColumnName="Uri" />
-          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-          <ScalarProperty Name="Contenido" ColumnName="Contenido" />
-          <ScalarProperty Name="Padre" ColumnName="Padre" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Landing" ColumnName="Landing" />
-          <ScalarProperty Name="Orden" ColumnName="Orden" />
-          <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
-          <ScalarProperty Name="IdUsuarioActualizacion" ColumnName="IdUsuarioActualizacion" />
-          <ScalarProperty Name="OnSideBar" ColumnName="OnSideBar" />
-          <ScalarProperty Name="IdCategoriaPagina" ColumnName="IdCategoriaPagina" />
-          <ScalarProperty Name="EnlaceExterno" ColumnName="EnlaceExterno" />
-          <ScalarProperty Name="EsEnlaceExterno" ColumnName="EsEnlaceExterno" />
-          <ScalarProperty Name="MostrarHighlights" ColumnName="MostrarHighlights" />
-          <ScalarProperty Name="OnNavigation" ColumnName="OnNavigation" />
-          <ScalarProperty Name="EnlaceExternoTarget" ColumnName="EnlaceExternoTarget" />
-          <ScalarProperty Name="Cover" ColumnName="Cover" />
-          <ScalarProperty Name="MostrarCover" ColumnName="MostrarCover" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Rol">
       <EntityTypeMapping TypeName="CCLRA.WebDbModel.Rol">
         <MappingFragment StoreEntitySet="Rol">
@@ -176,6 +136,46 @@
           <ScalarProperty Name="IdUsuarioActualizacion" ColumnName="IdUsuarioActualizacion" />
           <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
           <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+          <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HighLight">
+      <EntityTypeMapping TypeName="CCLRA.WebDbModel.HighLight">
+        <MappingFragment StoreEntitySet="HighLight">
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Css" ColumnName="Css" />
+          <ScalarProperty Name="Resumen" ColumnName="Resumen" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pagina">
+      <EntityTypeMapping TypeName="CCLRA.WebDbModel.Pagina">
+        <MappingFragment StoreEntitySet="Pagina">
+          <ScalarProperty Name="MostrarCover" ColumnName="MostrarCover" />
+          <ScalarProperty Name="Cover" ColumnName="Cover" />
+          <ScalarProperty Name="EnlaceExternoTarget" ColumnName="EnlaceExternoTarget" />
+          <ScalarProperty Name="OnNavigation" ColumnName="OnNavigation" />
+          <ScalarProperty Name="MostrarHighlights" ColumnName="MostrarHighlights" />
+          <ScalarProperty Name="EsEnlaceExterno" ColumnName="EsEnlaceExterno" />
+          <ScalarProperty Name="EnlaceExterno" ColumnName="EnlaceExterno" />
+          <ScalarProperty Name="IdCategoriaPagina" ColumnName="IdCategoriaPagina" />
+          <ScalarProperty Name="OnSideBar" ColumnName="OnSideBar" />
+          <ScalarProperty Name="IdUsuarioActualizacion" ColumnName="IdUsuarioActualizacion" />
+          <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Landing" ColumnName="Landing" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Padre" ColumnName="Padre" />
+          <ScalarProperty Name="Contenido" ColumnName="Contenido" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Uri" ColumnName="Uri" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
         </MappingFragment>
       </EntityTypeMapping>

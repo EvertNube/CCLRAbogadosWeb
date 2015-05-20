@@ -318,7 +318,6 @@ namespace CCLRAbogados.Core
                         pagina.EnlaceExternoTarget = false;
                         pagina.MostrarHighlights = true;
                         pagina.OnNavigation = true;
-                        pagina.EnlaceExternoTarget = false;
                         pagina.MostrarCover = false;
                         context.Pagina.Add(pagina);
                         context.SaveChanges();

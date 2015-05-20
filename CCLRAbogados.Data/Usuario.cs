@@ -16,8 +16,8 @@ namespace CCLRAbogados.Data
     {
         public Usuario()
         {
-            this.Pagina = new HashSet<Pagina>();
             this.PaginaHistorial = new HashSet<PaginaHistorial>();
+            this.Pagina = new HashSet<Pagina>();
         }
     
         public int IdUsuario { get; set; }
@@ -31,8 +31,8 @@ namespace CCLRAbogados.Data
         public Nullable<int> IdRol { get; set; }
         public Nullable<int> IdCargo { get; set; }
     
-        public virtual ICollection<Pagina> Pagina { get; set; }
         public virtual Rol Rol { get; set; }
         public virtual ICollection<PaginaHistorial> PaginaHistorial { get; set; }
+        public virtual ICollection<Pagina> Pagina { get; set; }
     }
 }
