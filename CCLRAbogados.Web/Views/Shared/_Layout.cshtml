@@ -6,44 +6,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Cavero Blumenfeld, Llosa &amp; R. La Rosa Abogados</title>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="keywords" content="">
     <meta name="description" content="">
-
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico">
-
     <!-- this styles only adds some repairs on idevices  -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Google fonts - witch you want to use - (rest you can just remove) -->
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Droid+Serif:400,400italic,700,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Dancing+Script:400,700" rel="stylesheet" type="text/css">
 
     <!-- ######### CSS STYLES ######### -->
-
-    <link rel="stylesheet" href="css/reset.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-
-    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-
+    <link href="~/Content/themes/cclra/css/reset.css" rel="stylesheet" />
+    <link href="~/Content/themes/cclra/css/style.css" rel="stylesheet" />
+    <link href="~/Content/themes/cclra/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <!-- animations -->
-    <link href="js/animations/css/animations.min.css" rel="stylesheet" type="text/css" media="all">
-
+    <link href="~/Content/themes/cclra/js/animations/css/animations.min.css" rel="stylesheet" />
     <!-- responsive devices styles -->
-    <link rel="stylesheet" media="screen" href="css/responsive-leyouts.css" type="text/css">
-
+    <link href="~/Content/themes/cclra/css/responsive-leyouts.css" rel="stylesheet" />
     <!-- shortcodes -->
-    <link rel="stylesheet" media="screen" href="css/shortcodes.css" type="text/css">
-
+    <link href="~/Content/themes/cclra/css/shortcodes.css" rel="stylesheet" />
     <!-- skin -->
-    <link rel="stylesheet" href="css/colors/slate.css">
-
+    <link href="~/Content/themes/cclra/css/colors/slate.css" rel="stylesheet" />
     <!-- mega menu -->
+
     <link href="js/mainmenu/bootstrap.min.css" rel="stylesheet">
     <link href="js/mainmenu/menu.css" rel="stylesheet">
 
@@ -63,6 +52,9 @@
 
     <!-- tabs -->
     <link rel="stylesheet" type="text/css" href="js/tabs/assets/css/responsive-tabs2.css">
+
+    <title>@ViewBag.Title</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
