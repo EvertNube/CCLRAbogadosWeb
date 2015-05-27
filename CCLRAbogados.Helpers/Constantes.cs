@@ -8,6 +8,9 @@ namespace CCLRAbogados.Helpers
 {
     public static class CONSTANTES
     {
+        public static string URI_ESTUDIO = "Estudio";
+        
+        //Antiguos
         public static string URI_ADMISION = "Admision";
         public static string URI_PROGRAMAS_RADIALES = "programas-radiales";
         public static string URI_INVESTIGACION_INCIDENCIA = "InvestigacionIncidencia";
