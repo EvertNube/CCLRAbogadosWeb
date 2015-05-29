@@ -35,7 +35,8 @@
 
                     <!-- Logo -->
                     <div class="logo">
-                        <a href="index.html" id="logo"></a>
+                        <a href="@Url.Action("Index", "Home", new { page = "", id = "" }, Request.Url.Scheme)" id="logo">El Estudio</a>
+                        @*<a href="index.html" id="logo"></a>*@
                     </div>
                     <!-- Navigation Menu -->
                     <nav class="menu_main">
@@ -52,18 +53,20 @@
                                     <ul class="nav navbar-nav">
 
                                         <li class="dropdown">
-                                            <a href="index.html" class="active">El Estudio</a>
-                                        </li>
-
-                                        <li class="dropdown">
-                                            <a href="miembros.html">Miembros</a>
-                                        </li>
-
-                                        <li class="dropdown">
-                                            <a href="areas-practica.html">Áreas de Práctica</a>
+                                            @*<a href="index.html" class="active">El Estudio</a>*@
+                                            <a href="@Url.Action("Index", "Home", new { page = "", id = "" }, Request.Url.Scheme)">El Estudio</a>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="contacto.html">Contacto</a>
+                                            <a href="@Url.Action("Index", "Miembros", new { page = "", id = "" }, Request.Url.Scheme)">Miembros</a>
+                                            @*<a href="miembros.html">Miembros</a>*@
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="@Url.Action("Index", "AreasDePractica", new { page = "", id = "" }, Request.Url.Scheme)">Áreas de Práctica</a>
+                                            @*<a href="areas-practica.html">Áreas de Práctica</a>*@
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="@Url.Action("Index", "Contacto", new { page = "", id = "" }, Request.Url.Scheme)">Contacto</a>
+                                            @*<a href="contacto.html">Contacto</a>*@
                                         </li>
 
                                     </ul>

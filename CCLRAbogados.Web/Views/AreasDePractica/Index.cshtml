@@ -1,0 +1,35 @@
+﻿@using CCLRAbogados.Data
+@using CCLRAbogados.Helpers.Razor
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_menubar")
+
+<header>
+    <div class="container">
+        <h2>@ViewBag.Name</h2>
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <section class="content">
+                @if (ViewBag.Cover != null)
+                {
+                    <div class="content-cover">
+                        <img src="@ViewBag.Cover">
+                    </div>
+                }
+                <article>
+                    @if (ViewBag.Content != null)
+                    {
+                        @Html.Raw(ViewBag.Content);
+                    }
+                </article>
+
+                <div class="clear"></div>
+            </section>
+        </div>
+    </div>
+</div>

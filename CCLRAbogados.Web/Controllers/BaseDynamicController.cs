@@ -54,7 +54,7 @@ namespace CCLRAbogados.Web.Controllers
                         }
                     }
 
-                    ViewBag.Links = paginaBL.getSideBarLinks(pagina, url.AbsoluteUri);
+                    /*ViewBag.Links = paginaBL.getSideBarLinks(pagina, url.AbsoluteUri);*/
                     ViewBag.Title = pagina.Titulo;
                     ViewBag.Content = pagina.Contenido;
                     ViewBag.Landing = pagina.Landing;
@@ -80,7 +80,7 @@ namespace CCLRAbogados.Web.Controllers
                 ViewBag.Title = pagina.Titulo;
                 ViewBag.Name = pagina.Nombre;
                 ViewBag.Content = pagina.Contenido;
-                ViewBag.Links = paginaBL.getSideBarLinks(pagina, HttpContext.Request.Url.AbsoluteUri);
+                /*ViewBag.Links = paginaBL.getSideBarLinks(pagina, HttpContext.Request.Url.AbsoluteUri);*/
                 if (pagina.MostrarHighlights)
                     ViewBag.Highlights = paginaBL.getHighlightsByPaginaId(pagina.IdPagina);
                 if (pagina.MostrarCover)

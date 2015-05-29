@@ -31,8 +31,8 @@ namespace CCLRAbogados.Web.Controllers
                 ViewBag.Title = pagina.Titulo;
                 ViewBag.Name = pagina.Nombre;
                 ViewBag.Content = pagina.Contenido;
-                if (pagina != null)
-                    ViewBag.Links = paginaBL.getSideBarLinks(pagina, HttpContext.Request.Url.AbsoluteUri);
+                /*if (pagina != null)
+                    ViewBag.Links = paginaBL.getSideBarLinks(pagina, HttpContext.Request.Url.AbsoluteUri);*/
                 if (pagina.MostrarHighlights)
                     ViewBag.Highlights = paginaBL.getHighlightsByPaginaId(pagina.IdPagina);
                 if (pagina.MostrarCover)

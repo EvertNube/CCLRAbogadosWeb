@@ -130,10 +130,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\AreasDePracticaController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BaseDynamicController.cs" />
+    <Compile Include="Controllers\ContactoController.cs" />
     <Compile Include="Controllers\EstudioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MiembrosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1161,6 +1164,12 @@
     <Content Include="Views\Admin\Usuario.cshtml" />
     <Content Include="Views\Admin\Usuarios.cshtml" />
     <Content Include="Views\Shared\_menubar.cshtml" />
+    <Content Include="Views\Estudio\Index.cshtml" />
+    <Content Include="Views\Estudio\Pagina.cshtml" />
+    <Content Include="Views\Miembros\Index.cshtml" />
+    <Content Include="Views\Contacto\Index.cshtml" />
+    <Content Include="Views\AreasDePractica\Index.cshtml" />
+    <Content Include="Views\Contacto\Pagina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

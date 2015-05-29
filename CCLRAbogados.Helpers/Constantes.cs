@@ -9,6 +9,9 @@ namespace CCLRAbogados.Helpers
     public static class CONSTANTES
     {
         public static string URI_ESTUDIO = "Estudio";
+        public static string URI_MIEMBROS = "Miembros";
+        public static string URI_AREAS_DE_PRACTICA = "AreasDePractica";
+        public static string URI_CONTACTO = "Contacto";
         
         //Antiguos
         public static string URI_ADMISION = "Admision";
@@ -33,7 +36,6 @@ namespace CCLRAbogados.Helpers
         public static string URI_REVISTAS = "Revistas";
         public static string URI_NOTICIAS = "Noticias";
         public static string URI_AGENDA = "Agenda";
-        public static string URI_CONTACTO = "Contacto";
         public static string URI_EVENTOS = "Eventos";
         public static string URI_FONDO_EDITORIAL = "FondoEditorial";
         public static string URI_PRIVACIDAD = "Privacidad";

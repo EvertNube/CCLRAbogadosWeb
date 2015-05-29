@@ -1,0 +1,119 @@
+﻿@using CCLRAbogados.Data
+@using CCLRAbogados.Helpers.Razor
+@model CCLRAbogados.Core.DTO.ContactoDTO
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_menubar")
+<link href="~/Content/themes/cclra/js/form/sky-forms2.css" rel="stylesheet" />
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $.validator.unobtrusive.adapters.addBool("mustbetrue", "required");
+
+    </script>
+}
+
+<div class="page_title2">
+    <div class="container">
+
+        <h1>Contacto</h1>
+        <div class="pagenation">&nbsp;<a href="@Url.Action("Index", "Home", new { page = "", id = "" }, Request.Url.Scheme)">Inicio</a> <i>/</i> <a href="@Url.Action("Index", "Contacto", new { page = "", id = "" }, Request.Url.Scheme)">Contacto</a></div>
+
+
+    </div>
+</div><!-- end page title -->
+
+<div class="clearfix"></div>
+
+<div class="content_fullwidth">
+
+    <div class="container">
+
+        <div class="one_half">
+
+            <p>No dude en ponerse con contacto con nosotros en cualquier momento, estaremos gustosos de atenderle.</p>
+            <br />
+            <p>Complete el formulario para enviarnos su mensaje. Agradeceremos su paciencia mientras atendemos su solicitud.</p>
+            <br /><br />
+
+            <div class="cforms">
+
+                <form action="demo-contacts.php" method="post" id="sky-form" class="sky-form">
+                    <header>Formulario de <strong>Contacto</strong></header>
+                    <fieldset>
+                        <div class="row">
+                            <section class="col col-6">
+                                <label class="label">Nombre y Apellidos</label>
+                                <label class="input">
+                                    <i class="icon-append icon-user"></i>
+                                    <input type="text" name="name" id="name">
+                                </label>
+                            </section>
+                            <section class="col col-6">
+                                <label class="label">Correo Electrónico</label>
+                                <label class="input">
+                                    <i class="icon-append icon-envelope-alt"></i>
+                                    <input type="email" name="email" id="email">
+                                </label>
+                            </section>
+                        </div>
+                        <section>
+                            <label class="label">Asunto</label>
+                            <label class="input">
+                                <i class="icon-append icon-tag"></i>
+                                <input type="text" name="subject" id="subject">
+                            </label>
+                        </section>
+                        <section>
+                            <label class="label">Mensaje</label>
+                            <label class="textarea">
+                                <i class="icon-append icon-comment"></i>
+                                <textarea rows="4" name="message" id="message"></textarea>
+                            </label>
+                        </section>
+                        <section>
+                            <label class="checkbox">
+                                <input type="checkbox" name="copy" id="copy">
+                                <i></i>Enviar una copia de este mensaje a mi correo.
+                            </label>
+                        </section>
+                    </fieldset>
+                    <footer>
+                        <button type="submit" class="button">Enviar mensaje</button>
+                    </footer>
+                    <div class="message">
+                        <i class="icon-ok"></i>
+                        <p>¡Su mensaje fue enviado satisfactoriamente!</p>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class="one_half last">
+
+            <div class="address_info">
+
+                <h4>Dirección del <strong>Estudio</strong></h4>
+                <ul>
+                    <li>
+                        <strong>Cavero Blumenfeld Llosa &amp; R. La Rosa</strong><br />
+                        Jorge Vanderghen 315, Santa Cruz, Miraflores, Lima 18, Perú.<br />
+                        Telephone: +511 422-5900<br />
+                        Correo Electrónico: <a href="mailto:administracion@cclrabogados.com">administracion@cclrabogados.com</a><br />
+                        Sito Web: <a href="index.html">www.cclrabogados.com</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+            <h4>Ubicación del <strong>Estudio</strong></h4>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1950.5071377168208!2d-77.03953415634678!3d-12.11117510295762!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c838c30fb5e5%3A0x77bc1f32b20a76d6!2sAv+Jorge+Vanderghen+315%2C+Lima+15073%2C+Peru!5e0!3m2!1sen!2s!4v1429637109473" width="600" height="450" frameborder="0" style="border:0;pointer-events:none;"></iframe>
+            <br />
+            <small><a href="https://www.google.com/maps/place/Av+Jorge+Vanderghen+315,+Lima+15073,+Peru/@("@")-12.1106742,-77.0398721,18z/data=!4m2!3m1!1s0x9105c838c30fb5e5:0x77bc1f32b20a76d6?hl=es" target="_blank">Ampliar a Pantalla Completa</a></small>
+        </div>
+    </div>
+</div>

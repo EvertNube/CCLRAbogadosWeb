@@ -1,0 +1,40 @@
+﻿@using CCLRAbogados.Data
+@using CCLRAbogados.Helpers.Razor
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Partial("_menubar")
+
+@section styles{
+    <style type="text/css">
+        @if (ViewBag.Highlights != null){
+            @Html.getHighlightStyles((IDictionary<string, HighLight>)ViewBag.Highlights);
+        }
+    </style>
+}
+<header>
+    <div class="container">
+        <h2>@Html.Raw(ViewBag.Name)</h2>
+        @if (ViewBag.ParentUrl != null && ViewBag.ParentUrl != String.Empty)
+        {
+            <h2 class="ParentHeader"><a href="@ViewBag.ParentUrl">@Html.Raw(ViewBag.ParentName)</a></h2>
+        }
+    </div>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <section class="content">
+                @Html.Raw(ViewBag.Content)
+                <div class="row section-highlights">
+                    @if (ViewBag.Highlights != null)
+                    {
+                        @Html.showHighlightsV((IDictionary<string, HighLight>)ViewBag.Highlights)
+                    }
+                </div>
+                <div class="clear"></div>
+            </section>
+        </div>
+    </div>
+</div>
