@@ -405,5 +405,72 @@ namespace CCLRAbogados.Web.Controllers
             createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_MESSAGE);
             return View("Highlight", highlight);
         }
+
+        public ActionResult Miembros()
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            if (!isAdministrator()) { return RedirectToAction("Index"); }
+            MiembrosBL objBL = new MiembrosBL();
+            return View(objBL.getMiembros());
+        }
+
+        public ActionResult Miembro(int? id = null)
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            MiembrosBL objBL = new MiembrosBL();
+            ViewBag.IdEntidad = id;
+            var objSent = TempData["Miembro"];
+            if (objSent != null) { TempData["Miembro"] = null; return View(objSent); }
+            if (id != null)
+            {
+                MiembroDTO obj = objBL.getMiembro((int)id);
+                return View(obj);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddMiembro(MiembroDTO dto)
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            try
+            {
+                MiembrosBL objBL = new MiembrosBL();
+                if (dto.IdMiembro == 0)
+                {
+                    if (objBL.add(dto))
+                    {
+                        createResponseMessage(CONSTANTES.SUCCESS);
+                        return RedirectToAction("Miembros");
+                    }
+                }
+                else if (dto.IdMiembro != 0)
+                {
+                    if (objBL.update(dto))
+                    {
+                        createResponseMessage(CONSTANTES.SUCCESS);
+                        return RedirectToAction("Miembros");
+                    }
+                    else
+                    {
+                        createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE);
+                    }
+
+                }
+                else
+                {
+                    createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_INSERT_MESSAGE);
+                }
+            }
+            catch (Exception e)
+            {
+                if (dto.IdMiembro != 0)
+                    createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE);
+                else createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_INSERT_MESSAGE);
+            }
+            TempData["Miembro"] = dto;
+            return RedirectToAction("Miembro");
+        }
     }
 }

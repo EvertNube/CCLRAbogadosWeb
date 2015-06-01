@@ -172,6 +172,7 @@
       <End Role="Pagina" EntitySet="Pagina" />
       <End Role="PaginaHistorial" EntitySet="PaginaHistorial" />
     </AssociationSet>
+    <EntitySet Name="Miembro" EntityType="CCLRA.WebDbModel.Miembro" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -342,4 +343,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Miembro">
+    <Key>
+      <PropertyRef Name="IdMiembro" />
+    </Key>
+    <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Cargo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

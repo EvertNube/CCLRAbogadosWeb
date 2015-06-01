@@ -78,25 +78,33 @@
                                                 <span>Archivos</span>
                                             </a>
                                         </li>
+                                        <li>
+                                            <a href="@Url.Action("Miembros")">
+                                                <i class="fa fa-users icon">
+                                                    <b class="bg-success"></b>
+                                                </i>
+                                                <span>Miembros</span>
+                                            </a>
+                                        </li>
                                         @if (ViewBag.EsAdmin)
                                         {
                                             <li>
                                                 <a href="@Url.Action("Usuarios")">
-                                                    <i class="fa fa-users icon">
+                                                    <i class="fa fa-unlock-alt icon">
                                                         <b class="bg-warning"></b>
                                                     </i>
                                                     <span>Usuarios</span>
                                                 </a>
                                             </li>
                                         }
-                                        <li>
+                                        @*<li>
                                             <a href="@Url.Action("Home")">
                                                 <i class="fa fa-dashboard icon">
                                                     <b class="bg-dark"></b>
                                                 </i>
                                                 <span>Home</span>
                                             </a>
-                                        </li>
+                                        </li>*@
                                         @*<li>
                                             <a href="@Url.Action("Noticias")">
                                                 <i class="fa fa-rss icon">

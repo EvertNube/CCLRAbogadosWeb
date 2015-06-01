@@ -1,0 +1,101 @@
+﻿@model CCLRAbogados.Core.DTO.MiembroDTO
+@{
+    if (Model == null || Model.IdMiembro == 0)
+    {
+        ViewBag.Title = "Miembro";
+    }
+    else { ViewBag.Title = Model.Nombre; }
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (Model == null || Model.IdMiembro == 0)
+{
+    <h2>Nuevo Miembro</h2>
+}
+else
+{<h2>Actualizar Miembro</h2>}
+
+@using (Html.BeginForm("AddMiembro", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <div class="row m-b">
+        <div class="col-xs-12 col-md-6">
+            @Html.Partial("_showAlertMessages")
+
+            <section class="panel panel-default">
+                <header class="panel-heading font-bold">Formulario de Registro</header>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        @Html.TextBoxFor(u => u.Nombre, new { @class = "form-control", @placeholder = "Ingrese su nombre completo", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.Nombre)
+                    </div>
+                    <div class="form-group">
+                        <label>Cargo</label>
+                        @Html.TextBoxFor(u => u.Cargo, new { @class = "form-control", @placeholder = "Ingrese su cargo o relación con la institución", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.Cargo)
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        @Html.TextBoxFor(u => u.Nombre, new { @class = "form-control", @placeholder = "Ingrese su Teléfono", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.Nombre)
+                    </div>
+                    <div class="form-group">
+                        <label>Celular</label>
+                        @Html.TextBoxFor(u => u.Celular, new { @class = "form-control", @placeholder = "Ingrese su Celular", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.Celular)
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico</label>
+                        @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Ingrese su correo", @type = "email" })
+                        @Html.ValidationMessageFor(u => u.Email)
+                    </div>
+                    <div class="form-group">
+                        <label>Título</label>
+                        @Html.TextBoxFor(u => u.Titulo, new { @class = "form-control", @placeholder = "Ingrese un título para su descripción", @type = "email" })
+                        @Html.ValidationMessageFor(u => u.Titulo)
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        @Html.TextAreaFor(u => u.Descripcion, new { @class = "form-control", @placeholder = "Ingrese una descripción", @type = "text", @maxlength = "500" })
+                        @Html.ValidationMessageFor(u => u.Descripcion)
+                    </div>
+                    <div class="line line-dashed line-lg pull-in"></div>
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>Imagen de portada</label>
+                            @Html.TextBoxFor(u => u.Imagen, new { @class = "form-control", @placeholder = "Ruta de la imagen", @type = "text", @maxlength = "200" })
+                            @Html.ValidationMessageFor(u => u.Imagen)
+                        </div>
+                    </div>
+                    @if (ViewBag.EsAdmin && Model != null && Model.IdMiembro > 0)
+                    {
+                        <div class="line line-dashed line-lg pull-in"></div>
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(u => u.Estado)
+                            Activo
+                        </label>
+                        @Html.ValidationMessageFor(u => u.Estado)
+                    </div>}
+                    else
+                    {
+                        @Html.TextBoxFor(u => u.Estado, new { @value = Model != null ? Model.Estado : false, @type = "hidden" })
+                    }
+                    <div class="line line-dashed line-lg pull-in"></div>
+                    @Html.TextBoxFor(u => u.IdMiembro, new { @value = Model != null ? Model.IdMiembro.ToString() : "", @type = "hidden" })
+                    @{var btnName = (Model != null && Model.IdMiembro > 0) ? "Guardar Cambios" : "Crear";}
+                    <button type="submit" class="btn btn-sm btn-primary">@btnName</button>
+                    @if (ViewBag.EsAdmin)
+                    {
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Miembros")">Salir</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Index")">Salir</a>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
+}

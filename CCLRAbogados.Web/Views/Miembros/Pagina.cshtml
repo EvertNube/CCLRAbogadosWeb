@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Miembros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model IList<CCLRAbogados.Core.DTO.MiembroDTO>
+
+@Html.Partial("_menubar")
+
+<div class="clearfix"></div>
+
+<div class="page_title2">
+    <div class="container">
+
+        <h1>Miembros</h1>
+        <div class="pagenation">&nbsp;<a href="index.html">Inicio</a> <i>/</i> <a href="#">Miembros</a></div>
+
+    </div>
+</div><!-- end page title -->
+
+<div class="clearfix"></div>
+
+<div class="feature_sec17">
+    <div class="container">
+        @{int cont = 0;}
+        @foreach (var miembro in Model)
+        {
+            var classHalf = (cont % 2 == 0) ? "class='one_half'" : "class='one_half last'";
+            <div @Html.Raw(classHalf)>
+                <div class="box">
+                    <div class="carea">
+                        <h5><strong>@miembro.Nombre</strong></h5>
+                        <em>@miembro.Cargo</em>
+                        <p>@miembro.Descripcion</p>
+                        <a href="attorneys-fullbio.html" class="button5">Leer más...</a>
+                    </div>
+                    <img src="http://placehold.it/360x330" alt="" />
+                </div>
+            </div>
+            if(cont % 2 != 0)
+            { 
+                <div class="clearfix margin_top5"></div>
+            }
+            cont++;
+        }
+    </div>
+</div>

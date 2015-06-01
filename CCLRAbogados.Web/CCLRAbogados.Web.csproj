@@ -1170,6 +1170,10 @@
     <Content Include="Views\Contacto\Index.cshtml" />
     <Content Include="Views\AreasDePractica\Index.cshtml" />
     <Content Include="Views\Contacto\Pagina.cshtml" />
+    <Content Include="Views\Admin\Miembros.cshtml" />
+    <Content Include="Views\Admin\Miembro.cshtml" />
+    <Content Include="Views\AreasDePractica\Pagina.cshtml" />
+    <Content Include="Views\Miembros\Pagina.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

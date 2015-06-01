@@ -69,6 +69,23 @@
     <Property Name="Image" Type="nvarchar" MaxLength="50" />
     <Property Name="Estado" Type="bit" Nullable="false" />
   </EntityType>
+  <EntityType Name="Miembro">
+    <Key>
+      <PropertyRef Name="IdMiembro" />
+    </Key>
+    <Property Name="IdMiembro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Cargo" Type="nvarchar" MaxLength="150" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
+    <Property Name="Celular" Type="nvarchar" MaxLength="15" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Descripcion" Type="nvarchar(max)" />
+    <Property Name="Imagen" Type="nvarchar" MaxLength="250" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+    <Property Name="Uri" Type="nvarchar(max)" />
+    <Property Name="ShortUrl" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Pagina">
     <Key>
       <PropertyRef Name="IdPagina" />
@@ -277,6 +294,7 @@
     <EntitySet Name="Configuracion" EntityType="Self.Configuracion" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DynamicContent" EntityType="Self.DynamicContent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HighLight" EntityType="Self.HighLight" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Miembro" EntityType="Self.Miembro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pagina" EntityType="Self.Pagina" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaginaHistorial" EntityType="Self.PaginaHistorial" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />

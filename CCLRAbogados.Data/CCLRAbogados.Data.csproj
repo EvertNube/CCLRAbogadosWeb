@@ -81,6 +81,9 @@
     <Compile Include="HighLight.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Miembro.cs">
+      <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Pagina.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>

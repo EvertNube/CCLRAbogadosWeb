@@ -12,9 +12,9 @@ namespace CCLRAbogados.Web.Controllers
     {
         public ActionResult Index(string page, string id, string subid)
         {
-            bool result = base.showPagina(CONSTANTES.URI_AREAS_DE_PRACTICA, HttpContext.Request.Url, page, id, subid);
-            if (result) { return View("Pagina"); }
-            else { return View(); }
+            showPagina(CONSTANTES.URI_AREAS_DE_PRACTICA, HttpContext.Request.Url, page, id, subid);
+            
+            return View("Pagina");
         }
 
     }

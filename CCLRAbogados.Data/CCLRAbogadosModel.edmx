@@ -74,6 +74,23 @@
           <Property Name="Image" Type="nvarchar" MaxLength="50" />
           <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="Miembro">
+          <Key>
+            <PropertyRef Name="IdMiembro" />
+          </Key>
+          <Property Name="IdMiembro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Cargo" Type="nvarchar" MaxLength="150" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
+          <Property Name="Celular" Type="nvarchar" MaxLength="15" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="100" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+          <Property Name="Imagen" Type="nvarchar" MaxLength="250" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+          <Property Name="Uri" Type="nvarchar(max)" />
+          <Property Name="ShortUrl" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="Pagina">
           <Key>
             <PropertyRef Name="IdPagina" />
@@ -282,6 +299,7 @@
           <EntitySet Name="Configuracion" EntityType="Self.Configuracion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DynamicContent" EntityType="Self.DynamicContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HighLight" EntityType="Self.HighLight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Miembro" EntityType="Self.Miembro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pagina" EntityType="Self.Pagina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaginaHistorial" EntityType="Self.PaginaHistorial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
@@ -497,6 +515,7 @@
             <End Role="Pagina" EntitySet="Pagina" />
             <End Role="PaginaHistorial" EntitySet="PaginaHistorial" />
           </AssociationSet>
+          <EntitySet Name="Miembro" EntityType="CCLRA.WebDbModel.Miembro" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -667,6 +686,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Miembro">
+          <Key>
+            <PropertyRef Name="IdMiembro" />
+          </Key>
+          <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Cargo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -849,6 +885,24 @@
                 <ScalarProperty Name="Uri" ColumnName="Uri" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdPagina" ColumnName="IdPagina" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Miembro">
+            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
+              <MappingFragment StoreEntitySet="Miembro">
+                <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
+                <ScalarProperty Name="Uri" ColumnName="Uri" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -54,11 +54,13 @@
     <Compile Include="BL\DynContentBL.cs" />
     <Compile Include="BL\FormulariosBL.cs" />
     <Compile Include="BL\HomeBL.cs" />
+    <Compile Include="BL\MiembrosBL.cs" />
     <Compile Include="BL\NavigationBL.cs" />
     <Compile Include="BL\PaginasBL.cs" />
     <Compile Include="BL\UsuariosBL.cs" />
     <Compile Include="DTO\ContactoDTO.cs" />
     <Compile Include="DTO\EnlaceDTO.cs" />
+    <Compile Include="DTO\MiembroDTO.cs" />
     <Compile Include="DTO\PaginaDTO.cs" />
     <Compile Include="DTO\PostulacionDTO.cs" />
     <Compile Include="DTO\RevistaDTO.cs" />
