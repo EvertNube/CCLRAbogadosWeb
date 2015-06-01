@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Cargos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model IList<CCLRAbogados.Core.DTO.CargoDTO>
+
+<h2>Cargos</h2>
+@Html.Partial("_showAlertMessages")
+<section class="panel panel-default">
+    <div class="row text-sm wrapper">
+        @*<div class="col-sm-8">
+            <div class="btn-group">
+                @if (ViewBag.EsAdmin)
+                {
+                    <label><input type="checkbox" id="btn-showInactive" /> Mostrar Inactivos</label>
+                }
+            </div>
+        </div>*@
+        <div class="col-sm-12">
+            <a class="btn btn-sm btn-success pull-right" href="@Url.Action("Cargo")"><i class="fa fa-user"></i> Crear nuevo cargo</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped m-b-none">
+            <thead>
+                <tr>
+                    <th width="10%">ID</th>
+                    <th width="80%">Nombre</th>
+                    @if (ViewBag.EsAdmin)
+                    {
+                        <th width="10%">Opciones</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{int cont = 1;}
+                @foreach (var cargo in Model)
+                {
+                    <tr>
+                    <td>@cont</td>
+                    <td>@cargo.Nombre</td>
+                    @if (ViewBag.EsAdmin)
+                    {
+                        <td align="center"><a href="@Url.Action("Cargo", new { id = cargo.IdCargo})"><i class="fa fa-pencil"></i></a></td>
+                    }
+                </tr>
+                    cont++;
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

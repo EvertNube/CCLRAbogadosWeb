@@ -11,7 +11,7 @@ namespace CCLRAbogados.Core.DTO
     {
         public int IdMiembro { get; set; }
         public string Nombre { get; set; }
-        public string Cargo { get; set; }
+        public int IdCargo { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
         public string Email { get; set; }
@@ -21,5 +21,6 @@ namespace CCLRAbogados.Core.DTO
         public bool Estado { get; set; }
         public string Uri { get; set; }
         public string ShortUrl { get; set; }
+        public string NombreCargo { get; set; }
     }
 }

@@ -32,6 +32,13 @@
           <Property Name="Estado" Type="bit" Nullable="false" />
           <Property Name="ShortUrl" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="IdCargo" />
+          </Key>
+          <Property Name="IdCargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="CategoriaPagina">
           <Key>
             <PropertyRef Name="IdCategoriaPagina" />
@@ -80,7 +87,7 @@
           </Key>
           <Property Name="IdMiembro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Cargo" Type="nvarchar" MaxLength="150" />
+          <Property Name="IdCargo" Type="int" Nullable="false" />
           <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
           <Property Name="Celular" Type="nvarchar" MaxLength="15" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
@@ -90,6 +97,9 @@
           <Property Name="Estado" Type="bit" Nullable="false" />
           <Property Name="Uri" Type="nvarchar(max)" />
           <Property Name="ShortUrl" Type="nvarchar(max)" />
+          <Property Name="UrlFacebook" Type="nvarchar" MaxLength="200" />
+          <Property Name="UrlTwitter" Type="nvarchar" MaxLength="200" />
+          <Property Name="UrlLinkedIn" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Pagina">
           <Key>
@@ -186,6 +196,18 @@
             </Principal>
             <Dependent Role="HighLight">
               <PropertyRef Name="IdPagina" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Miembro_Cargo">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="IdCargo" />
+            </Principal>
+            <Dependent Role="Miembro">
+              <PropertyRef Name="IdCargo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -295,6 +317,7 @@
         <EntityContainer Name="CCLRAWebDbModelStoreContainer">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Archivo" EntityType="Self.Archivo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CategoriaPagina" EntityType="Self.CategoriaPagina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Configuracion" EntityType="Self.Configuracion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DynamicContent" EntityType="Self.DynamicContent" Schema="dbo" store:Type="Tables" />
@@ -313,6 +336,10 @@
           <AssociationSet Name="FK_HighLight_Pagina" Association="Self.FK_HighLight_Pagina">
             <End Role="Pagina" EntitySet="Pagina" />
             <End Role="HighLight" EntitySet="HighLight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Miembro_Cargo" Association="Self.FK_Miembro_Cargo">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="Miembro" EntitySet="Miembro" />
           </AssociationSet>
           <AssociationSet Name="FK_Pagina_CategoriaPagina" Association="Self.FK_Pagina_CategoriaPagina">
             <End Role="CategoriaPagina" EntitySet="CategoriaPagina" />
@@ -515,7 +542,12 @@
             <End Role="Pagina" EntitySet="Pagina" />
             <End Role="PaginaHistorial" EntitySet="PaginaHistorial" />
           </AssociationSet>
+          <EntitySet Name="Cargo" EntityType="CCLRA.WebDbModel.Cargo" />
           <EntitySet Name="Miembro" EntityType="CCLRA.WebDbModel.Miembro" />
+          <AssociationSet Name="FK_Miembro_Cargo" Association="CCLRA.WebDbModel.FK_Miembro_Cargo">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="Miembro" EntitySet="Miembro" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -686,13 +718,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="IdCargo" />
+          </Key>
+          <Property Name="IdCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Cargo" ToRole="Miembro" />
+        </EntityType>
         <EntityType Name="Miembro">
           <Key>
             <PropertyRef Name="IdMiembro" />
           </Key>
           <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Cargo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IdCargo" Type="Int32" Nullable="false" />
           <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -702,7 +742,23 @@
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrlFacebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UrlTwitter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UrlLinkedIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cargo" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
         </EntityType>
+        <Association Name="FK_Miembro_Cargo">
+          <End Type="CCLRA.WebDbModel.Cargo" Role="Cargo" Multiplicity="1" />
+          <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="IdCargo" />
+            </Principal>
+            <Dependent Role="Miembro">
+              <PropertyRef Name="IdCargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -888,9 +944,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Cargo">
+            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Cargo">
+              <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Miembro">
             <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
               <MappingFragment StoreEntitySet="Miembro">
+                <ScalarProperty Name="UrlLinkedIn" ColumnName="UrlLinkedIn" />
+                <ScalarProperty Name="UrlTwitter" ColumnName="UrlTwitter" />
+                <ScalarProperty Name="UrlFacebook" ColumnName="UrlFacebook" />
                 <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
                 <ScalarProperty Name="Uri" ColumnName="Uri" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
@@ -900,7 +967,7 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Celular" ColumnName="Celular" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Cargo" ColumnName="Cargo" />
+                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
               </MappingFragment>

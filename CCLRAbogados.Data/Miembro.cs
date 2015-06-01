@@ -16,7 +16,7 @@ namespace CCLRAbogados.Data
     {
         public int IdMiembro { get; set; }
         public string Nombre { get; set; }
-        public string Cargo { get; set; }
+        public int IdCargo { get; set; }
         public string Telefono { get; set; }
         public string Celular { get; set; }
         public string Email { get; set; }
@@ -26,5 +26,10 @@ namespace CCLRAbogados.Data
         public bool Estado { get; set; }
         public string Uri { get; set; }
         public string ShortUrl { get; set; }
+        public string UrlFacebook { get; set; }
+        public string UrlTwitter { get; set; }
+        public string UrlLinkedIn { get; set; }
+    
+        public virtual Cargo Cargo { get; set; }
     }
 }

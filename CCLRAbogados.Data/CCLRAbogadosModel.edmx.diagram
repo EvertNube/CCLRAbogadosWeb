@@ -25,7 +25,9 @@
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_Pagina" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_Usuario" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_PaginaHistorial_Pagina" />
-        <EntityTypeShape EntityType="CCLRA.WebDbModel.Miembro" Width="1.5" PointX="7.375" PointY="11.75" />
+        <EntityTypeShape EntityType="CCLRA.WebDbModel.Cargo" Width="1.5" PointX="7.375" PointY="13.25" />
+        <EntityTypeShape EntityType="CCLRA.WebDbModel.Miembro" Width="1.5" PointX="9.625" PointY="12" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_Miembro_Cargo" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

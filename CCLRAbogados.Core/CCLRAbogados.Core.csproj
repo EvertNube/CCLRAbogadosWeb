@@ -51,6 +51,7 @@
     <Compile Include="BL\AgendaBL.cs" />
     <Compile Include="BL\ArchivosBL.cs" />
     <Compile Include="BL\Base.cs" />
+    <Compile Include="BL\CargoBL.cs" />
     <Compile Include="BL\DynContentBL.cs" />
     <Compile Include="BL\FormulariosBL.cs" />
     <Compile Include="BL\HomeBL.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="BL\NavigationBL.cs" />
     <Compile Include="BL\PaginasBL.cs" />
     <Compile Include="BL\UsuariosBL.cs" />
+    <Compile Include="DTO\CargoDTO.cs" />
     <Compile Include="DTO\ContactoDTO.cs" />
     <Compile Include="DTO\EnlaceDTO.cs" />
     <Compile Include="DTO\MiembroDTO.cs" />

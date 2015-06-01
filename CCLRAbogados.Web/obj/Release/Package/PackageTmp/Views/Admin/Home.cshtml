@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model IList<CCLRAbogados.Data.DynamicContent>
+@{IEnumerable<CCLRAbogados.Data.TipoDynamicContent> categorias = ViewBag.Categorias;}
+
+<h2>Home</h2>
+@Html.Partial("_showAlertMessages")
+<section class="panel panel-default">
+    <div class="row text-sm wrapper">
+        <div class="col-sm-8">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  Secciones
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    @foreach (var categoria in categorias){
+                        <li><a href="@Url.Action("Home", new { id = categoria.IdTipoDynamicContent })">@categoria.Nombre</a></li>
+                    }
+                </ul>
+                <span class="label label-lg bg-warning">@categorias.SingleOrDefault(x=>x.IdTipoDynamicContent == ViewBag.SelectedCategory).Nombre</span>
+                @if (ViewBag.EsAdmin){
+                    <label><input type="checkbox" id="btn-showInactive" /> Mostrar Inactivos</label>
+                } 
+            </div>
+            
+            
+                
+        </div>
+        <div class="col-sm-4">
+            <a class="btn btn-sm btn-success pull-right" href="@Url.Action("Elemento")"><i class="fa fa-plus"></i> Nuevo Elemento</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped m-b-none">
+        <thead>
+            <tr>
+            <th width="5%">ID</th>
+            <th width="25%">Nombre</th>
+            <th width="20%">Url</th>
+            <th width="10%">Orden</th>
+            <th width="20%">Categoría</th>
+            <th width="10%">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int cont = 1;}
+            @foreach (var elemento in Model){
+                var classInactive = (ViewBag.EsAdmin && !elemento.Estado) ? "class='inactive'" : "";
+            <tr @Html.Raw(classInactive)>
+                <td align="center">@if (ViewBag.EsAdmin && !elemento.Estado){ <span class="badge bg-danger" data-toggle="tooltip" data-placement="left" data-original-title="Inactivo" >@cont</span>} else {@cont} </td>
+                <td>@elemento.Titulo</td>
+                <td>@elemento.Url</td>
+                <td>@elemento.Orden</td>
+                <td>@categorias.SingleOrDefault(x => x.IdTipoDynamicContent == elemento.IdTipoDynamicContent).Nombre</td>
+                <td align="center"><a href="@Url.Action("Elemento", new { id = elemento.IdDynamicContent})"><i class="fa fa-pencil"></i></a></td>
+            </tr>
+                cont++;
+            }
+        </tbody>
+        </table>
+    </div>
+    </section>

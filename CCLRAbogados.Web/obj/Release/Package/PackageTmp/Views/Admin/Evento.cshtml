@@ -1,0 +1,94 @@
+﻿@model CCLRAbogados.Data.Agenda
+
+@{
+    if (Model == null || Model.IdAgenda == 0)
+    {
+        ViewBag.Title = "Agenda";
+    }
+    else { ViewBag.Title = Model.Titulo; }
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles{
+    @Styles.Render("~/Content/themes/admin/js/datatables/datatables.css")
+    }
+@section scripts{
+    @Scripts.Render("~/Content/themes/admin/js/ckeditor2/ckeditor.js")
+    }
+
+    @if (Model== null || Model.IdAgenda ==0){
+    <h2>Nuevo Evento</h2>
+    }
+    else{<h2>Actualizar Evento</h2>}
+    
+    @using (Html.BeginForm("AddEvent", "Admin", FormMethod.Post))
+    {
+    @Html.ValidationSummary(true)
+    <div class="row m-b">
+        <div class="col-xs-12 col-md-12">  
+            @Html.Partial("_showAlertMessages")
+  
+        <section class="panel panel-default">
+        <header class="panel-heading font-bold">Formulario de Registro</header>
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Titulo</label>
+                @Html.TextBoxFor(u => u.Titulo, new { @class="form-control", @placeholder="Ingrese el título del evento", @type="text"})
+                @Html.ValidationMessageFor(u => u.Titulo)
+            </div>
+            <div class="form-group">
+                <label>Nombre Ruta SEO</label>
+                @Html.TextBoxFor(u => u.Uri, new { @class="form-control", @placeholder="Ej. programa-de-entrevistas-publico-privado", @type="text"})
+                @Html.ValidationMessageFor(u => u.Uri)
+            </div>
+            <div class="form-group">
+                <label>Resumen</label>
+                @Html.TextAreaFor(u => u.Resumen, new { @class="form-control", @placeholder="Ingrese el resumen del evento"})
+                @Html.ValidationMessageFor(u => u.Resumen)
+            </div>
+            <div class="line line-dashed line-lg pull-in"></div>
+            <div class="form-group">
+                <label>Texto</label>
+                @Html.Raw(HttpUtility.HtmlDecode(@Html.TextAreaFor(u => u.Texto, new { @class="ckeditor form-control"}).ToHtmlString()))
+                @Html.ValidationMessageFor(u => u.Texto)
+            </div>
+            <div class="line line-dashed line-lg pull-in"></div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label>Lugar</label>
+                    @Html.TextBoxFor(u => u.Lugar, new { @class="form-control", @placeholder="Ingrese el lugar del evento", @type="text"})
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label>Hora</label>
+                    @Html.TextBoxFor(u => u.Hora, new { @class="form-control", @placeholder="Ingrese la hora del evento", @type="text"})
+                    @Html.ValidationMessageFor(u => u.Hora)
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label>Fecha</label>
+                    @{var today = Model != null ? @Model.Fecha.ToString("yyyy-MM-dd") : DateTime.Today.ToString("yyyy-MM-dd");}                    
+                    <input type="date" value="@today" class="form-control" id="Fecha" name="Fecha"/>                    
+                </div>
+            </div>
+            @if (ViewBag.EsAdmin && Model!=null && Model.IdAgenda >0){
+            <div class="line line-dashed line-lg pull-in"></div>
+            <div class="checkbox">
+                <label>@Html.CheckBoxFor(u => u.Estado)
+                    Activo</label>
+                @Html.ValidationMessageFor(u => u.Estado)
+            </div>}
+            else{
+                @Html.TextBoxFor(u => u.Estado, new { @value = Model != null ? Model.Estado : false, @type="hidden"})
+            }
+            <div class="line line-dashed line-lg pull-in"></div>
+            @Html.TextBoxFor(u => u.IdAgenda, new { @value = Model != null ? Model.IdAgenda.ToString() : "", @type="hidden"})
+            @{var btnName = (Model != null && Model.IdAgenda > 0) ? "Guardar Cambios" : "Crear";}
+            <button type="submit" class="btn btn-sm btn-primary">@btnName</button>
+            <a class="btn btn-sm btn-danger" href="@Url.Action("Agenda")">Salir</a>
+        </div>
+        </section>
+        </div>
+    </div>
+    }

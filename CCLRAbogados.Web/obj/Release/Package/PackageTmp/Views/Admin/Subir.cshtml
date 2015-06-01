@@ -1,0 +1,76 @@
+﻿@{
+    ViewBag.Title = "Archivos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section styles{
+    @Styles.Render("~/Content/themes/admin/css/jquery.fileupload.css")
+    }
+@section scripts{
+    @Scripts.Render("~/Content/themes/admin/js/uploader/jquery.ui.widget.js")
+    @Scripts.Render("~/Content/themes/admin/js/uploader/jquery.iframe-transport.js")
+    @Scripts.Render("~/Content/themes/admin/js/uploader/jquery.fileupload.js")
+
+    <script>
+    /*jslint unparam: true */
+    /*global window, $ */
+    $(function () {
+        'use strict';
+        // Change this to the location of your server-side upload handler:
+        var url = "@Url.Action("Upload", "api", null, this.Request.Url.Scheme)";
+        $('#fileupload').fileupload({
+            url: url,
+            dataType: 'json',
+            done: function (e, data) {
+                var files = $.parseJSON(data.result);
+                $.each(files, function (index, file) {
+                    if (!window.location.origin)
+                        window.location.origin = window.location.protocol+"//"+window.location.host;
+                    var html = [];
+                    html.push("<div class='col-sm-4 file-block'>",
+                              "<button type='button' class='close' data-dismiss='alert'>×</button>",
+                              "<section class='panel panel-info'><div class='panel-body'>",
+                              "<span class='thumb pull-right m-l'>",
+                              "<img src=/Archivo/" + file.Uri + " class='img-circle'></span>",
+                              "<div class='clear'>",
+                              "<span class='block text-muted'>" + file.Nombre + "</span>",
+                              "<small class='text-info'>/Archivo/" + file.Uri + "</small>",
+                              //"<a href='#' class='btn btn-xs btn-success m-t-xs'>Follow</a>",
+                              "</div></div></section></div>");
+                    $('#files').prepend(html.join("")).fadeIn('slow');
+                });
+            },
+            progressall: function (e, data) {
+                var progress = parseInt(data.loaded / data.total * 100, 10);
+                $('#progress .progress-bar').css(
+                    'width',
+                    progress + '%'
+                );
+            }
+        }).prop('disabled', !$.support.fileInput)
+            .parent().addClass($.support.fileInput ? undefined : 'disabled');
+    });
+    </script>
+}
+            
+        <h2>Subir Archivos</h2>
+
+
+<!-- The fileinput-button span is used to style the file input field as button -->
+    <span class="btn btn-dark fileinput-button">
+        <i class="glyphicon glyphicon-plus"></i>
+        <span>Seleccionar archivos...</span>
+        <!-- The file input field used as target for the file upload widget -->
+        <input id="fileupload" type="file" name="files[]" multiple>
+    </span>
+    <a href="@Url.Action("Archivos")" class="btn btn-danger">Salir</a>
+    <br>
+    <br>
+    <!-- The global progress bar -->
+    <div id="progress" class="progress">
+        <div class="progress-bar progress-bar-success"></div>
+    </div>
+    <!-- The container for the uploaded files -->
+    <div id="files" class="files row">
+
+
+    </div>

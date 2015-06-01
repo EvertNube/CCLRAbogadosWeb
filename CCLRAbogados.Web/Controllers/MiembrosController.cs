@@ -22,6 +22,7 @@ namespace CCLRAbogados.Web.Controllers
             else { return View(); }*/
             showPagina(CONSTANTES.URI_AREAS_DE_PRACTICA, HttpContext.Request.Url, page, id, subid);
             MiembrosBL objBL = new MiembrosBL();
+            ViewBag.Cargos = objBL.getCargosViewBag(false);
             return View("Pagina", objBL.getMiembros());
             //return View("Pagina");
         }

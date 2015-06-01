@@ -1,0 +1,67 @@
+﻿@using CCLRAbogados.Helpers
+@model CCLRAbogados.Core.PaginaDTO
+
+@{
+    ViewBag.Title = "NuevaPagina";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Nueva Página</h2>
+    <div class="row">
+        <div class="col-md-6">    
+        @Html.Partial("_showAlertMessages")
+    </div></div>
+@using (Html.BeginForm("PageCreate", "Admin", FormMethod.Post))
+    {
+    @Html.ValidationSummary(true)
+        <div class="row m-b">
+        <div class="col-xs-12 col-md-6">    
+        
+        <section class="panel panel-default">
+        <header class="panel-heading font-bold">Formulario de Registro de Páginas</header>
+        @if (ViewBag.Padre!=null){
+            <header class="panel-heading">Referencia: @ViewBag.Padre.PathNames</header>
+        }
+        <div class="panel-body">
+            <div class="form-group">
+                <label>Nombre</label>
+                @Html.TextBoxFor(p => p.Nombre, new { @class="form-control", @placeholder="Ej. Maestrías Presenciales", @type="text", @maxlength="300"})
+                @Html.ValidationMessageFor(p => p.Nombre)
+            </div>
+            <div class="line line-dashed line-lg pull-in"></div>
+            <div class="form-group">
+                <label>Título SEO</label>
+                @Html.TextBoxFor(p => p.Titulo, new { @class="form-control", @placeholder="Ingrese el título para SEO", @type="text", @maxlength="100"})
+                @Html.ValidationMessageFor(p => p.Titulo)
+            </div>
+            <div class="form-group">
+                <label>Nombre Ruta SEO</label>
+                @Html.TextBoxFor(p => p.Uri, new { @class="form-control", @placeholder="Ej. maestrias-presenciales", @type="text", @maxlength="300"})
+                @Html.ValidationMessageFor(p => p.Uri)
+            </div>
+            <div class="line line-dashed line-lg pull-in"></div>
+            <div class="checkbox">
+                <label>@Html.CheckBoxFor(p => p.LandingNotNull)
+                    Tiene páginas internas.</label>
+                @Html.ValidationMessageFor(p => p.Landing)
+            </div>
+            <div class="line line-dashed line-lg pull-in"></div>
+            <div class="checkbox">
+                <label>@Html.CheckBoxFor(p => p.EsEnlaceExterno)
+                     Es enlace externo.</label>
+                @Html.ValidationMessageFor(p => p.EsEnlaceExterno)
+            </div>
+            <div class="form-group">
+                <label>Url externo</label>
+                @Html.TextBoxFor(p => p.EnlaceExterno, new { @class="form-control", @placeholder="http://", @type="text", @maxlength="200"})
+                @Html.ValidationMessageFor(p => p.EnlaceExterno)
+            </div>
+            <div class="line line-dashed line-lg pull-in"></div>
+            @Html.HiddenFor(p => p.Padre)
+            <button type="submit" class="btn btn-sm btn-primary">Crear</button>
+            <a href="@Url.Action("Index")" class="btn btn-sm btn-danger">Cancelar</a>
+        </div>
+        </section>
+                        </div>
+            </div>
+    }

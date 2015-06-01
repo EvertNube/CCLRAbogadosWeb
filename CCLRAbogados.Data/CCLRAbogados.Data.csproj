@@ -54,6 +54,9 @@
     <Compile Include="Archivo.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cargo.cs">
+      <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="CategoriaPagina.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>

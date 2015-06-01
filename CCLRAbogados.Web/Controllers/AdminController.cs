@@ -235,6 +235,72 @@ namespace CCLRAbogados.Web.Controllers
             return RedirectToAction("Usuario");
         }
 
+        public ActionResult Cargos()
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            CargoBL cargosBL = new CargoBL();
+            return View(cargosBL.getCargos());
+        }
+        public ActionResult Cargo(int? id = null)
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            CargoBL objBL = new CargoBL();
+            ViewBag.IdEntidad = id;
+            var objSent = TempData["Cargo"];
+            if (objSent != null) { TempData["Cargo"] = null; return View(objSent); }
+            if (id != null)
+            {
+                CargoDTO obj = objBL.getCargo((int)id);
+                return View(obj);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCargo(CargoDTO dto)
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            try
+            {
+                CargoBL objBL = new CargoBL();
+                if (dto.IdCargo == 0)
+                {
+                    if (objBL.add(dto))
+                    {
+                        createResponseMessage(CONSTANTES.SUCCESS);
+                        return RedirectToAction("Cargos");
+                    }
+                }
+                else if (dto.IdCargo != 0)
+                {
+                    if (objBL.update(dto))
+                    {
+                        createResponseMessage(CONSTANTES.SUCCESS);
+                        return RedirectToAction("Cargos");
+                    }
+                    else
+                    {
+                        createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE);
+                    }
+
+                }
+                else
+                {
+                    createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_INSERT_MESSAGE);
+                }
+            }
+            catch (Exception e)
+            {
+                if (dto.IdCargo != 0)
+                    createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE);
+                else createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_INSERT_MESSAGE);
+            }
+            TempData["Cargo"] = dto;
+            return RedirectToAction("Cargo");
+        }
+
         public ActionResult RecoverPage(int id)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
@@ -420,6 +486,8 @@ namespace CCLRAbogados.Web.Controllers
             //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
             MiembrosBL objBL = new MiembrosBL();
             ViewBag.IdEntidad = id;
+            ViewBag.Cargos = objBL.getCargosViewBag(false);
+
             var objSent = TempData["Miembro"];
             if (objSent != null) { TempData["Miembro"] = null; return View(objSent); }
             if (id != null)

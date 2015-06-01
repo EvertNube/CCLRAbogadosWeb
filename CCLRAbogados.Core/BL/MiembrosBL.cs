@@ -15,23 +15,31 @@ namespace CCLRAbogados.Core.BL
         {
             using(var context = getContext())
             {
-                //var result = context.Miembro.Where(x => x.Estado).Select(x => new MiembroDTO
-                var result = context.Miembro.Select(x => new MiembroDTO
+                try
                 {
-                    IdMiembro = x.IdMiembro,
-                    Nombre = x.Nombre,
-                    Cargo = x.Cargo,
-                    Telefono = x.Telefono,
-                    Celular = x.Celular,
-                    Email = x.Email,
-                    Titulo = x.Titulo,
-                    Descripcion = x.Descripcion,
-                    Imagen = x.Imagen,
-                    Estado = x.Estado,
-                    Uri = x.Uri,
-                    ShortUrl = x.ShortUrl
-                }).OrderBy(x => x.IdMiembro).ToList();
-                return result;
+                    //var result = context.Miembro.Where(x => x.Estado).Select(x => new MiembroDTO
+                    var result = context.Miembro.AsEnumerable().Select(x => new MiembroDTO
+                    {
+                        IdMiembro = x.IdMiembro,
+                        Nombre = x.Nombre,
+                        IdCargo = x.IdCargo,
+                        Telefono = x.Telefono,
+                        Celular = x.Celular,
+                        Email = x.Email,
+                        Titulo = x.Titulo,
+                        Descripcion = x.Descripcion,
+                        Imagen = x.Imagen,
+                        Estado = x.Estado,
+                        Uri = x.Uri,
+                        ShortUrl = x.ShortUrl,
+                        NombreCargo = x.Cargo.Nombre
+                    }).OrderBy(x => x.IdMiembro).ToList();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
         }
 
@@ -43,7 +51,7 @@ namespace CCLRAbogados.Core.BL
                 {
                     IdMiembro = r.IdMiembro,
                     Nombre = r.Nombre,
-                    Cargo = r.Cargo,
+                    IdCargo = r.IdCargo,
                     Telefono = r.Telefono,
                     Celular = r.Celular,
                     Email = r.Email,
@@ -67,7 +75,7 @@ namespace CCLRAbogados.Core.BL
                     Miembro nuevo = new Miembro();
                     nuevo.IdMiembro = Miembro.IdMiembro;
                     nuevo.Nombre = Miembro.Nombre;
-                    nuevo.Cargo = Miembro.Cargo;
+                    nuevo.IdCargo = Miembro.IdCargo;
                     nuevo.Telefono = Miembro.Telefono;
                     nuevo.Celular = Miembro.Telefono;
                     nuevo.Email = Miembro.Email;
@@ -97,7 +105,7 @@ namespace CCLRAbogados.Core.BL
                     var dataRow = context.Miembro.Where(x => x.IdMiembro == Miembro.IdMiembro).SingleOrDefault();
                     dataRow.IdMiembro = Miembro.IdMiembro;
                     dataRow.Nombre = Miembro.Nombre;
-                    dataRow.Cargo = Miembro.Cargo;
+                    dataRow.IdCargo = Miembro.IdCargo;
                     dataRow.Telefono = Miembro.Telefono;
                     dataRow.Celular = Miembro.Telefono;
                     dataRow.Email = Miembro.Email;
@@ -115,6 +123,20 @@ namespace CCLRAbogados.Core.BL
 
                         throw e;
                     }
+            }
+        }
+        public IList<CargoDTO> getCargosViewBag(bool AsSelectList = false)
+        {
+            CargoBL objBL = new CargoBL();
+            if (!AsSelectList)
+            {
+                return objBL.getCargos();
+            }
+            else
+            {
+                var lista = objBL.getCargos();
+                lista.Insert(0, new CargoDTO() { IdCargo = 0, Nombre = "Seleccione el Tipo de Cargo." });
+                return lista;
             }
         }
     }
