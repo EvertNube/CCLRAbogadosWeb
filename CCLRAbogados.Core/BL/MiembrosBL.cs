@@ -43,6 +43,37 @@ namespace CCLRAbogados.Core.BL
             }
         }
 
+        public IList<MiembroDTO> getMiembrosActivos()
+        {
+            using(var context = getContext())
+            {
+                try
+                {
+                    var result = context.Miembro.Where(x => x.Estado).Select(x => new MiembroDTO
+                    {
+                        IdMiembro = x.IdMiembro,
+                        Nombre = x.Nombre,
+                        IdCargo = x.IdCargo,
+                        Telefono = x.Telefono,
+                        Celular = x.Celular,
+                        Email = x.Email,
+                        Titulo = x.Titulo,
+                        Descripcion = x.Descripcion,
+                        Imagen = x.Imagen,
+                        Estado = x.Estado,
+                        Uri = x.Uri,
+                        ShortUrl = x.ShortUrl,
+                        NombreCargo = x.Cargo.Nombre
+                    }).OrderBy(x => x.IdMiembro).ToList();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public MiembroDTO getMiembro(int id)
         {
             using (var context = getContext())
