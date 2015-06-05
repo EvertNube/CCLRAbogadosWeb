@@ -507,7 +507,9 @@ namespace CCLRAbogados.Web.Controllers
                 MiembrosBL objBL = new MiembrosBL();
                 if (dto.IdMiembro == 0)
                 {
-                    if (objBL.add(dto))
+                    string absolutePath = HttpContext.Request.Url.Scheme + "://" + HttpContext.Request.Url.Authority + "/" + CONSTANTES.URI_MIEMBROS;
+
+                    if (objBL.add(dto, absolutePath))
                     {
                         createResponseMessage(CONSTANTES.SUCCESS);
                         return RedirectToAction("Miembros");

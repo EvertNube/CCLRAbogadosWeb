@@ -1,0 +1,86 @@
+﻿@using CCLRAbogados.Core.DTO
+@model MiembroDTO
+<div class="full_biohead">
+    <div class="container">
+        @{var imagen = "http://placehold.it/360x330";
+        if (Model.Imagen != null)
+        { imagen = Model.Imagen; }}
+        <img src="@imagen" alt="" />
+
+        <h3>Nombre Apellido</h3>
+        <h6>Fundador &amp; Socio</h6>
+
+        <ul class="ctdet">
+            <li><i class="fa fa-phone-square"></i> (123) 456-7890</li>
+            <li><i class="fa fa-envelope"></i> <a href="mailto:correo@correo.com">correo@cclrabogados.com</a></li>
+        </ul>
+
+        <p><a href="#" class="button5">Descargar vCard</a> &nbsp;&nbsp; <a href="mailto:info@websitename.com" class="button5">Enviar un correo</a></p>
+
+        <ul class="csocial">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fa fa-skype"></i></a></li>
+        </ul>
+
+    </div>
+</div><!-- end full info head -->
+
+<div class="clearfix"></div>
+
+<div class="container tbp">
+
+    <div class="clearfix"></div>
+
+    <h3>Experiencia Profesional</h3>
+
+    <p class="big_text3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium in tortor vitae dignissim. Morbi sagittis nisi libero, ut blandit mi malesuada nec. Quisque mattis et odio ac fermentum. <strong class="color2 sb">Vestibulum bibendum mi feugiat</strong> ligula venenatis molestie. Nullam eleifend sapien ac ante vulputate, quis dapibus dolor rhoncus. Cras vel sodales purus, vel aliquam est. Etiam blandit massa eget turpis vehicula aliquam. Nunc mollis ex a justo varius maximus. Phasellus id bibendum libero, vitae lobortis leo.</p>
+    <br />
+    <p class="big_text3">Maecenas tempus molestie purus, at rutrum mi malesuada sit amet. Etiam consectetur ex at odio rhoncus suscipit nec vitae dui. Donec mollis lobortis ipsum. Morbi vitae mollis diam. Morbi sollicitudin nulla eu mattis interdum. Maecenas posuere mattis venenatis. Vestibulum mollis dapibus magna sed pharetra.</p>
+
+    <div class="clearfix margin_top5"></div>
+
+    <div class="one_third">
+        <div class="graybgraph_box">
+
+            <h3>Áreas de Práctica</h3>
+
+            <ul>
+                <li><i class="fa fa-arrow-circle-o-right"></i> <a href="#">Derecho Corporativo</a></li>
+                <li><i class="fa fa-arrow-circle-o-right"></i> <a href="#">Derecho Civil</a></li>
+                <li><i class="fa fa-arrow-circle-o-right"></i> <a href="#">Derecho Laboral y Migraciones</a></li>
+                <li><i class="fa fa-arrow-circle-o-right"></i> <a href="#">Derecho Tributario</a></li>
+
+            </ul>
+
+        </div>
+    </div><!-- end section -->
+
+    <div class="one_third">
+        <div class="graybgraph_box">
+
+            <h3>Educación</h3>
+
+            <ul>
+                <li><strong class="color">Escuela de Leyes:</strong> <br /> Georgia State University College of Law, J.D., 1995, Lead Articles Editor –  Georgia State University Law Review</li>
+                <li><br /><strong class="color">Pregrado:</strong> <br /> University of Georgia, B.B.A. in Finance, 1992, Recipient: Alumni Scholarship</li>
+            </ul>
+
+        </div>
+    </div><!-- end section -->
+
+    <div class="one_third last">
+        <div class="graybgraph_box">
+
+            <h3>Certificaciones</h3>
+
+            <ul>
+                <li><i class="fa fa-arrow-circle-o-right"></i> Diplomado Especializado en Derecho de la Construcción</li>
+                <li><i class="fa fa-arrow-circle-o-right"></i> Diplomado Especializado en Derecho de la Energía y de los Recuros Naturales</li>
+            </ul>
+
+        </div>
+    </div><!-- end all section -->
+
+</div><!-- end content area -->

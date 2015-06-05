@@ -14,9 +14,13 @@ namespace CCLRAbogados.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("favicon.ico");
 
-            routes.MapRoute(name: "Contacto", url: "{controller}/{page}/{id}/{subid}",
-                             defaults: new { page = UrlParameter.Optional, id = UrlParameter.Optional, subid = UrlParameter.Optional, action = "Index" },
+            routes.MapRoute(name: "Contacto", url: "{controller}/{page}",
+                             defaults: new { page = UrlParameter.Optional, action = "Index" },
                              constraints: new { controller = "Contacto" });
+
+            routes.MapRoute(name: "Archivo", url: "{controller}/{path}",
+                             defaults: new { path = UrlParameter.Optional, action = "Index" },
+                             constraints: new { controller = "Archivo" });
 
             routes.MapRoute(name: "AreasDePractica", url: "{controller}/{page}/{id}/{subid}",
                              defaults: new { page = UrlParameter.Optional, id = UrlParameter.Optional, subid = UrlParameter.Optional, action = "Index" },

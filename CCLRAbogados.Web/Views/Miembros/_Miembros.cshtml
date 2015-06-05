@@ -1,23 +1,12 @@
 ﻿@using CCLRAbogados.Core.DTO
-@{
-    ViewBag.Title = "Miembros";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 @model IList<CCLRAbogados.Core.DTO.MiembroDTO>
-
-@Html.Partial("_menubar")
-
-<div class="clearfix"></div>
-
 <div class="page_title2">
     <div class="container">
 
         <h1>Miembros</h1>
-        <div class="pagenation">&nbsp;<a href="index.html">Inicio</a> <i>/</i> <a href="#">Miembros</a></div>
-
+        <div class="pagenation">&nbsp;<a href="@Url.Action("Index", "Home", new { page = "", id = "" }, Request.Url.Scheme)">Inicio</a> <i>/</i> <a href="@Url.Action("Index", "Miembros", new { page = "", id = "" }, Request.Url.Scheme)">Miembros</a></div>
     </div>
 </div><!-- end page title -->
-
 <div class="clearfix"></div>
 
 <div class="feature_sec15">
@@ -29,22 +18,21 @@
             </div>
             @foreach (var miembro in Model)
             {
-                if(cargo.IdCargo ==  miembro.IdCargo)
+                if (cargo.IdCargo == miembro.IdCargo)
                 {
                     var classHalf = "class='one_third'";
                     <div @Html.Raw(classHalf)>
                         @{var imagen = "http://placehold.it/360x330";
-                          if (miembro.Imagen != null)
-                          {imagen = miembro.Imagen;}}
+                        if (miembro.Imagen != null)
+                        { imagen = miembro.Imagen; }}
                         <img src="@imagen" alt="" />
                         <h5>@miembro.Nombre</h5>
                         <h6>@miembro.NombreCargo</h6>
-
-                        <a href="miembros-fullbio.html">Perfil Completo</a>
+                        <a href="@Url.Action("Index", "Miembros", new { page = "", id=miembro.IdMiembro })">Perfil Completo</a>
                     </div>
                 }
             }
         </div>
         <div class="clearfix margin_top8"></div>
-     }
+    }
 </div>

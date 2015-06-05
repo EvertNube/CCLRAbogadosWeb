@@ -97,7 +97,7 @@ namespace CCLRAbogados.Core.BL
             }
         }
 
-        public bool add(MiembroDTO Miembro)
+        public bool add(MiembroDTO Miembro, string baseUrl = "")
         {
             using (var context = getContext())
             {
@@ -105,6 +105,10 @@ namespace CCLRAbogados.Core.BL
                 {
                     Miembro nuevo = new Miembro();
                     nuevo.IdMiembro = Miembro.IdMiembro;
+                    //------ShortURL--------
+                    var urlToEncode = baseUrl + "/" + Miembro.Uri;
+                    nuevo.ShortUrl = ShortUrl.Shorten(urlToEncode);
+                    //------End ShortURL----
                     nuevo.Nombre = Miembro.Nombre;
                     nuevo.IdCargo = Miembro.IdCargo;
                     nuevo.Telefono = Miembro.Telefono;
@@ -115,7 +119,7 @@ namespace CCLRAbogados.Core.BL
                     nuevo.Imagen = Miembro.Imagen;
                     nuevo.Estado = true;
                     nuevo.Uri = Miembro.Uri;
-                    nuevo.ShortUrl = Miembro.ShortUrl;
+                    //nuevo.ShortUrl = Miembro.ShortUrl;
                     context.Miembro.Add(nuevo);
                     context.SaveChanges();
                     return true;
@@ -127,7 +131,7 @@ namespace CCLRAbogados.Core.BL
             }
         }
 
-        public bool update(MiembroDTO Miembro)
+        public bool update(MiembroDTO Miembro, string baseUrl = "")
         {
             using (var context = getContext())
             {
@@ -135,6 +139,10 @@ namespace CCLRAbogados.Core.BL
                 {
                     var dataRow = context.Miembro.Where(x => x.IdMiembro == Miembro.IdMiembro).SingleOrDefault();
                     dataRow.IdMiembro = Miembro.IdMiembro;
+                    //------ShortURL--------
+                    var urlToEncode = baseUrl + "/" + Miembro.Uri;
+                    dataRow.ShortUrl = ShortUrl.Shorten(urlToEncode);
+                    //------End ShortURL----
                     dataRow.Nombre = Miembro.Nombre;
                     dataRow.IdCargo = Miembro.IdCargo;
                     dataRow.Telefono = Miembro.Telefono;
@@ -168,6 +176,29 @@ namespace CCLRAbogados.Core.BL
                 var lista = objBL.getCargos();
                 lista.Insert(0, new CargoDTO() { IdCargo = 0, Nombre = "Seleccione el Tipo de Cargo." });
                 return lista;
+            }
+        }
+
+        public MiembroDTO getMiembroPorUri(string uri)
+        {
+            using(var context = getContext())
+            {
+                var result = context.Miembro.Where(x => x.Estado == true && x.Uri == uri).Select(r => new MiembroDTO
+                    {
+                        IdMiembro = r.IdMiembro,
+                        Nombre = r.Nombre,
+                        IdCargo = r.IdCargo,
+                        Telefono = r.Telefono,
+                        Celular = r.Celular,
+                        Email = r.Email,
+                        Titulo = r.Titulo,
+                        Descripcion = r.Descripcion,
+                        Imagen = r.Imagen,
+                        Estado = r.Estado,
+                        Uri = r.Uri,
+                        ShortUrl = r.ShortUrl
+                    }).SingleOrDefault();
+                return result;
             }
         }
     }
