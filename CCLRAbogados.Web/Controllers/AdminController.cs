@@ -498,7 +498,7 @@ namespace CCLRAbogados.Web.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpPost, ValidateInput(false)]
         public ActionResult AddMiembro(MiembroDTO dto)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }

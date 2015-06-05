@@ -5,14 +5,18 @@
         @{var imagen = "http://placehold.it/360x330";
         if (Model.Imagen != null)
         { imagen = Model.Imagen; }}
-        <img src="@imagen" alt="" />
+        <img src="@imagen" alt="" width="450" height="400"/>
 
-        <h3>Nombre Apellido</h3>
-        <h6>Fundador &amp; Socio</h6>
+        <h3>@Model.Nombre</h3>
+        <h6>@Model.NombreCargo</h6>
 
         <ul class="ctdet">
-            <li><i class="fa fa-phone-square"></i> (123) 456-7890</li>
-            <li><i class="fa fa-envelope"></i> <a href="mailto:correo@correo.com">correo@cclrabogados.com</a></li>
+            @{var telefonos = "N/A";
+              if(Model.Telefono != null && Model.Celular != null)
+              { telefonos = Model.Telefono + " - " + Model.Celular; }
+              else { if (Model.Telefono != null) { telefonos = Model.Telefono; } else { telefonos = Model.Celular; } }}
+            <li><i class="fa fa-phone-square"></i>@telefonos</li>
+            <li><i class="fa fa-envelope"></i> <a href="mailto:correo@correo.com">@Model.Email</a></li>
         </ul>
 
         <p><a href="#" class="button5">Descargar vCard</a> &nbsp;&nbsp; <a href="mailto:info@websitename.com" class="button5">Enviar un correo</a></p>
@@ -33,11 +37,9 @@
 
     <div class="clearfix"></div>
 
-    <h3>Experiencia Profesional</h3>
+    <h3>@Model.Titulo</h3>
 
-    <p class="big_text3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas pretium in tortor vitae dignissim. Morbi sagittis nisi libero, ut blandit mi malesuada nec. Quisque mattis et odio ac fermentum. <strong class="color2 sb">Vestibulum bibendum mi feugiat</strong> ligula venenatis molestie. Nullam eleifend sapien ac ante vulputate, quis dapibus dolor rhoncus. Cras vel sodales purus, vel aliquam est. Etiam blandit massa eget turpis vehicula aliquam. Nunc mollis ex a justo varius maximus. Phasellus id bibendum libero, vitae lobortis leo.</p>
-    <br />
-    <p class="big_text3">Maecenas tempus molestie purus, at rutrum mi malesuada sit amet. Etiam consectetur ex at odio rhoncus suscipit nec vitae dui. Donec mollis lobortis ipsum. Morbi vitae mollis diam. Morbi sollicitudin nulla eu mattis interdum. Maecenas posuere mattis venenatis. Vestibulum mollis dapibus magna sed pharetra.</p>
+    @Html.Raw(Model.Descripcion)
 
     <div class="clearfix margin_top5"></div>
 

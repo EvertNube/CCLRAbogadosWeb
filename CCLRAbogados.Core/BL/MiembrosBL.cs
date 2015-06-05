@@ -91,7 +91,8 @@ namespace CCLRAbogados.Core.BL
                     Imagen = r.Imagen,
                     Estado = r.Estado,
                     Uri = r.Uri,
-                    ShortUrl = r.ShortUrl
+                    ShortUrl = r.ShortUrl,
+                    NombreCargo = r.Cargo.Nombre
                 }).SingleOrDefault();
                 return result;
             }
@@ -196,7 +197,8 @@ namespace CCLRAbogados.Core.BL
                         Imagen = r.Imagen,
                         Estado = r.Estado,
                         Uri = r.Uri,
-                        ShortUrl = r.ShortUrl
+                        ShortUrl = r.ShortUrl,
+                        NombreCargo = r.Cargo.Nombre
                     }).SingleOrDefault();
                 return result;
             }

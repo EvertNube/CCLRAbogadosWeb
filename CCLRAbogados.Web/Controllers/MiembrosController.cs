@@ -31,7 +31,7 @@ namespace CCLRAbogados.Web.Controllers
             ViewBag.page = page ?? "";
             ViewBag.id = id ?? "";
 
-            if(!String.IsNullOrWhiteSpace(id))
+            if(!String.IsNullOrWhiteSpace(page))
             {
                 return View(getPaginaMiembro(objBL, page, id));
             }
@@ -41,8 +41,8 @@ namespace CCLRAbogados.Web.Controllers
 
         private MiembroDTO getPaginaMiembro(MiembrosBL miembrosBL, string page, string id)
         {
-            int num = Int32.Parse(id);
-            MiembroDTO miembro = miembrosBL.getMiembro(num);
+            //int num = Int32.Parse(id);
+            MiembroDTO miembro = miembrosBL.getMiembroPorUri(page);
             if(miembro.IdMiembro != 0)
             { 
                 ViewBag.ParentName = "Miembros";

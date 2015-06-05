@@ -16,11 +16,12 @@
             <div class="one_full title1">
                 <h3><span class="line"></span><span class="text">@(cargo.Nombre + "s")</span></h3>
             </div>
+            @{var cont = 1;}
             @foreach (var miembro in Model)
             {
                 if (cargo.IdCargo == miembro.IdCargo)
                 {
-                    var classHalf = "class='one_third'";
+                    var classHalf = (cont % 3 != 0) ? "class='one_third'" : "class='one_third last'";
                     <div @Html.Raw(classHalf)>
                         @{var imagen = "http://placehold.it/360x330";
                         if (miembro.Imagen != null)
@@ -28,8 +29,9 @@
                         <img src="@imagen" alt="" />
                         <h5>@miembro.Nombre</h5>
                         <h6>@miembro.NombreCargo</h6>
-                        <a href="@Url.Action("Index", "Miembros", new { page = "", id=miembro.IdMiembro })">Perfil Completo</a>
+                        <a href="@Url.Action("Index", "Miembros", new { page=miembro.Uri, id="" })">Perfil Completo</a>
                     </div>
+                    cont++;
                 }
             }
         </div>
