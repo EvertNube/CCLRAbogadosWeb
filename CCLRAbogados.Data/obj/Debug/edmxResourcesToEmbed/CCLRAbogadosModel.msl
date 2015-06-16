@@ -209,5 +209,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="TipoExperiencia">
+      <EntityTypeMapping TypeName="CCLRA.WebDbModel.TipoExperiencia">
+        <MappingFragment StoreEntitySet="TipoExperiencia">
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdTipoExperiencia" ColumnName="IdTipoExperiencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Experiencia">
+      <EntityTypeMapping TypeName="CCLRA.WebDbModel.Experiencia">
+        <MappingFragment StoreEntitySet="Experiencia">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Texto" ColumnName="Texto" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
+          <ScalarProperty Name="IdTipoExperiencia" ColumnName="IdTipoExperiencia" />
+          <ScalarProperty Name="IdExperiencia" ColumnName="IdExperiencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

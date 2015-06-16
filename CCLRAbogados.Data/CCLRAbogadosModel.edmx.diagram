@@ -28,6 +28,10 @@
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Cargo" Width="1.5" PointX="7.375" PointY="13.25" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Miembro" Width="1.5" PointX="9.625" PointY="12" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Miembro_Cargo" />
+        <EntityTypeShape EntityType="CCLRA.WebDbModel.TipoExperiencia" Width="1.5" PointX="9.625" PointY="17.375" />
+        <EntityTypeShape EntityType="CCLRA.WebDbModel.Experiencia" Width="1.5" PointX="11.875" PointY="14.125" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_Experiencia_Miembro" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_Experiencia_TipoExperiencia" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

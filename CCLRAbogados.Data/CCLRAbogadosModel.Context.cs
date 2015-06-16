@@ -41,6 +41,8 @@ namespace CCLRAbogados.Data
         public virtual DbSet<Pagina> Pagina { get; set; }
         public virtual DbSet<Cargo> Cargo { get; set; }
         public virtual DbSet<Miembro> Miembro { get; set; }
+        public virtual DbSet<TipoExperiencia> TipoExperiencia { get; set; }
+        public virtual DbSet<Experiencia> Experiencia { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

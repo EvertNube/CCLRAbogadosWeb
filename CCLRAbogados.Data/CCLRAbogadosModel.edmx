@@ -68,6 +68,18 @@
           <Property Name="Orden" Type="int" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="300" />
         </EntityType>
+        <EntityType Name="Experiencia">
+          <Key>
+            <PropertyRef Name="IdExperiencia" />
+          </Key>
+          <Property Name="IdExperiencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdTipoExperiencia" Type="int" Nullable="false" />
+          <Property Name="IdMiembro" Type="int" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Texto" Type="nvarchar" MaxLength="200" />
+          <Property Name="Orden" Type="int" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="HighLight">
           <Key>
             <PropertyRef Name="IdPagina" />
@@ -160,6 +172,13 @@
           <Property Name="IdTipoDynamicContent" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="TipoExperiencia">
+          <Key>
+            <PropertyRef Name="IdTipoExperiencia" />
+          </Key>
+          <Property Name="IdTipoExperiencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="IdUsuario" />
@@ -184,6 +203,30 @@
             </Principal>
             <Dependent Role="DynamicContent">
               <PropertyRef Name="IdTipoDynamicContent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experiencia_Miembro">
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="1" />
+          <End Role="Experiencia" Type="Self.Experiencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="IdMiembro" />
+            </Principal>
+            <Dependent Role="Experiencia">
+              <PropertyRef Name="IdMiembro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experiencia_TipoExperiencia">
+          <End Role="TipoExperiencia" Type="Self.TipoExperiencia" Multiplicity="1" />
+          <End Role="Experiencia" Type="Self.Experiencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoExperiencia">
+              <PropertyRef Name="IdTipoExperiencia" />
+            </Principal>
+            <Dependent Role="Experiencia">
+              <PropertyRef Name="IdTipoExperiencia" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -321,6 +364,7 @@
           <EntitySet Name="CategoriaPagina" EntityType="Self.CategoriaPagina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Configuracion" EntityType="Self.Configuracion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DynamicContent" EntityType="Self.DynamicContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Experiencia" EntityType="Self.Experiencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HighLight" EntityType="Self.HighLight" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Miembro" EntityType="Self.Miembro" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pagina" EntityType="Self.Pagina" Schema="dbo" store:Type="Tables" />
@@ -328,10 +372,19 @@
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoDynamicContent" EntityType="Self.TipoDynamicContent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoExperiencia" EntityType="Self.TipoExperiencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_DynamicContent_TipoDynamicContent" Association="Self.FK_DynamicContent_TipoDynamicContent">
             <End Role="TipoDynamicContent" EntitySet="TipoDynamicContent" />
             <End Role="DynamicContent" EntitySet="DynamicContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experiencia_Miembro" Association="Self.FK_Experiencia_Miembro">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="Experiencia" EntitySet="Experiencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experiencia_TipoExperiencia" Association="Self.FK_Experiencia_TipoExperiencia">
+            <End Role="TipoExperiencia" EntitySet="TipoExperiencia" />
+            <End Role="Experiencia" EntitySet="Experiencia" />
           </AssociationSet>
           <AssociationSet Name="FK_HighLight_Pagina" Association="Self.FK_HighLight_Pagina">
             <End Role="Pagina" EntitySet="Pagina" />
@@ -548,7 +601,17 @@
             <End Role="Cargo" EntitySet="Cargo" />
             <End Role="Miembro" EntitySet="Miembro" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="TipoExperiencia" EntityType="CCLRA.WebDbModel.TipoExperiencia" />
+          <EntitySet Name="Experiencia" EntityType="CCLRA.WebDbModel.Experiencia" />
+          <AssociationSet Name="FK_Experiencia_Miembro" Association="CCLRA.WebDbModel.FK_Experiencia_Miembro">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="Experiencia" EntitySet="Experiencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experiencia_TipoExperiencia" Association="CCLRA.WebDbModel.FK_Experiencia_TipoExperiencia">
+            <End Role="TipoExperiencia" EntitySet="TipoExperiencia" />
+            <End Role="Experiencia" EntitySet="Experiencia" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -746,6 +809,7 @@
           <Property Name="UrlTwitter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UrlLinkedIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cargo" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
+          <NavigationProperty Name="Experiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Miembro" ToRole="Experiencia" />
         </EntityType>
         <Association Name="FK_Miembro_Cargo">
           <End Type="CCLRA.WebDbModel.Cargo" Role="Cargo" Multiplicity="1" />
@@ -759,7 +823,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="TipoExperiencia">
+          <Key>
+            <PropertyRef Name="IdTipoExperiencia" />
+          </Key>
+          <Property Name="IdTipoExperiencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Experiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_TipoExperiencia" FromRole="TipoExperiencia" ToRole="Experiencia" />
+        </EntityType>
+        <EntityType Name="Experiencia">
+          <Key>
+            <PropertyRef Name="IdExperiencia" />
+          </Key>
+          <Property Name="IdExperiencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdTipoExperiencia" Type="Int32" Nullable="false" />
+          <Property Name="IdMiembro" Type="Int32" Nullable="false" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Texto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Orden" Type="Int32" Nullable="false" />
+          <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Experiencia" ToRole="Miembro" />
+          <NavigationProperty Name="TipoExperiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_TipoExperiencia" FromRole="Experiencia" ToRole="TipoExperiencia" />
+        </EntityType>
+        <Association Name="FK_Experiencia_Miembro">
+          <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="1" />
+          <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="IdMiembro" />
+            </Principal>
+            <Dependent Role="Experiencia">
+              <PropertyRef Name="IdMiembro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experiencia_TipoExperiencia">
+          <End Type="CCLRA.WebDbModel.TipoExperiencia" Role="TipoExperiencia" Multiplicity="1" />
+          <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoExperiencia">
+              <PropertyRef Name="IdTipoExperiencia" />
+            </Principal>
+            <Dependent Role="Experiencia">
+              <PropertyRef Name="IdTipoExperiencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -970,6 +1080,27 @@
                 <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoExperiencia">
+            <EntityTypeMapping TypeName="CCLRA.WebDbModel.TipoExperiencia">
+              <MappingFragment StoreEntitySet="TipoExperiencia">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdTipoExperiencia" ColumnName="IdTipoExperiencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experiencia">
+            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Experiencia">
+              <MappingFragment StoreEntitySet="Experiencia">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
+                <ScalarProperty Name="IdTipoExperiencia" ColumnName="IdTipoExperiencia" />
+                <ScalarProperty Name="IdExperiencia" ColumnName="IdExperiencia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,30 +12,16 @@ namespace CCLRAbogados.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Miembro
+    public partial class TipoExperiencia
     {
-        public Miembro()
+        public TipoExperiencia()
         {
             this.Experiencia = new HashSet<Experiencia>();
         }
     
-        public int IdMiembro { get; set; }
+        public int IdTipoExperiencia { get; set; }
         public string Nombre { get; set; }
-        public int IdCargo { get; set; }
-        public string Telefono { get; set; }
-        public string Celular { get; set; }
-        public string Email { get; set; }
-        public string Titulo { get; set; }
-        public string Descripcion { get; set; }
-        public string Imagen { get; set; }
-        public bool Estado { get; set; }
-        public string Uri { get; set; }
-        public string ShortUrl { get; set; }
-        public string UrlFacebook { get; set; }
-        public string UrlTwitter { get; set; }
-        public string UrlLinkedIn { get; set; }
     
-        public virtual Cargo Cargo { get; set; }
         public virtual ICollection<Experiencia> Experiencia { get; set; }
     }
 }

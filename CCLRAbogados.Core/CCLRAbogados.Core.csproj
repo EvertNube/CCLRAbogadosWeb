@@ -92,12 +92,14 @@
     <Compile Include="DTO\CargoDTO.cs" />
     <Compile Include="DTO\ContactoDTO.cs" />
     <Compile Include="DTO\EnlaceDTO.cs" />
+    <Compile Include="DTO\ExperienciaDTO.cs" />
     <Compile Include="DTO\MiembroDTO.cs" />
     <Compile Include="DTO\PaginaDTO.cs" />
     <Compile Include="DTO\PostulacionDTO.cs" />
     <Compile Include="DTO\RevistaDTO.cs" />
     <Compile Include="DTO\RolDTO.cs" />
     <Compile Include="DTO\SocialDTO.cs" />
+    <Compile Include="DTO\TipoExperienciaDTO.cs" />
     <Compile Include="DTO\TipoRevistaDTO.cs" />
     <Compile Include="DTO\UsuarioDTO.cs" />
     <Compile Include="Helpers\ClasesCss.cs" />

@@ -11,9 +11,9 @@ namespace CCLRAbogados.Core.BL
 {
     public class MiembrosBL : Base
     {
-        public  IList<MiembroDTO> getMiembros()
+        public IList<MiembroDTO> getMiembros()
         {
-            using(var context = getContext())
+            using (var context = getContext())
             {
                 try
                 {
@@ -42,10 +42,9 @@ namespace CCLRAbogados.Core.BL
                 }
             }
         }
-
         public IList<MiembroDTO> getMiembrosActivos()
         {
-            using(var context = getContext())
+            using (var context = getContext())
             {
                 try
                 {
@@ -73,7 +72,6 @@ namespace CCLRAbogados.Core.BL
                 }
             }
         }
-
         public MiembroDTO getMiembro(int id)
         {
             using (var context = getContext())
@@ -97,7 +95,6 @@ namespace CCLRAbogados.Core.BL
                 return result;
             }
         }
-
         public bool add(MiembroDTO Miembro, string baseUrl = "")
         {
             using (var context = getContext())
@@ -131,7 +128,6 @@ namespace CCLRAbogados.Core.BL
                 }
             }
         }
-
         public bool update(MiembroDTO Miembro, string baseUrl = "")
         {
             using (var context = getContext())
@@ -158,11 +154,11 @@ namespace CCLRAbogados.Core.BL
                     context.SaveChanges();
                     return true;
                 }
-                    catch (Exception e)
+                catch (Exception e)
                 {
 
-                        throw e;
-                    }
+                    throw e;
+                }
             }
         }
         public IList<CargoDTO> getCargosViewBag(bool AsSelectList = false)
@@ -179,10 +175,9 @@ namespace CCLRAbogados.Core.BL
                 return lista;
             }
         }
-
         public MiembroDTO getMiembroPorUri(string uri)
         {
-            using(var context = getContext())
+            using (var context = getContext())
             {
                 var result = context.Miembro.Where(x => x.Estado == true && x.Uri == uri).Select(r => new MiembroDTO
                     {
@@ -203,5 +198,106 @@ namespace CCLRAbogados.Core.BL
                 return result;
             }
         }
+
+        //Experiencias de Miembros
+        public IList<ExperienciaDTO> getExperiencias()
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    var result = context.Experiencia.Select(x => new ExperienciaDTO
+                    {
+                        IdExperiencia = x.IdExperiencia,
+                        IdTipoExperiencia = x.IdTipoExperiencia,
+                        IdMiembro = x.IdMiembro,
+                        Titulo = x.Titulo,
+                        Texto = x.Texto,
+                        Orden = x.Orden,
+                        Active = x.Active
+                    }).ToList();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+        public ExperienciaDTO getExperiencia(int id)
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    var result = context.Experiencia.Where(x => x.IdExperiencia == id).Select(x => new ExperienciaDTO
+                        {
+                            IdExperiencia = x.IdExperiencia,
+                            IdTipoExperiencia = x.IdTipoExperiencia,
+                            IdMiembro = x.IdMiembro,
+                            Titulo = x.Titulo,
+                            Texto = x.Texto,
+                            Orden = x.Orden,
+                            Active = x.Active
+                        }).SingleOrDefault();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+        public bool addExperiencia(ExperienciaDTO exper)
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    Experiencia nuevo = new Experiencia();
+                    nuevo.IdExperiencia = exper.IdMiembro;
+                    nuevo.IdTipoExperiencia = exper.IdTipoExperiencia;
+                    nuevo.IdMiembro = exper.IdMiembro;
+                    nuevo.Titulo = exper.Titulo;
+                    nuevo.Texto = exper.Texto;
+                    nuevo.Orden = exper.Orden;
+                    nuevo.Active = exper.Active;
+
+                    context.Experiencia.Add(nuevo);
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+        public bool updateExperiencia(ExperienciaDTO exper)
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    var dataRow = context.Experiencia.Where(x => x.IdExperiencia == exper.IdExperiencia).SingleOrDefault();
+                    dataRow.IdExperiencia = exper.IdMiembro;
+                    dataRow.IdTipoExperiencia = exper.IdTipoExperiencia;
+                    dataRow.IdMiembro = exper.IdMiembro;
+                    dataRow.Titulo = exper.Titulo;
+                    dataRow.Texto = exper.Texto;
+                    dataRow.Orden = exper.Orden;
+                    dataRow.Active = exper.Active;
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+
+                    throw e;
+                }
+            }
+        }
+
+        //
     }
 }

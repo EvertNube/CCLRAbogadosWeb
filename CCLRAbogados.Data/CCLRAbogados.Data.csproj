@@ -83,6 +83,9 @@
     <Compile Include="DynamicContent.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Experiencia.cs">
+      <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="HighLight.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
@@ -109,6 +112,9 @@
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoDynamicContent.cs">
+      <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TipoExperiencia.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">
