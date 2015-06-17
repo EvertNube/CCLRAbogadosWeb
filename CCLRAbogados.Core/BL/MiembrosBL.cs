@@ -90,7 +90,17 @@ namespace CCLRAbogados.Core.BL
                     Estado = r.Estado,
                     Uri = r.Uri,
                     ShortUrl = r.ShortUrl,
-                    NombreCargo = r.Cargo.Nombre
+                    NombreCargo = r.Cargo.Nombre,
+                    listaExperiencia = r.Experiencia.Select(x => new ExperienciaDTO
+                    {
+                        IdExperiencia = x.IdExperiencia,
+                        IdTipoExperiencia = x.IdTipoExperiencia,
+                        IdMiembro = x.IdMiembro,
+                        Titulo = x.Titulo,
+                        Texto = x.Texto,
+                        Orden = x.Orden,
+                        Active = x.Active
+                    }).ToList()
                 }).SingleOrDefault();
                 return result;
             }

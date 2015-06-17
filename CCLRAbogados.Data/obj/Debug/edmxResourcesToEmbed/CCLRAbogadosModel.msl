@@ -188,27 +188,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Miembro">
-      <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
-        <MappingFragment StoreEntitySet="Miembro">
-          <ScalarProperty Name="UrlLinkedIn" ColumnName="UrlLinkedIn" />
-          <ScalarProperty Name="UrlTwitter" ColumnName="UrlTwitter" />
-          <ScalarProperty Name="UrlFacebook" ColumnName="UrlFacebook" />
-          <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
-          <ScalarProperty Name="Uri" ColumnName="Uri" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Celular" ColumnName="Celular" />
-          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-          <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="TipoExperiencia">
       <EntityTypeMapping TypeName="CCLRA.WebDbModel.TipoExperiencia">
         <MappingFragment StoreEntitySet="TipoExperiencia">
@@ -227,6 +206,28 @@
           <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
           <ScalarProperty Name="IdTipoExperiencia" ColumnName="IdTipoExperiencia" />
           <ScalarProperty Name="IdExperiencia" ColumnName="IdExperiencia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Miembro">
+      <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
+        <MappingFragment StoreEntitySet="Miembro">
+          <ScalarProperty Name="UrlSkype" ColumnName="UrlSkype" />
+          <ScalarProperty Name="UrlLinkedIn" ColumnName="UrlLinkedIn" />
+          <ScalarProperty Name="UrlTwitter" ColumnName="UrlTwitter" />
+          <ScalarProperty Name="UrlFacebook" ColumnName="UrlFacebook" />
+          <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
+          <ScalarProperty Name="Uri" ColumnName="Uri" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

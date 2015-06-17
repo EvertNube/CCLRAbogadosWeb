@@ -542,5 +542,72 @@ namespace CCLRAbogados.Web.Controllers
             TempData["Miembro"] = dto;
             return RedirectToAction("Miembro");
         }
+
+        public ActionResult Experiencias()
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            if (!isAdministrator()) { return RedirectToAction("Index"); }
+            MiembrosBL objBL = new MiembrosBL();
+            return View(objBL.getExperiencias());
+        }
+
+        public ActionResult Experiencia(int? id = null)
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            MiembrosBL objBL = new MiembrosBL();
+            ViewBag.IdExperiencia = id;
+
+            var objSent = TempData["Experiencia"];
+            if (objSent != null) { TempData["Experiencia"] = null; return View(objSent); }
+            if (id != null)
+            {
+                ExperienciaDTO obj = objBL.getExperiencia((int)id);
+                return View(obj);
+            }
+            return View();
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult AddExperiencia(ExperienciaDTO dto)
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            try
+            {
+                MiembrosBL objBL = new MiembrosBL();
+                if (dto.IdExperiencia == 0)
+                {
+                    if (objBL.addExperiencia(dto))
+                    {
+                        createResponseMessage(CONSTANTES.SUCCESS);
+                        return RedirectToAction("Experiencias");
+                    }
+                }
+                else if (dto.IdExperiencia != 0)
+                {
+                    if (objBL.updateExperiencia(dto))
+                    {
+                        createResponseMessage(CONSTANTES.SUCCESS);
+                        return RedirectToAction("Experiencias");
+                    }
+                    else
+                    {
+                        createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE);
+                    }
+
+                }
+                else
+                {
+                    createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_INSERT_MESSAGE);
+                }
+            }
+            catch (Exception e)
+            {
+                if (dto.IdExperiencia != 0)
+                    createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE);
+                else createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_INSERT_MESSAGE);
+            }
+            TempData["Experiencia"] = dto;
+            return RedirectToAction("Experiencia");
+        }
     }
 }

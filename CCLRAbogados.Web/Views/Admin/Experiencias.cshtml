@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Experiencias";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model IList<CCLRAbogados.Core.DTO.ExperienciaDTO>
+
+<h2>Experiencias</h2>
+@Html.Partial("_showAlertMessages")
+<section class="panel panel-default">
+    <div class="row text-sm wrapper">
+        <div class="col-sm-8">
+            <div class="btn-group">
+                @if (ViewBag.EsAdmin)
+                {
+                    <label><input type="checkbox" id="btn-showInactive" /> Mostrar Inactivos</label>
+                }
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <a class="btn btn-sm btn-success pull-right" href="@Url.Action("Experiencia")"><i class="fa fa-pencil-square-o"></i> Crear nueva Experiencia</a>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped m-b-none">
+            <thead>
+                <tr>
+                    <th width="10%">ID</th>
+                    <th width="30%">Titulo</th>
+                    <th width="20%">Texto</th>
+                    <th width="30%">Orden</th>
+                    @if (ViewBag.EsAdmin)
+                    {
+                        <th width="10%">Opciones</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @{int cont = 1;}
+                @foreach (var experiencia in Model)
+                {
+                    var classInactive = (ViewBag.EsAdmin && !experiencia.Active) ? "class='inactive'" : "";
+                    <tr @Html.Raw(classInactive)>
+                        <td align="center">
+                            @if (ViewBag.EsAdmin && !experiencia.Active)
+                            { <span class="badge bg-danger" data-toggle="tooltip" data-placement="left" data-original-title="Inactivo">@cont</span>}
+                            else
+                            {@cont}
+                    </td>
+                    <td>@experiencia.Titulo</td>
+                    <td>@experiencia.Orden</td>
+                    @if (ViewBag.EsAdmin)
+                    {
+                        <td align="center"><a href="@Url.Action("Experiencia", new { id = experiencia.IdExperiencia})"><i class="fa fa-pencil"></i></a></td>
+                    }
+                </tr>
+                    cont++;
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+

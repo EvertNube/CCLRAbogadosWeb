@@ -107,6 +107,7 @@
     <Property Name="UrlFacebook" Type="nvarchar" MaxLength="200" />
     <Property Name="UrlTwitter" Type="nvarchar" MaxLength="200" />
     <Property Name="UrlLinkedIn" Type="nvarchar" MaxLength="200" />
+    <Property Name="UrlSkype" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="Pagina">
     <Key>

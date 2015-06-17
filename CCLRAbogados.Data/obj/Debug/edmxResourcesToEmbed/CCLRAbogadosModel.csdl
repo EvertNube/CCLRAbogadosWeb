@@ -173,19 +173,19 @@
       <End Role="PaginaHistorial" EntitySet="PaginaHistorial" />
     </AssociationSet>
     <EntitySet Name="Cargo" EntityType="CCLRA.WebDbModel.Cargo" />
+    <EntitySet Name="TipoExperiencia" EntityType="CCLRA.WebDbModel.TipoExperiencia" />
+    <EntitySet Name="Experiencia" EntityType="CCLRA.WebDbModel.Experiencia" />
+    <AssociationSet Name="FK_Experiencia_TipoExperiencia" Association="CCLRA.WebDbModel.FK_Experiencia_TipoExperiencia">
+      <End Role="TipoExperiencia" EntitySet="TipoExperiencia" />
+      <End Role="Experiencia" EntitySet="Experiencia" />
+    </AssociationSet>
     <EntitySet Name="Miembro" EntityType="CCLRA.WebDbModel.Miembro" />
     <AssociationSet Name="FK_Miembro_Cargo" Association="CCLRA.WebDbModel.FK_Miembro_Cargo">
       <End Role="Cargo" EntitySet="Cargo" />
       <End Role="Miembro" EntitySet="Miembro" />
     </AssociationSet>
-    <EntitySet Name="TipoExperiencia" EntityType="CCLRA.WebDbModel.TipoExperiencia" />
-    <EntitySet Name="Experiencia" EntityType="CCLRA.WebDbModel.Experiencia" />
     <AssociationSet Name="FK_Experiencia_Miembro" Association="CCLRA.WebDbModel.FK_Experiencia_Miembro">
       <End Role="Miembro" EntitySet="Miembro" />
-      <End Role="Experiencia" EntitySet="Experiencia" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Experiencia_TipoExperiencia" Association="CCLRA.WebDbModel.FK_Experiencia_TipoExperiencia">
-      <End Role="TipoExperiencia" EntitySet="TipoExperiencia" />
       <End Role="Experiencia" EntitySet="Experiencia" />
     </AssociationSet>
   </EntityContainer>
@@ -366,40 +366,6 @@
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Cargo" ToRole="Miembro" />
   </EntityType>
-  <EntityType Name="Miembro">
-    <Key>
-      <PropertyRef Name="IdMiembro" />
-    </Key>
-    <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="IdCargo" Type="Int32" Nullable="false" />
-    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="Estado" Type="Boolean" Nullable="false" />
-    <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="UrlFacebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="UrlTwitter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="UrlLinkedIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Cargo" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
-    <NavigationProperty Name="Experiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Miembro" ToRole="Experiencia" />
-  </EntityType>
-  <Association Name="FK_Miembro_Cargo">
-    <End Type="CCLRA.WebDbModel.Cargo" Role="Cargo" Multiplicity="1" />
-    <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cargo">
-        <PropertyRef Name="IdCargo" />
-      </Principal>
-      <Dependent Role="Miembro">
-        <PropertyRef Name="IdCargo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="TipoExperiencia">
     <Key>
       <PropertyRef Name="IdTipoExperiencia" />
@@ -419,21 +385,9 @@
     <Property Name="Texto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="Orden" Type="Int32" Nullable="false" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Experiencia" ToRole="Miembro" />
     <NavigationProperty Name="TipoExperiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_TipoExperiencia" FromRole="Experiencia" ToRole="TipoExperiencia" />
+    <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Experiencia" ToRole="Miembro" />
   </EntityType>
-  <Association Name="FK_Experiencia_Miembro">
-    <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="1" />
-    <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Miembro">
-        <PropertyRef Name="IdMiembro" />
-      </Principal>
-      <Dependent Role="Experiencia">
-        <PropertyRef Name="IdMiembro" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Experiencia_TipoExperiencia">
     <End Type="CCLRA.WebDbModel.TipoExperiencia" Role="TipoExperiencia" Multiplicity="1" />
     <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
@@ -443,6 +397,53 @@
       </Principal>
       <Dependent Role="Experiencia">
         <PropertyRef Name="IdTipoExperiencia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Miembro">
+    <Key>
+      <PropertyRef Name="IdMiembro" />
+    </Key>
+    <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IdCargo" Type="Int32" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrlFacebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UrlTwitter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UrlLinkedIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UrlSkype" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cargo" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
+    <NavigationProperty Name="Experiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Miembro" ToRole="Experiencia" />
+  </EntityType>
+  <Association Name="FK_Miembro_Cargo">
+    <End Type="CCLRA.WebDbModel.Cargo" Role="Cargo" Multiplicity="1" />
+    <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="IdCargo" />
+      </Principal>
+      <Dependent Role="Miembro">
+        <PropertyRef Name="IdCargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Experiencia_Miembro">
+    <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="1" />
+    <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Miembro">
+        <PropertyRef Name="IdMiembro" />
+      </Principal>
+      <Dependent Role="Experiencia">
+        <PropertyRef Name="IdMiembro" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

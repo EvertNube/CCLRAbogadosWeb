@@ -22,5 +22,10 @@ namespace CCLRAbogados.Core.DTO
         public string Uri { get; set; }
         public string ShortUrl { get; set; }
         public string NombreCargo { get; set; }
+        public string UrlFacebook { get; set; }
+        public string UrlTwitter { get; set; }
+        public string UrlLinkedIn { get; set; }
+        public string UrlSkype { get; set; }
+        public IList<ExperienciaDTO> listaExperiencia { get; set; }
     }
 }

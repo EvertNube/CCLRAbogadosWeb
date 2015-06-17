@@ -1177,6 +1177,8 @@
     <Content Include="Views\Admin\Cargo.cshtml" />
     <Content Include="Views\Miembros\_Miembro.cshtml" />
     <Content Include="Views\Miembros\_Miembros.cshtml" />
+    <Content Include="Views\Admin\Experiencia.cshtml" />
+    <Content Include="Views\Admin\Experiencias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

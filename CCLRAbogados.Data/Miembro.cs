@@ -34,6 +34,7 @@ namespace CCLRAbogados.Data
         public string UrlFacebook { get; set; }
         public string UrlTwitter { get; set; }
         public string UrlLinkedIn { get; set; }
+        public string UrlSkype { get; set; }
     
         public virtual Cargo Cargo { get; set; }
         public virtual ICollection<Experiencia> Experiencia { get; set; }
