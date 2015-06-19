@@ -1,20 +1,24 @@
 ﻿@using CCLRAbogados.Core.DTO
 @model MiembroDTO
+
+@Scripts.Render("~/Content/themes/cclra/js/universal/jquery.js")
+@Scripts.Render("~/Content/themes/cclra/js/mainmenu/modernizr.custom.75180.js")
+
 <div class="full_biohead">
     <div class="container">
         @{var imagen = "http://placehold.it/360x330";
         if (Model.Imagen != null)
         { imagen = Model.Imagen; }}
-        <img src="@imagen" alt="" width="450" height="400"/>
+        <img src="@imagen" alt="" width="450" height="400" />
 
         <h3>@Model.Nombre</h3>
         <h6>@Model.NombreCargo</h6>
 
         <ul class="ctdet">
             @{var telefonos = "N/A";
-              if(Model.Telefono != null && Model.Celular != null)
-              { telefonos = Model.Telefono + " - " + Model.Celular; }
-              else { if (Model.Telefono != null) { telefonos = Model.Telefono; } else { telefonos = Model.Celular; } }}
+            if (Model.Telefono != null && Model.Celular != null)
+            { telefonos = Model.Telefono + " - " + Model.Celular; }
+            else { if (Model.Telefono != null) { telefonos = Model.Telefono; } else { telefonos = Model.Celular; } }}
             <li><i class="fa fa-phone-square"></i>@telefonos</li>
             <li><i class="fa fa-envelope"></i> <a href="mailto:correo@correo.com">@Model.Email</a></li>
         </ul>
@@ -42,47 +46,43 @@
     @Html.Raw(Model.Descripcion)
 
     <div class="clearfix margin_top5"></div>
-
-    <div class="one_third">
-        <div class="graybgraph_box">
-
-            <h3>Áreas de Práctica</h3>
-
-            <ul>
-                <li><i class="fa fa-arrow-circle-o-right"></i> <a href="#">Derecho Corporativo</a></li>
-                <li><i class="fa fa-arrow-circle-o-right"></i> <a href="#">Derecho Civil</a></li>
-                <li><i class="fa fa-arrow-circle-o-right"></i> <a href="#">Derecho Laboral y Migraciones</a></li>
-                <li><i class="fa fa-arrow-circle-o-right"></i> <a href="#">Derecho Tributario</a></li>
-
-            </ul>
-
-        </div>
-    </div><!-- end section -->
-
-    <div class="one_third">
-        <div class="graybgraph_box">
-
-            <h3>Educación</h3>
-
-            <ul>
-                <li><strong class="color">Escuela de Leyes:</strong> <br /> Georgia State University College of Law, J.D., 1995, Lead Articles Editor –  Georgia State University Law Review</li>
-                <li><br /><strong class="color">Pregrado:</strong> <br /> University of Georgia, B.B.A. in Finance, 1992, Recipient: Alumni Scholarship</li>
-            </ul>
-
-        </div>
-    </div><!-- end section -->
-
-    <div class="one_third last">
-        <div class="graybgraph_box">
-
-            <h3>Certificaciones</h3>
-
-            <ul>
-                <li><i class="fa fa-arrow-circle-o-right"></i> Diplomado Especializado en Derecho de la Construcción</li>
-                <li><i class="fa fa-arrow-circle-o-right"></i> Diplomado Especializado en Derecho de la Energía y de los Recuros Naturales</li>
-            </ul>
-
-        </div>
-    </div><!-- end all section -->
-
+    
+    @{var cont = 1;}
+    @if (Model.listaExperiencia != null)
+    {
+        foreach (var lsExp in (List<TipoExperienciaDTO>)ViewBag.TipoExperiencias)
+        {
+            var classHalf = (cont % 3 != 0) ? "class='one_third'" : "class='one_third last'";
+            <div @Html.Raw(classHalf)>
+                <div class="graybgraph_box">
+                    <h3>@lsExp.Nombre</h3>
+                    <ul>
+                        @foreach (var exp in Model.listaExperiencia)
+                        {
+                            if(lsExp.IdTipoExperiencia == exp.IdTipoExperiencia)
+                            { 
+                            <li>
+                                @switch (lsExp.IdTipoExperiencia)
+                                {
+                                    case 1:
+                                        <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
+                                        break;
+                                    case 2:
+                                        <strong class="color">@exp.Titulo:</strong> <br />@exp.Texto<br />
+                                        break;
+                                    case 3:
+                                        <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+                cont++;
+        }
+    }
 </div><!-- end content area -->

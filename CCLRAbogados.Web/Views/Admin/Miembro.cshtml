@@ -34,7 +34,7 @@ else
                     </div>
                     <div class="form-group">
                         <label>Nombre Ruta SEO</label>
-                        @Html.TextBoxFor(u => u.Uri, new { @class = "form-control", @placeholder = "Ej. rodion-cavero-blumenfeld", @type = "text", @maxlength = "200"})
+                        @Html.TextBoxFor(u => u.Uri, new { @class = "form-control", @placeholder = "Ej. rodion-cavero-blumenfeld", @type = "text", @maxlength = "200" })
                         @Html.ValidationMessageFor(u => u.Uri)
                     </div>
                     <div class="form-group col-md-4" style="padding-left:0px;">
@@ -70,9 +70,9 @@ else
                     </div>
                     <div class="line line-dashed line-lg pull-in"></div>
                     <div class="form-group">
-                            <label>Imagen de portada</label>
-                            @Html.TextBoxFor(u => u.Imagen, new { @class = "form-control", @placeholder = "Ruta de la imagen", @type = "text", @maxlength = "200" })
-                            @Html.ValidationMessageFor(u => u.Imagen)
+                        <label>Imagen de portada</label>
+                        @Html.TextBoxFor(u => u.Imagen, new { @class = "form-control", @placeholder = "Ruta de la imagen", @type = "text", @maxlength = "200" })
+                        @Html.ValidationMessageFor(u => u.Imagen)
                     </div>
                     @if (ViewBag.EsAdmin && Model != null && Model.IdMiembro > 0)
                     {
@@ -80,10 +80,10 @@ else
                         <div class="checkbox">
                             <label>
                                 @Html.CheckBoxFor(u => u.Estado)
-                            Activo
-                        </label>
-                        @Html.ValidationMessageFor(u => u.Estado)
-                    </div>}
+                                Activo
+                            </label>
+                            @Html.ValidationMessageFor(u => u.Estado)
+                        </div>}
                     else
                     {
                         @Html.TextBoxFor(u => u.Estado, new { @value = Model != null ? Model.Estado : false, @type = "hidden" })
@@ -110,7 +110,7 @@ else
 {
     <section class="panel panel-default">
         <header class="panel-heading font-bold">Movimientos</header>
-        <section class="panel panel-default">
+        @*<section class="panel panel-default">*@
             @if (ViewBag.EsAdmin)
             {
                 <div class="row text-sm wrapper">
@@ -120,7 +120,7 @@ else
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <a class="btn btn-sm btn-success pull-right" href="@Url.Action("Movimiento", new { id = 0, idLibro = Model.IdCuentaBancaria })"><i class="fa fa-plus"></i> Crear nuevo Movimiento</a>
+                        <a class="btn btn-sm btn-success pull-right" href="@Url.Action("Experiencia", new { id = 0, idMiembro = Model.IdMiembro })"><i class="fa fa-plus"></i> Crear nueva Experiencia</a>
                     </div>
                 </div>
             }
@@ -128,78 +128,42 @@ else
                 <table class="table table-striped m-b-none">
                     <thead>
                         <tr>
-                            <th width="15%">Nombre</th>
-                            <th class="text-center" width="10%">Categoria</th>
-                            <th class="text-center" width="10%">Entidad</th>
-
-                            <th class="text-center" width="7%">Fecha</th>
-                            <th class="text-center" width="8%">N° Doc</th>
-                            <th class="text-center" width="15%">Monto</th>
-                            <th class="text-center" width="8%">Tipo</th>
-
-                            <th class="text-center">E</th>
-                            <th class="text-center" width="10%">Usuario</th>
-
-                            <th class="text-center" width="7%">Opc.</th>
+                            <th class="text-c" width="10%">ID</th>
+                            <th width="40%">Titulo</th>
+                            <th class="text-c" width="30%">Orden</th>
+                            @if (ViewBag.EsAdmin)
+                            {
+                                <th class="text-c" width="20%">Opciones</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Model.listaMovimiento != null)
+                        @if (Model.listaExperiencia != null)
                         {
-                            foreach (var obj in Model.listaMovimientoPL)
+                            int cont = 1;
+                            foreach (var obj in Model.listaExperiencia)
                             {
-                                var classInactive = (ViewBag.EsAdmin && !obj.Estado) ? "class='inactive'" : "";
+                                var classInactive = (ViewBag.EsAdmin && !obj.Active) ? "class='inactive'" : "";
                                 <tr @Html.Raw(classInactive)>
-                                    <td width="15%">@obj.Nombre</td>
-                                    <td class="text-center" width="10%" style="color:#428bca;">@obj.NombreCategoria</td>
-                                    <td class="text-center" width="10%"><strong>@obj.NombreEntidadR</strong></td>
-                                    <td class="text-center" width="7%">@obj.Fecha.ToString("dd/MMM/yy", CultureInfo.CreateSpecificCulture("es-PE"))</td>
-                                    @if (obj.NumeroDocumento != null)
-                                    {
-                                        <td class="text-center" width="8%">@obj.NumeroDocumento</td>
-                                    }
-                                    else
-                                    {
-                                        <td class="text-center" width="8%">N/A</td>
-                                    }
-
-
-                                    <td class="text-right" width="15%">@Model.SimboloMoneda @obj.Monto.ToString("N2", CultureInfo.InvariantCulture)</td>
-                                    @if (obj.IdTipoMovimiento == 1)
-                                    {
-                                        <td class="text-center" width="8%" style="color:#8EC100;">Entrada</td>}
-                                    else
-                                    {
-                                        <td class="text-center" width="8%" style="color:red">Salida</td> }
-                                    @if (obj.IdEstadoMovimiento == 1)
-                                    {
-                                        <td class="text-center" style="color:red">P</td>}
-                                    else
-                                    {
-                                        <td class="text-center">R</td> }
-                                    <td class="text-center" width="10%">@obj.NombreUsuario</td>
+                                    <td align="center">
+                                        @if (ViewBag.EsAdmin && !obj.Active)
+                                        { <span class="badge bg-danger" data-toggle="tooltip" data-placement="left" data-original-title="Inactivo">@cont</span>}
+                                        else
+                                        {@cont}
+                                    </td>
+                                    <td>@obj.Titulo</td>
+                                    <td class="text-c">@obj.Orden</td>
                                     @if (ViewBag.EsAdmin)
                                     {
-                                        <td class="text-center" width="7%"><a href="@Url.Action("Movimiento", new { id = obj.IdMovimiento, idLibro = Model.IdCuentaBancaria })"><i class="fa fa-pencil" title="Editar"></i></a></td>
+                                        <td class="text-c"><a href="@Url.Action("Experiencia", new { id = obj.IdExperiencia, idMiembro = Model.IdMiembro })"><i class="fa fa-pencil"></i></a></td>
                                     }
                                 </tr>
+                                cont++;
                             }
                         }
                     </tbody>
                 </table>
             </div>
-            <footer class="panel-footer">
-                <div class="row">
-                    <div class="col-sm-4"></div>
-                    <div class="col-sm-4 text-center">
-                        <small class="text-muted inline m-t-sm m-b-sm">Página @(Model.listaMovimientoPL.PageCount < Model.listaMovimientoPL.PageNumber ? 0 : Model.listaMovimientoPL.PageNumber) de @Model.listaMovimientoPL.PageCount</small>
-                    </div>
-                    <div class="col-sm-4 text-right text-center-xs">
-                        @Html.PagedListPager(Model.listaMovimientoPL, page => Url.Action("Libro", new { id = ViewBag.IdCuentaBancaria, page }), new PagedListRenderOptions { UlElementClasses = new[] { "m-b-none", "m-t-none", "pagination-sm", "pagination" }, ContainerDivClasses = new[] { "" } })
-                    </div>
-                </div>
-            </footer>
-
-        </section>
+        @*</section>*@
     </section>
 }

@@ -45,18 +45,17 @@
                             { <span class="badge bg-danger" data-toggle="tooltip" data-placement="left" data-original-title="Inactivo">@cont</span>}
                             else
                             {@cont}
-                    </td>
-                    <td>@experiencia.Titulo</td>
-                    <td>@experiencia.Orden</td>
-                    @if (ViewBag.EsAdmin)
-                    {
-                        <td align="center"><a href="@Url.Action("Experiencia", new { id = experiencia.IdExperiencia})"><i class="fa fa-pencil"></i></a></td>
-                    }
-                </tr>
-                    cont++;
+                        </td>
+                        <td>@experiencia.Titulo</td>
+                        <td>@experiencia.Orden</td>
+                        @if (ViewBag.EsAdmin)
+                        {
+                            <td align="center"><a href="@Url.Action("Experiencia", new { id = experiencia.IdExperiencia})"><i class="fa fa-pencil"></i></a></td>
+                        }
+                    </tr>
+                        cont++;
                 }
             </tbody>
         </table>
     </div>
 </section>
-

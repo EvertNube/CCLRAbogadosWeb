@@ -33,6 +33,7 @@ namespace CCLRAbogados.Web.Controllers
 
             if(!String.IsNullOrWhiteSpace(page))
             {
+                ViewBag.TipoExperiencias = objBL.getTipoExperienciasViewBag(false);
                 return View(getPaginaMiembro(objBL, page, id));
             }
             ViewBag.Cargos = objBL.getCargosViewBag(false);

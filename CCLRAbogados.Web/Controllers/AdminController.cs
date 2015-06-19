@@ -551,12 +551,14 @@ namespace CCLRAbogados.Web.Controllers
             return View(objBL.getExperiencias());
         }
 
-        public ActionResult Experiencia(int? id = null)
+        public ActionResult Experiencia(int? id = null, int? idMiembro = null)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
             //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
             MiembrosBL objBL = new MiembrosBL();
             ViewBag.IdExperiencia = id;
+            ViewBag.IdMiembro = idMiembro;
+            ViewBag.TipoExperiencias = objBL.getTipoExperienciasViewBag(false);
 
             var objSent = TempData["Experiencia"];
             if (objSent != null) { TempData["Experiencia"] = null; return View(objSent); }
@@ -579,7 +581,7 @@ namespace CCLRAbogados.Web.Controllers
                     if (objBL.addExperiencia(dto))
                     {
                         createResponseMessage(CONSTANTES.SUCCESS);
-                        return RedirectToAction("Experiencias");
+                        return RedirectToAction("Miembro", new { id = dto.IdMiembro });
                     }
                 }
                 else if (dto.IdExperiencia != 0)
@@ -587,13 +589,12 @@ namespace CCLRAbogados.Web.Controllers
                     if (objBL.updateExperiencia(dto))
                     {
                         createResponseMessage(CONSTANTES.SUCCESS);
-                        return RedirectToAction("Experiencias");
+                        return RedirectToAction("Experiencias", new { id = dto.IdMiembro });
                     }
                     else
                     {
                         createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE);
                     }
-
                 }
                 else
                 {

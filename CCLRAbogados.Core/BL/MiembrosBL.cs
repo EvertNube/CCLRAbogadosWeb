@@ -189,7 +189,7 @@ namespace CCLRAbogados.Core.BL
         {
             using (var context = getContext())
             {
-                var result = context.Miembro.Where(x => x.Estado == true && x.Uri == uri).Select(r => new MiembroDTO
+                var result = context.Miembro.AsEnumerable().Where(x => x.Estado == true && x.Uri == uri).Select(r => new MiembroDTO
                     {
                         IdMiembro = r.IdMiembro,
                         Nombre = r.Nombre,
@@ -203,7 +203,17 @@ namespace CCLRAbogados.Core.BL
                         Estado = r.Estado,
                         Uri = r.Uri,
                         ShortUrl = r.ShortUrl,
-                        NombreCargo = r.Cargo.Nombre
+                        NombreCargo = r.Cargo.Nombre,
+                        listaExperiencia = r.Experiencia.Select(x => new ExperienciaDTO
+                        {
+                            IdExperiencia = x.IdExperiencia,
+                            IdTipoExperiencia = x.IdTipoExperiencia,
+                            IdMiembro = x.IdMiembro,
+                            Titulo = x.Titulo,
+                            Texto = x.Texto,
+                            Orden = x.Orden,
+                            Active = x.Active
+                        }).OrderBy(x => x.IdTipoExperiencia).ToList()
                     }).SingleOrDefault();
                 return result;
             }
@@ -271,7 +281,7 @@ namespace CCLRAbogados.Core.BL
                     nuevo.Titulo = exper.Titulo;
                     nuevo.Texto = exper.Texto;
                     nuevo.Orden = exper.Orden;
-                    nuevo.Active = exper.Active;
+                    nuevo.Active = true;
 
                     context.Experiencia.Add(nuevo);
                     context.SaveChanges();
@@ -290,7 +300,6 @@ namespace CCLRAbogados.Core.BL
                 try
                 {
                     var dataRow = context.Experiencia.Where(x => x.IdExperiencia == exper.IdExperiencia).SingleOrDefault();
-                    dataRow.IdExperiencia = exper.IdMiembro;
                     dataRow.IdTipoExperiencia = exper.IdTipoExperiencia;
                     dataRow.IdMiembro = exper.IdMiembro;
                     dataRow.Titulo = exper.Titulo;
@@ -308,6 +317,39 @@ namespace CCLRAbogados.Core.BL
             }
         }
 
+        public IList<TipoExperienciaDTO> getTipoExperiencias()
+        {
+            using(var context = getContext())
+            {
+                try
+                {
+                    var result = context.TipoExperiencia.Select(x => new TipoExperienciaDTO
+                    {
+                        IdTipoExperiencia = x.IdTipoExperiencia,
+                        Nombre = x.Nombre
+                    }).ToList();
+                    return result;
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public IList<TipoExperienciaDTO> getTipoExperienciasViewBag(bool AsSelectList = false)
+        {
+            if(!AsSelectList)
+            {
+                return getTipoExperiencias();
+            }
+            else
+            {
+                var lista = getTipoExperiencias();
+                lista.Insert(0, new TipoExperienciaDTO() { IdTipoExperiencia = 0, Nombre = "Seleccione el Tipo de Cargo." });
+                return lista;
+            }
+        }
         //
     }
 }
