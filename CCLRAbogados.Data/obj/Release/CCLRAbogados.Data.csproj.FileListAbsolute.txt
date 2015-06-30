@@ -17,3 +17,13 @@ C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Data\bi
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Data\obj\Release\CCLRAbogados.Data.csprojResolveAssemblyReference.cache
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Data\obj\Release\CCLRAbogados.Data.dll
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Data\obj\Release\CCLRAbogados.Data.pdb
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\bin\Release\CCLRAbogados.Data.dll.config
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\bin\Release\CCLRAbogados.Data.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\bin\Release\CCLRAbogados.Data.pdb
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\bin\Release\EntityFramework.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\bin\Release\EntityFramework.SqlServer.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\bin\Release\EntityFramework.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\bin\Release\EntityFramework.SqlServer.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\obj\Release\CCLRAbogados.Data.csprojResolveAssemblyReference.cache
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\obj\Release\CCLRAbogados.Data.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\obj\Release\CCLRAbogados.Data.pdb

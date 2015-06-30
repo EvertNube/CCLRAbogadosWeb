@@ -45,7 +45,6 @@ C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\CCLRAbogados.Hel
 C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\EntityFramework.dll
 C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\EntityFramework.SqlServer.dll
 C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\Microsoft.Web.Infrastructure.dll
-C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
 C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\Newtonsoft.Json.dll
 C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Mvc.dll
 C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Optimization.dll
@@ -121,3 +120,19 @@ C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Web\obj
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Web\obj\Debug\CCLRAbogados.Web.csprojResolveAssemblyReference.cache
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Web\obj\Debug\CCLRAbogados.Web.dll
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Web\obj\Debug\CCLRAbogados.Web.pdb
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Net.Http.Extensions.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Net.Http.Formatting.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Net.Http.Primitives.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Helpers.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Http.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Http.WebHost.dll
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\Antlr3.Runtime.pdb
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Net.Http.Extensions.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Net.Http.Formatting.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Net.Http.Primitives.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Helpers.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Http.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Http.WebHost.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Optimization.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\bin\System.Web.Providers.xml
+C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Web\obj\Debug\CCLRAbogados.Web.csproj.App.config

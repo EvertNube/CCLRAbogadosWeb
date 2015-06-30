@@ -1,0 +1,40 @@
+﻿@using CCLRAbogados.Core.DTO
+@model IList<CCLRAbogados.Core.DTO.MiembroDTO>
+<div class="page_title2">
+    <div class="container">
+
+        <h1>Miembros</h1>
+        <div class="pagenation">&nbsp;<a href="@Url.Action("Index", "Home", new { page = "", id = "" }, Request.Url.Scheme)">Inicio</a> <i>/</i> <a href="@Url.Action("Index", "Miembros", new { page = "", id = "" }, Request.Url.Scheme)">Miembros</a></div>
+    </div>
+</div><!-- end page title -->
+<div class="clearfix"></div>
+
+<div class="feature_sec15">
+    @foreach (var cargo in (List<CargoDTO>)ViewBag.Cargos)
+    {
+        <div class="container">
+            <div class="one_full title1">
+                <h3><span class="line"></span><span class="text">@(cargo.Nombre + "s")</span></h3>
+            </div>
+            @{var cont = 1;}
+            @foreach (var miembro in Model)
+            {
+                if (cargo.IdCargo == miembro.IdCargo)
+                {
+                    var classHalf = (cont % 3 != 0) ? "class='one_third'" : "class='one_third last'";
+                    <div @Html.Raw(classHalf)>
+                        @{var imagen = "http://placehold.it/360x330";
+                        if (miembro.Imagen != null)
+                        { imagen = miembro.Imagen; }}
+                        <img src="@imagen" alt="" />
+                        <h5>@miembro.Nombre</h5>
+                        <h6>@miembro.NombreCargo</h6>
+                        <a href="@Url.Action("Index", "Miembros", new { page=miembro.Uri, id="" })">Perfil Completo</a>
+                    </div>
+                    cont++;
+                }
+            }
+        </div>
+        <div class="clearfix margin_top8"></div>
+    }
+</div>

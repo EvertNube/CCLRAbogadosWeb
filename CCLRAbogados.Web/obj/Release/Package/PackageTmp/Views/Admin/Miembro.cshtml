@@ -7,7 +7,9 @@
     else { ViewBag.Title = Model.Nombre; }
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+@section scripts{
+    @Scripts.Render("~/Content/themes/admin/js/ckeditor2/ckeditor.js")
+}
 @if (Model == null || Model.IdMiembro == 0)
 {
     <h2>Nuevo Miembro</h2>
@@ -19,7 +21,7 @@ else
 {
     @Html.ValidationSummary(true)
     <div class="row m-b">
-        <div class="col-xs-12 col-md-6">
+        <div class="col-xs-12 col-md-12">
             @Html.Partial("_showAlertMessages")
 
             <section class="panel panel-default">
@@ -30,22 +32,22 @@ else
                         @Html.TextBoxFor(u => u.Nombre, new { @class = "form-control", @placeholder = "Ingrese su nombre completo", @type = "text" })
                         @Html.ValidationMessageFor(u => u.Nombre)
                     </div>
-                    @*<div class="form-group">
-                        <label>Cargo</label>
-                        @Html.TextBoxFor(u => u.Cargo, new { @class = "form-control", @placeholder = "Ingrese su cargo o relación con la institución", @type = "text" })
-                        @Html.ValidationMessageFor(u => u.Cargo)
-                    </div>*@
                     <div class="form-group">
+                        <label>Nombre Ruta SEO</label>
+                        @Html.TextBoxFor(u => u.Uri, new { @class = "form-control", @placeholder = "Ej. rodion-cavero-blumenfeld", @type = "text", @maxlength = "200" })
+                        @Html.ValidationMessageFor(u => u.Uri)
+                    </div>
+                    <div class="form-group col-md-4" style="padding-left:0px;">
                         <label>Cargo</label>
                         @Html.DropDownListFor(u => u.IdCargo, new SelectList(ViewBag.Cargos, "IdCargo", "Nombre", Model != null ? (Model.IdCargo != null ? Model.IdCargo : 0) : 0), new { @class = "form-control parsley-validated" })
                         @Html.ValidationMessageFor(u => u.IdCargo)
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-4">
                         <label>Teléfono</label>
-                        @Html.TextBoxFor(u => u.Nombre, new { @class = "form-control", @placeholder = "Ingrese su Teléfono", @type = "text" })
-                        @Html.ValidationMessageFor(u => u.Nombre)
+                        @Html.TextBoxFor(u => u.Telefono, new { @class = "form-control", @placeholder = "Ingrese su Teléfono", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.Telefono)
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-4" style="padding-right:0px;">
                         <label>Celular</label>
                         @Html.TextBoxFor(u => u.Celular, new { @class = "form-control", @placeholder = "Ingrese su Celular", @type = "text" })
                         @Html.ValidationMessageFor(u => u.Celular)
@@ -57,19 +59,20 @@ else
                     </div>
                     <div class="form-group">
                         <label>Título</label>
-                        @Html.TextBoxFor(u => u.Titulo, new { @class = "form-control", @placeholder = "Ingrese un título para su descripción", @type = "email" })
+                        @Html.TextBoxFor(u => u.Titulo, new { @class = "form-control", @placeholder = "Ingrese un título para su descripción", @type = "text" })
                         @Html.ValidationMessageFor(u => u.Titulo)
                     </div>
                     <div class="form-group">
                         <label>Descripción</label>
-                        @Html.TextAreaFor(u => u.Descripcion, new { @class = "form-control", @placeholder = "Ingrese una descripción", @type = "text", @maxlength = "500" })
+                        @*@Html.TextAreaFor(u => u.Descripcion, new { @class = "form-control", @placeholder = "Ingrese una descripción", @type = "text", @maxlength = "500" })*@
+                        @Html.Raw(HttpUtility.HtmlDecode(@Html.TextAreaFor(u => u.Descripcion, new { @class = "ckeditor form-control" }).ToHtmlString()))
                         @Html.ValidationMessageFor(u => u.Descripcion)
                     </div>
                     <div class="line line-dashed line-lg pull-in"></div>
                     <div class="form-group">
-                            <label>Imagen de portada</label>
-                            @Html.TextBoxFor(u => u.Imagen, new { @class = "form-control", @placeholder = "Ruta de la imagen", @type = "text", @maxlength = "200" })
-                            @Html.ValidationMessageFor(u => u.Imagen)
+                        <label>Imagen de portada</label>
+                        @Html.TextBoxFor(u => u.Imagen, new { @class = "form-control", @placeholder = "Ruta de la imagen", @type = "text", @maxlength = "200" })
+                        @Html.ValidationMessageFor(u => u.Imagen)
                     </div>
                     @if (ViewBag.EsAdmin && Model != null && Model.IdMiembro > 0)
                     {
@@ -77,10 +80,10 @@ else
                         <div class="checkbox">
                             <label>
                                 @Html.CheckBoxFor(u => u.Estado)
-                            Activo
-                        </label>
-                        @Html.ValidationMessageFor(u => u.Estado)
-                    </div>}
+                                Activo
+                            </label>
+                            @Html.ValidationMessageFor(u => u.Estado)
+                        </div>}
                     else
                     {
                         @Html.TextBoxFor(u => u.Estado, new { @value = Model != null ? Model.Estado : false, @type = "hidden" })
@@ -101,4 +104,66 @@ else
             </section>
         </div>
     </div>
+}
+
+@if (Model != null && Model.IdMiembro != 0)
+{
+    <section class="panel panel-default">
+        <header class="panel-heading font-bold">Movimientos</header>
+        @*<section class="panel panel-default">*@
+            @if (ViewBag.EsAdmin)
+            {
+                <div class="row text-sm wrapper">
+                    <div class="col-sm-8">
+                        <div class="btn-group">
+                            <label><input type="checkbox" id="btn-showInactive" /> Mostrar Inactivos</label>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <a class="btn btn-sm btn-success pull-right" href="@Url.Action("Experiencia", new { id = 0, idMiembro = Model.IdMiembro })"><i class="fa fa-plus"></i> Crear nueva Experiencia</a>
+                    </div>
+                </div>
+            }
+            <div class="table-responsive">
+                <table class="table table-striped m-b-none">
+                    <thead>
+                        <tr>
+                            <th class="text-c" width="10%">ID</th>
+                            <th width="40%">Titulo</th>
+                            <th class="text-c" width="30%">Orden</th>
+                            @if (ViewBag.EsAdmin)
+                            {
+                                <th class="text-c" width="20%">Opciones</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.listaExperiencia != null)
+                        {
+                            int cont = 1;
+                            foreach (var obj in Model.listaExperiencia)
+                            {
+                                var classInactive = (ViewBag.EsAdmin && !obj.Active) ? "class='inactive'" : "";
+                                <tr @Html.Raw(classInactive)>
+                                    <td align="center">
+                                        @if (ViewBag.EsAdmin && !obj.Active)
+                                        { <span class="badge bg-danger" data-toggle="tooltip" data-placement="left" data-original-title="Inactivo">@cont</span>}
+                                        else
+                                        {@cont}
+                                    </td>
+                                    <td>@obj.Titulo</td>
+                                    <td class="text-c">@obj.Orden</td>
+                                    @if (ViewBag.EsAdmin)
+                                    {
+                                        <td class="text-c"><a href="@Url.Action("Experiencia", new { id = obj.IdExperiencia, idMiembro = Model.IdMiembro })"><i class="fa fa-pencil"></i></a></td>
+                                    }
+                                </tr>
+                                cont++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        @*</section>*@
+    </section>
 }

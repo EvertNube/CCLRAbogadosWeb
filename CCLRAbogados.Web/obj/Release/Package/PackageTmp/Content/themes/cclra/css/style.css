@@ -1100,7 +1100,8 @@
 	width: 100%;
 	text-align: left;
 	padding: 130px 0px 100px 0px;
-	background: #e3e3e3 url("../images/darkgray-bg.png");
+	background: #e3e3e3 url("../images/sliders/full-bg-1.jpg");
+
 	background-attachment: fixed;
 	background-origin: initial;
 	background-clip: initial;
@@ -1120,7 +1121,7 @@
 	background: rgba(0, 0, 0, 0.7);
 }
 .feature_sec18 .box h1 {
-	color: #d70204;
+	color: #6b798f;
 	font-size: 58px;
 	text-transform: uppercase;
 	margin: 0px;

@@ -21,7 +21,6 @@
 <div class="clearfix"></div>
 
 <div class="feature_sec15">
-    @{int cont = 0;}
     @foreach (var cargo in (List<CargoDTO>)ViewBag.Cargos)
     {
         <div class="container">
@@ -34,7 +33,10 @@
                 {
                     var classHalf = "class='one_third'";
                     <div @Html.Raw(classHalf)>
-                        <img src="http://placehold.it/360x330" alt="" />
+                        @{var imagen = "http://placehold.it/360x330";
+                          if (miembro.Imagen != null)
+                          {imagen = miembro.Imagen;}}
+                        <img src="@imagen" alt="" />
                         <h5>@miembro.Nombre</h5>
                         <h6>@miembro.NombreCargo</h6>
 

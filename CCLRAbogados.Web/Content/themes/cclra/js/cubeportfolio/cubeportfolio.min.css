@@ -303,7 +303,7 @@ transition:bottom .6s cubic-bezier(.19, 1, .22, 1)
 	bottom:-70px
 }
 .cbp-caption-overlayBottom .cbp-caption-activeWrap {
-	bottom:-70px;
+	bottom:0px;
 	height:70px;
 	background-color:#181616;
 	background-color:rgba(24, 22, 22, .7);

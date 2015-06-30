@@ -4,27 +4,114 @@
 @using System.Globalization
 @using CCLRAbogados.Core.DTO;
 
-@Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/main.js")
-<script src="~/Content/themes/cclra/js/mainmenu/bootstrap.min.js"></script>
+@*Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/jquery.cubeportfolio.min.js")
+Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/main.js")
+<script src="~/Content/themes/cclra/js/mainmenu/bootstrap.min.js"></script>*@
 <div class="mstslider">
 
     <!-- masterslider -->
     <div class="master-slider ms-skin-default" id="masterslider">
 
-        <!-- slide -->
+        <!-- begin slide 1 -->
         <div class="ms-slide slide-1" data-delay="7">
 
             <!-- slide background -->
-            <img src="~/Content/themes/cclra/js/masterslider/blank.gif" data-src="http://placehold.it/1920x580" alt="" />
+            <img src="~/Content/themes/cclra/images/sliders/dark-bg-1.jpg" alt="" />
+            <img src="~/Content/themes/cclra/images/sliders/slide-1.png" alt="" class="ms-layer"
+                 style="bottom:0; right:0px"
+                 data-effect="right(72)"
+                 data-delay="0"
+                 data-duration="300"
+                 data-type="image" />
+
+            <div class="ms-layer text1 small"
+                 style="left:116px; top:153px"
+                 data-effect="bottom(50)"
+                 data-duration="900"
+                 data-delay="300"
+                 data-ease="easeOutExpo">EXPERIMENTADOS<br />PROFESIONALES</div>
+
+            <div class="ms-layer text2"
+                 style="left:116px; top:305px"
+                 data-effect="left(100)"
+                 data-duration="2000"
+                 data-delay="500"
+                 data-ease="easeOutExpo">¿Buscas compromiso y atención personalizada? Cuenta con<br />nosotros para soluciones legales integrales.</div>
 
             <div class="ms-layer sldbut1"
                  style="left:116px; top:455px"
                  data-effect="right(50)"
                  data-duration="2000"
                  data-delay="500"
-                 data-ease="easeOutExpo"><a href="#">Empieza Aquí</a></div>
+                 data-ease="easeOutExpo"><a href="#sobre-nosotros">Conócenos</a></div>
 
-        </div><!-- end slide -->
+        </div>
+        <!-- end slide 1 -->
+        <!-- begin slide 2 -->
+        <div class="ms-slide slide-2" data-delay="7">
+
+            <!-- slide background -->
+            <img src="~/Content/themes/cclra/images/sliders/bg-21.jpg" alt="" />
+
+            <img src="~/Content/themes/cclra/images/sliders/slide-2.png" alt="" class="ms-layer"
+                 style="bottom:0; right:0px"
+                 data-effect="right(72)"
+                 data-delay="0"
+                 data-duration="300"
+                 data-type="image" />
+
+            <div class="ms-layer text1 small"
+                 style="left:116px; top:153px"
+                 data-effect="bottom(50)"
+                 data-duration="900"
+                 data-delay="600"
+                 data-ease="easeOutExpo">SOLUCIONES<br />INTEGRALES</div>
+
+            <div class="ms-layer text2"
+                 style="left:116px; top:305px"
+                 data-effect="left(100)"
+                 data-duration="1600"
+                 data-delay="1100"
+                 data-ease="easeOutExpo">¿Buscas soluciones legales integrales? Obtén asesoría<br />legal en nuestras diversas áreas de prácticas.</div>
+
+            <div class="ms-layer sldbut1"
+                 style="left:116px; top:455px"
+                 data-effect="right(50)"
+                 data-duration="2000"
+                 data-delay="1300"
+                 data-ease="easeOutExpo"><a href="miembros.html">Infórmate</a></div>
+
+        </div>
+        <!-- end slide 2-->
+        <!-- begin slide 3 -->
+        <div class="ms-slide slide-3" data-delay="7">
+
+            <!-- slide background -->
+            <img src="~/Content/themes/cclra/images/sliders/bg6.jpg" alt="" />
+
+            <img src="~/Content/themes/cclra/images/sliders/slide-3.png" alt="" class="ms-layer"
+                 style="bottom:0; right:30px"
+                 data-effect="bottom(72)"
+                 data-delay="0"
+                 data-duration="300"
+                 data-type="image" />
+
+            <div class="ms-layer text1 small"
+                 style="left:116px; top:150px"
+                 data-effect="bottom(50)"
+                 data-duration="900"
+                 data-delay="600"
+                 data-ease="easeOutExpo">Hacemos<br />Tus<br />Prioridades<br />Nuestras</div>
+
+            <div class="ms-layer sldbut1"
+                 style="left:120px; top:466px"
+                 data-effect="right(50)"
+                 data-duration="2000"
+                 data-delay="900"
+                 data-ease="easeOutExpo"><a href="contacto.html">Contáctanos</a></div>
+
+        </div><!-- end slide 3 -->
+
 
     </div><!-- end of masterslider -->
 
@@ -32,22 +119,40 @@
 
 <div class="clearfix"></div>
 
-<div class="feature_sec1">
+<div id="sobre-nosotros" class="feature_sec1">
     <div class="container">
 
         <div class="title11">
             <h2>
                 Cavero-Blumenfeld, Llosa &amp; R. La Rosa
-                <em>Experiencia. Fiabilidad. Ética.</em>
+                <em>Profesionalismo. Eficiencia. Trabajo en Equipo.</em>
                 <span class="line"></span>
             </h2>
         </div>
 
-        <p>Cavero-Blumenfeld, Llosa & R. La Rosa (CCLR) es un Estudio de abogados que se distingue por el compromiso que tiene con sus clientes, por la atención personalizada que brinda y por el nivel de eficacia obtenida en cada una de sus participaciones.</p>
+        <p><strong>Cavero-Blumenfeld, Llosa &amp; R. La Rosa (CCLR)</strong> es un Estudio de abogados que se distingue por el compromiso con sus clientes, por la atención personalizada que brinda y por el nivel de eficacia obtenida en cada una de sus participaciones.<p>
         <p>&nbsp;</p>
-        <p>Nuestro objetivo es brindar un servicio personalizado y de gran calidad, buscando en todo momento otorgar soluciones legales integrales, de acuerdo a las necesidades de nuestros clientes.</p>
+        <p>Contamos con un equipo de trabajo integrado por profesionales egresados de las universidades más prestigiosas del país, con maestrías y especializaciones en distintas áreas del Derecho. Antes de formar parte de CCLR Abogados, nuestros miembros ejercieron la práctica profesional en prestigiosos estudios, empresas e instituciones de primer nivel, lo cual les permitió obtener amplia experiencia en la asesoría de personas naturales y empresas tanto nacionales como extranjeras.</p>
         <p>&nbsp;</p>
-        <p>Contamos con un equipo de trabajo integrado por profesionales egresados de las universidades más prestigiosas del país, con maestrías y especializaciones en distintas áreas del Derecho. Antes de formar parte de CCLR Abogados, nuestros miembros ejercieron la práctica profesional en prestigiosos estudios, empresas e instituciones públicas de primer nivel, lo cual les permitió obtener amplia experiencia en la asesoría de entidades públicas y privadas, tanto nacionales como extranjeras.</p>
+        <p>Nuestro equipo de profesionales ofrece una asesoría de calidad, brindando un servicio especializado según el interés de cada cliente y garantizando el cumplimiento de sus objetivos, estableciendo relaciones profesionales sólidas y transparentes.</p>
 
     </div>
 </div><!-- end features section 1 -->
+
+<div class="clearfix"></div>
+
+<div class="feature_sec18">
+    <div class="container">
+
+        <div class="box animate fadeInUp" data-anim-type="fadeInUp" data-anim-delay="500">
+
+            <h1>Asesoría</h1>
+            <h3>Legal Personalizada</h3>
+            <h5>13 años de experiencia</h5>
+
+            <p>Te proveemos de un servicio profesional y personalizado con un equipo multidisciplinario para ofrecerte las mejores soluciones de acuerdo a tu negocio.</p>
+
+        </div>
+
+    </div>
+</div>

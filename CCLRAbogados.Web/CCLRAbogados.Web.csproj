@@ -161,6 +161,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Archivos\1e66655a14f35f2b.jpg" />
+    <Content Include="Archivos\2dbbcea9b856cf2b.jpg" />
+    <Content Include="Archivos\51de18a498f6911c.png" />
+    <Content Include="Archivos\687cbb4e61921ab9.jpg" />
+    <Content Include="Archivos\756705de2a0f9406.jpg" />
+    <Content Include="Archivos\c6eb557afb5ce53b.jpg" />
+    <Content Include="Archivos\fdcc344c2f4db81a.jpg" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -825,6 +832,15 @@
     <Content Include="Content\themes\cclra\images\logo.png" />
     <Content Include="Content\themes\cclra\images\logo2.png" />
     <Content Include="Content\themes\cclra\images\logo4.png" />
+    <Content Include="Content\themes\cclra\images\media\area-1.jpg" />
+    <Content Include="Content\themes\cclra\images\media\area-2.jpg" />
+    <Content Include="Content\themes\cclra\images\media\area-3.jpg" />
+    <Content Include="Content\themes\cclra\images\media\area-4.jpg" />
+    <Content Include="Content\themes\cclra\images\media\area-5.jpg" />
+    <Content Include="Content\themes\cclra\images\media\area-6.jpg" />
+    <Content Include="Content\themes\cclra\images\media\area-7.jpg" />
+    <Content Include="Content\themes\cclra\images\media\area-8.jpg" />
+    <Content Include="Content\themes\cclra\images\media\area-9.jpg" />
     <Content Include="Content\themes\cclra\images\menu-img.jpg" />
     <Content Include="Content\themes\cclra\images\sample-ad-banner.jpg" />
     <Content Include="Content\themes\cclra\images\scroll-top-arrow.png" />
@@ -838,9 +854,24 @@
     <Content Include="Content\themes\cclra\images\site-fullimg4.jpg" />
     <Content Include="Content\themes\cclra\images\site-img46.png" />
     <Content Include="Content\themes\cclra\images\site-search-icon.png" />
+    <Content Include="Content\themes\cclra\images\sliders\bg-1.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\bg-2.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\bg-21.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\bg1.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\bg2.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\bg3.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\bg4.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\bg6.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\dark-bg-1.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\full-bg-1.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\full-bg-2.jpg" />
     <Content Include="Content\themes\cclra\images\sliders\master\skin.png" />
     <Content Include="Content\themes\cclra\images\sliders\master\slider-curve-graph.png" />
     <Content Include="Content\themes\cclra\images\sliders\master\video\video-bg.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\slide-1.png" />
+    <Content Include="Content\themes\cclra\images\sliders\slide-2.png" />
+    <Content Include="Content\themes\cclra\images\sliders\slide-3.png" />
+    <Content Include="Content\themes\cclra\images\sliders\slide-4.jpg" />
     <Content Include="Content\themes\cclra\images\spacer.gif" />
     <Content Include="Content\themes\cclra\images\texture1.jpg" />
     <Content Include="Content\themes\cclra\images\texture2.png" />
@@ -1182,7 +1213,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\themes\cclra\images\media\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,0 +1,74 @@
+﻿@model CCLRAbogados.Core.DTO.ExperienciaDTO
+@{
+    if (Model == null || Model.IdMiembro == 0)
+    {
+        ViewBag.Title = "Miembro";
+    }
+    else { ViewBag.Title = Model.Titulo; }
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@if (Model == null || Model.IdMiembro == 0)
+{
+    <h2>Nuevo Miembro</h2>
+}
+else
+{<h2>Actualizar Miembro</h2>}
+
+@using (Html.BeginForm("AddExperiencia", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <div class="row m-b">
+        <div class="col-xs-12 col-md-12">
+            @Html.Partial("_showAlertMessages")
+
+            <section class="panel panel-default">
+                <header class="panel-heading font-bold">Formulario de Registro</header>
+                <div class="panel-body">
+                    <div class="form-group col-md-7" style="padding-left:0px;">
+                        <label>Titulo</label>
+                        @Html.TextBoxFor(u => u.Titulo, new { @class = "form-control", @placeholder = "Ingrese el titulo", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.Titulo)
+                    </div>
+                    <div class="form-group col-md-5" style="padding-right:0px;">
+                        <label>Tipo de Experiencia</label>
+                        @Html.DropDownListFor(u => u.IdTipoExperiencia, new SelectList(ViewBag.TipoExperiencias, "IdTipoExperiencia", "Nombre", Model != null ? (Model.IdTipoExperiencia != null ? Model.IdTipoExperiencia : 0) : 0), new { @class = "form-control parsley-validated" })
+                        @Html.ValidationMessageFor(u => u.IdTipoExperiencia)
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        @*@Html.TextBoxFor(u => u.Texto, new { @class = "form-control", @placeholder = "Ingrese la descripción", @type = "text" })*@
+                        @Html.TextAreaFor(u => u.Texto, new { @rows="5", @class = "form-control", @placeholder = "Ingrese una descripción", @type = "text", Style="resize:none;" })
+                        @Html.ValidationMessageFor(u => u.Titulo)
+                    </div>
+                    @if (ViewBag.EsAdmin && Model != null && Model.IdMiembro > 0)
+                    {
+                        <div class="line line-dashed line-lg pull-in"></div>
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(u => u.Active)
+                                Activo
+                            </label>
+                            @Html.ValidationMessageFor(u => u.Active)
+                        </div>}
+                    else
+                    {
+                        @Html.TextBoxFor(u => u.Active, new { @value = Model != null ? Model.Active : false, @type = "hidden" })
+                    }
+                    <div class="line line-dashed line-lg pull-in"></div>
+                    @Html.TextBoxFor(u => u.IdMiembro, new { @value = ViewBag.IdMiembro, @type = "hidden" })
+                    @Html.TextBoxFor(u => u.IdExperiencia, new { @value = Model != null ? Model.IdExperiencia.ToString() : "", @type = "hidden" })
+                    @{var btnName = (Model != null && Model.IdMiembro > 0) ? "Guardar Cambios" : "Crear";}
+                    <button type="submit" class="btn btn-sm btn-primary">@btnName</button>
+                    @if (ViewBag.EsAdmin)
+                    {
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Miembro", new { id = ViewBag.IdMiembro })">Salir</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Index")">Salir</a>
+                    }
+                </div>
+            </section>
+        </div>
+    </div>
+}
