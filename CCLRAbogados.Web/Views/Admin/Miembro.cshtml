@@ -90,6 +90,7 @@ else
                     }
                     <div class="line line-dashed line-lg pull-in"></div>
                     @Html.TextBoxFor(u => u.IdMiembro, new { @value = Model != null ? Model.IdMiembro.ToString() : "", @type = "hidden" })
+                    @Html.TextBoxFor(u => u.Orden, new { @value = Model != null ? Model.Orden : 0, @type = "hidden" })
                     @{var btnName = (Model != null && Model.IdMiembro > 0) ? "Guardar Cambios" : "Crear";}
                     <button type="submit" class="btn btn-sm btn-primary">@btnName</button>
                     @if (ViewBag.EsAdmin)

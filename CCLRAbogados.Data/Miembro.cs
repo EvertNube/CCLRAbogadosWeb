@@ -28,6 +28,7 @@ namespace CCLRAbogados.Data
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public string Imagen { get; set; }
+        public int Orden { get; set; }
         public bool Estado { get; set; }
         public string Uri { get; set; }
         public string ShortUrl { get; set; }
@@ -36,7 +37,7 @@ namespace CCLRAbogados.Data
         public string UrlLinkedIn { get; set; }
         public string UrlSkype { get; set; }
     
-        public virtual Cargo Cargo { get; set; }
         public virtual ICollection<Experiencia> Experiencia { get; set; }
+        public virtual Cargo Cargo { get; set; }
     }
 }

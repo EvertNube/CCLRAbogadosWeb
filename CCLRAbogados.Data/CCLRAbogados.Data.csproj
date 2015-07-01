@@ -102,15 +102,6 @@
     <Compile Include="Rol.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="TipoDynamicContent.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
@@ -122,13 +113,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="CCLRAbogadosModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CCLRAbogadosModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="CCLRAbogadosModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CCLRAbogadosModel.edmx</DependentUpon>

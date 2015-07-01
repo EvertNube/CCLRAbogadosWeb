@@ -21,6 +21,7 @@ namespace CCLRAbogados.Data
     
         public int IdCargo { get; set; }
         public string Nombre { get; set; }
+        public bool Plural { get; set; }
     
         public virtual ICollection<Miembro> Miembro { get; set; }
     }

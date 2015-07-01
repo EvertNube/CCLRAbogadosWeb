@@ -21,6 +21,7 @@ namespace CCLRAbogados.Core.DTO
         public bool Estado { get; set; }
         public string Uri { get; set; }
         public string ShortUrl { get; set; }
+        public int Orden { get; set; }
         public string NombreCargo { get; set; }
         public string UrlFacebook { get; set; }
         public string UrlTwitter { get; set; }

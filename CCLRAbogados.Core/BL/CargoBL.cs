@@ -21,6 +21,7 @@ namespace CCLRAbogados.Core.BL
                     {
                         IdCargo = x.IdCargo,
                         Nombre = x.Nombre,
+                        Plural = x.Plural
                     }).ToList();
                     return result;
                 }
@@ -38,7 +39,8 @@ namespace CCLRAbogados.Core.BL
                 var result = context.Cargo.Where(x => x.IdCargo == id).Select(r => new CargoDTO
                 {
                     IdCargo = r.IdCargo,
-                    Nombre = r.Nombre
+                    Nombre = r.Nombre,
+                    Plural = r.Plural
                 }).SingleOrDefault();
                 return result;
             }
@@ -53,6 +55,7 @@ namespace CCLRAbogados.Core.BL
                     Cargo nuevo = new Cargo();
                     nuevo.IdCargo = Cargo.IdCargo;
                     nuevo.Nombre = Cargo.Nombre;
+                    nuevo.Plural = Cargo.Plural;
                     context.Cargo.Add(nuevo);
                     context.SaveChanges();
                     return true;
@@ -73,6 +76,7 @@ namespace CCLRAbogados.Core.BL
                     var dataRow = context.Cargo.Where(x => x.IdCargo == Cargo.IdCargo).SingleOrDefault();
                     dataRow.IdCargo = Cargo.IdCargo;
                     dataRow.Nombre = Cargo.Nombre;
+                    dataRow.Plural = Cargo.Plural;
                     context.SaveChanges();
                     return true;
                 }

@@ -22,7 +22,7 @@ namespace CCLRAbogados.Data
         public int Orden { get; set; }
         public bool Active { get; set; }
     
-        public virtual TipoExperiencia TipoExperiencia { get; set; }
         public virtual Miembro Miembro { get; set; }
+        public virtual TipoExperiencia TipoExperiencia { get; set; }
     }
 }

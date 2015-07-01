@@ -14,7 +14,13 @@
     {
         <div class="container">
             <div class="one_full title1">
-                <h3><span class="line"></span><span class="text">@(cargo.Nombre + "s")</span></h3>
+                @{var cargoName = "";
+                  if (cargo.Plural)
+                  { cargoName = cargo.Nombre + "s"; }
+                  else
+                  { cargoName = cargo.Nombre; }
+                    }
+                <h3><span class="line"></span><span class="text">@cargoName</span></h3>
             </div>
             @{var cont = 1;}
             @foreach (var miembro in Model)

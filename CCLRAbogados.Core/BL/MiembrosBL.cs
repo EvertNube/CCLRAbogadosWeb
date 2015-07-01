@@ -32,8 +32,9 @@ namespace CCLRAbogados.Core.BL
                         Estado = x.Estado,
                         Uri = x.Uri,
                         ShortUrl = x.ShortUrl,
-                        NombreCargo = x.Cargo.Nombre
-                    }).OrderBy(x => x.IdMiembro).ToList();
+                        NombreCargo = x.Cargo.Nombre,
+                        Orden = x.Orden
+                    }).OrderBy(x => x.Orden).ToList();
                     return result;
                 }
                 catch (Exception e)
@@ -62,8 +63,9 @@ namespace CCLRAbogados.Core.BL
                         Estado = x.Estado,
                         Uri = x.Uri,
                         ShortUrl = x.ShortUrl,
-                        NombreCargo = x.Cargo.Nombre
-                    }).OrderBy(x => x.IdMiembro).ToList();
+                        NombreCargo = x.Cargo.Nombre,
+                        Orden = x.Orden
+                    }).OrderBy(x => x.Orden).ToList();
                     return result;
                 }
                 catch (Exception e)
@@ -91,6 +93,7 @@ namespace CCLRAbogados.Core.BL
                     Uri = r.Uri,
                     ShortUrl = r.ShortUrl,
                     NombreCargo = r.Cargo.Nombre,
+                    Orden = r.Orden,
                     listaExperiencia = r.Experiencia.Select(x => new ExperienciaDTO
                     {
                         IdExperiencia = x.IdExperiencia,
@@ -111,6 +114,9 @@ namespace CCLRAbogados.Core.BL
             {
                 try
                 {
+                    //Numero de miembros
+                    int ultimoM = 0; ultimoM = context.Miembro.Count();
+
                     Miembro nuevo = new Miembro();
                     nuevo.IdMiembro = Miembro.IdMiembro;
                     //------ShortURL--------
@@ -127,7 +133,8 @@ namespace CCLRAbogados.Core.BL
                     nuevo.Imagen = Miembro.Imagen;
                     nuevo.Estado = true;
                     nuevo.Uri = Miembro.Uri;
-                    //nuevo.ShortUrl = Miembro.ShortUrl;
+                    //Orden
+                    nuevo.Orden = ultimoM + 1;
                     context.Miembro.Add(nuevo);
                     context.SaveChanges();
                     return true;
@@ -160,6 +167,8 @@ namespace CCLRAbogados.Core.BL
                     dataRow.Imagen = Miembro.Imagen;
                     dataRow.Estado = Miembro.Estado;
                     dataRow.Uri = Miembro.Uri;
+                    //Orden
+                    dataRow.Orden = Miembro.Orden;
                     dataRow.ShortUrl = Miembro.ShortUrl;
                     context.SaveChanges();
                     return true;
@@ -167,6 +176,69 @@ namespace CCLRAbogados.Core.BL
                 catch (Exception e)
                 {
 
+                    throw e;
+                }
+            }
+        }
+        public bool OrdenBajar(MiembroDTO Miembro)
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    var actual = context.Miembro.Where(x => x.IdMiembro == Miembro.IdMiembro).SingleOrDefault();
+
+                    var anterior = context.Miembro.Where(x => x.Orden == Miembro.Orden - 1).SingleOrDefault();
+
+                    if (anterior == null)
+                        return false;
+
+                    if (anterior.Orden == 0)
+                    { return false; }
+                    else
+                    {
+                        var aux = actual.Orden;
+
+                        actual.Orden = anterior.Orden;
+                        anterior.Orden = aux;
+                        context.SaveChanges();
+                    }
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public bool OrdenSubir(MiembroDTO Miembro)
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    var actual = context.Miembro.Where(x => x.IdMiembro == Miembro.IdMiembro).SingleOrDefault();
+
+                    var adelante = context.Miembro.Where(x => x.Orden == Miembro.Orden + 1).SingleOrDefault();
+
+                    if (adelante == null)
+                        return false;
+
+                    if (adelante.Orden == 0)
+                    { return false; }
+                    else
+                    {
+                        var aux = actual.Orden;
+
+                        actual.Orden = adelante.Orden;
+                        adelante.Orden = aux;
+                        context.SaveChanges();
+                    }
+                    return true;
+                }
+                catch (Exception e)
+                {
                     throw e;
                 }
             }
@@ -319,7 +391,7 @@ namespace CCLRAbogados.Core.BL
 
         public IList<TipoExperienciaDTO> getTipoExperiencias()
         {
-            using(var context = getContext())
+            using (var context = getContext())
             {
                 try
                 {
@@ -330,16 +402,15 @@ namespace CCLRAbogados.Core.BL
                     }).ToList();
                     return result;
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     throw e;
                 }
             }
         }
-
         public IList<TipoExperienciaDTO> getTipoExperienciasViewBag(bool AsSelectList = false)
         {
-            if(!AsSelectList)
+            if (!AsSelectList)
             {
                 return getTipoExperiencias();
             }

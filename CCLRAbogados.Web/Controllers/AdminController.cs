@@ -610,5 +610,17 @@ namespace CCLRAbogados.Web.Controllers
             TempData["Experiencia"] = dto;
             return RedirectToAction("Experiencia");
         }
+        public ActionResult CambiarOrdenUp(int id)
+        {
+            MiembrosBL objBL = new MiembrosBL();
+            objBL.OrdenSubir(objBL.getMiembro(id));
+            return RedirectToAction("Miembros");
+        }
+        public ActionResult CambiarOrdenDown(int id)
+        {
+            MiembrosBL objBL = new MiembrosBL();
+            objBL.OrdenBajar(objBL.getMiembro(id));
+            return RedirectToAction("Miembros");
+        }
     }
 }

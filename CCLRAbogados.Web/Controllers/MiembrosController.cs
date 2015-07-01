@@ -15,13 +15,6 @@ namespace CCLRAbogados.Web.Controllers
 {
     public class MiembrosController : BaseDynamicController
     {
-        /*public ActionResult Index(string page, string id, string subid)
-        {
-            MiembrosBL objBL = new MiembrosBL();
-            ViewBag.Cargos = objBL.getCargosViewBag(false);
-            return View("Pagina", objBL.getMiembrosActivos());
-        }*/
-
         public ActionResult Index(string page, string id, int? pagina)
         {
             cleanViewBag();
