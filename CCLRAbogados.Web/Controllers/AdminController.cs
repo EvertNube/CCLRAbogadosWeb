@@ -589,7 +589,7 @@ namespace CCLRAbogados.Web.Controllers
                     if (objBL.updateExperiencia(dto))
                     {
                         createResponseMessage(CONSTANTES.SUCCESS);
-                        return RedirectToAction("Experiencias", new { id = dto.IdMiembro });
+                        return RedirectToAction("Miembro", new { id = dto.IdMiembro });
                     }
                     else
                     {

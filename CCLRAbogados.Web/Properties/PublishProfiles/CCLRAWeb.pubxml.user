@@ -25,7 +25,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/30/2015 10:25:47</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Web.dll">
-      <publishTime>06/30/2015 10:25:48</publishTime>
+      <publishTime>06/30/2015 14:53:37</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>05/28/2015 22:41:30</publishTime>
@@ -1996,7 +1996,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/28/2015 22:41:29</publishTime>
     </File>
     <File Include="Content/themes/cclra/css/style.css">
-      <publishTime>06/30/2015 09:22:01</publishTime>
+      <publishTime>06/30/2015 11:26:58</publishTime>
     </File>
     <File Include="Content/themes/cclra/images/accordion-ico.png">
       <publishTime>05/28/2015 22:41:29</publishTime>
@@ -2740,7 +2740,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/28/2015 22:41:29</publishTime>
     </File>
     <File Include="Content/themes/cclra/js/cubeportfolio/cubeportfolio.min.css">
-      <publishTime>05/28/2015 22:41:29</publishTime>
+      <publishTime>06/29/2015 03:14:02</publishTime>
     </File>
     <File Include="Content/themes/cclra/js/cubeportfolio/jquery.cubeportfolio.min.js">
       <publishTime>05/28/2015 22:41:29</publishTime>
@@ -3264,11 +3264,38 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Admin/Usuarios.cshtml">
       <publishTime>05/28/2015 22:41:29</publishTime>
     </File>
+    <File Include="Views/AreasDePractica/derecho-civil.html">
+      <publishTime>06/29/2015 03:04:48</publishTime>
+    </File>
+    <File Include="Views/AreasDePractica/derecho-corporativo.html">
+      <publishTime>06/29/2015 02:43:10</publishTime>
+    </File>
+    <File Include="Views/AreasDePractica/derecho-inmobiliario.html">
+      <publishTime>06/29/2015 03:05:48</publishTime>
+    </File>
+    <File Include="Views/AreasDePractica/derecho-laboral-migraciones.html">
+      <publishTime>06/29/2015 03:07:14</publishTime>
+    </File>
+    <File Include="Views/AreasDePractica/derecho-regulatorio-administrativo.html">
+      <publishTime>06/29/2015 03:05:18</publishTime>
+    </File>
+    <File Include="Views/AreasDePractica/derecho-tributario.html">
+      <publishTime>06/29/2015 03:05:08</publishTime>
+    </File>
     <File Include="Views/AreasDePractica/Index.cshtml">
       <publishTime>05/28/2015 22:41:29</publishTime>
     </File>
+    <File Include="Views/AreasDePractica/inversion-privada-contratacion-publica.html">
+      <publishTime>06/29/2015 03:05:30</publishTime>
+    </File>
     <File Include="Views/AreasDePractica/Pagina.cshtml">
-      <publishTime>06/30/2015 10:02:56</publishTime>
+      <publishTime>06/30/2015 14:11:43</publishTime>
+    </File>
+    <File Include="Views/AreasDePractica/prevencion-solucion-controversias.html">
+      <publishTime>06/29/2015 03:04:56</publishTime>
+    </File>
+    <File Include="Views/AreasDePractica/propiedad-intelectual-derecho-competencia.html">
+      <publishTime>06/29/2015 03:06:10</publishTime>
     </File>
     <File Include="Views/Contacto/Index.cshtml">
       <publishTime>05/31/2015 22:48:46</publishTime>
