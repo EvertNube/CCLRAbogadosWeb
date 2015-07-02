@@ -110,6 +110,8 @@
     <Property Name="UrlTwitter" Type="nvarchar" MaxLength="200" />
     <Property Name="UrlLinkedIn" Type="nvarchar" MaxLength="200" />
     <Property Name="UrlSkype" Type="nvarchar" MaxLength="200" />
+    <Property Name="ImagenPerfil" Type="nvarchar" MaxLength="250" />
+    <Property Name="VCard" Type="nvarchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="Pagina">
     <Key>

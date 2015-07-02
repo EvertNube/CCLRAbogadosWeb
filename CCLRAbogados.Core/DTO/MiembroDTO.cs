@@ -27,6 +27,8 @@ namespace CCLRAbogados.Core.DTO
         public string UrlTwitter { get; set; }
         public string UrlLinkedIn { get; set; }
         public string UrlSkype { get; set; }
+        public string ImagenPerfil { get; set; }
+        public string VCard { get; set; }
         public IList<ExperienciaDTO> listaExperiencia { get; set; }
     }
 }

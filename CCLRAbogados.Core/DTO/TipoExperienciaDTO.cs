@@ -11,5 +11,6 @@ namespace CCLRAbogados.Core.DTO
     {
         public int IdTipoExperiencia { get; set; }
         public string Nombre { get; set; }
+        public IList<ExperienciaDTO> listaExperiencia { get; set; }
     }
 }

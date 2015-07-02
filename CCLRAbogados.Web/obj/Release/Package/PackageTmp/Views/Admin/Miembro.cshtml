@@ -52,6 +52,26 @@ else
                         @Html.TextBoxFor(u => u.Celular, new { @class = "form-control", @placeholder = "Ingrese su Celular", @type = "text" })
                         @Html.ValidationMessageFor(u => u.Celular)
                     </div>
+                    <div class="form-group col-md-6" style="padding-left:0px;">
+                        <label>Facebook</label>
+                        @Html.TextBoxFor(u => u.UrlFacebook, new { @class = "form-control", @placeholder = "Ingrese el link de facebook", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.UrlFacebook)
+                    </div>
+                    <div class="form-group col-md-6" style="padding-right:0px;">
+                        <label>Twitter</label>
+                        @Html.TextBoxFor(u => u.UrlTwitter, new { @class = "form-control", @placeholder = "Ingrese el link de Twitter", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.UrlTwitter)
+                    </div>
+                    <div class="form-group col-md-6" style="padding-left:0px;">
+                        <label>LinkedIn</label>
+                        @Html.TextBoxFor(u => u.UrlLinkedIn, new { @class = "form-control", @placeholder = "Ingrese el link de LinkedIn", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.UrlLinkedIn)
+                    </div>
+                    <div class="form-group col-md-6" style="padding-right:0px;">
+                        <label>Skype</label>
+                        @Html.TextBoxFor(u => u.UrlSkype, new { @class = "form-control", @placeholder = "Ingrese el link de Skype", @type = "text" })
+                        @Html.ValidationMessageFor(u => u.UrlSkype)
+                    </div>
                     <div class="form-group">
                         <label>Correo Electrónico</label>
                         @Html.TextBoxFor(u => u.Email, new { @class = "form-control", @placeholder = "Ingrese su correo", @type = "email" })
@@ -69,10 +89,20 @@ else
                         @Html.ValidationMessageFor(u => u.Descripcion)
                     </div>
                     <div class="line line-dashed line-lg pull-in"></div>
-                    <div class="form-group">
+                    <div class="form-group col-md-6" style="padding-left:0px;">
                         <label>Imagen de portada</label>
                         @Html.TextBoxFor(u => u.Imagen, new { @class = "form-control", @placeholder = "Ruta de la imagen", @type = "text", @maxlength = "200" })
                         @Html.ValidationMessageFor(u => u.Imagen)
+                    </div>
+                    <div class="form-group col-md-6" style="padding-right:0px;">
+                        <label>Imagen de perfil</label>
+                        @Html.TextBoxFor(u => u.ImagenPerfil, new { @class = "form-control", @placeholder = "Ruta de la imagen de perfil", @type = "text", @maxlength = "200" })
+                        @Html.ValidationMessageFor(u => u.ImagenPerfil)
+                    </div>
+                    <div class="form-group">
+                        <label>Enlace a la vCard</label>
+                        @Html.TextBoxFor(u => u.VCard, new { @class = "form-control", @placeholder = "Ruta de la vCard", @type = "text", @maxlength = "200" })
+                        @Html.ValidationMessageFor(u => u.VCard)
                     </div>
                     @if (ViewBag.EsAdmin && Model != null && Model.IdMiembro > 0)
                     {
@@ -90,6 +120,7 @@ else
                     }
                     <div class="line line-dashed line-lg pull-in"></div>
                     @Html.TextBoxFor(u => u.IdMiembro, new { @value = Model != null ? Model.IdMiembro.ToString() : "", @type = "hidden" })
+                    @Html.TextBoxFor(u => u.Orden, new { @value = Model != null ? Model.Orden : 0, @type = "hidden" })
                     @{var btnName = (Model != null && Model.IdMiembro > 0) ? "Guardar Cambios" : "Crear";}
                     <button type="submit" class="btn btn-sm btn-primary">@btnName</button>
                     @if (ViewBag.EsAdmin)

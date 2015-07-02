@@ -32,6 +32,12 @@ namespace CCLRAbogados.Core.BL
                         Estado = x.Estado,
                         Uri = x.Uri,
                         ShortUrl = x.ShortUrl,
+                        UrlFacebook = x.UrlFacebook,
+                        UrlTwitter = x.UrlTwitter,
+                        UrlLinkedIn = x.UrlLinkedIn,
+                        UrlSkype = x.UrlSkype,
+                        ImagenPerfil = x.ImagenPerfil,
+                        VCard = x.VCard,
                         NombreCargo = x.Cargo.Nombre,
                         Orden = x.Orden
                     }).OrderBy(x => x.Orden).ToList();
@@ -63,6 +69,12 @@ namespace CCLRAbogados.Core.BL
                         Estado = x.Estado,
                         Uri = x.Uri,
                         ShortUrl = x.ShortUrl,
+                        UrlFacebook = x.UrlFacebook,
+                        UrlTwitter = x.UrlTwitter,
+                        UrlLinkedIn = x.UrlLinkedIn,
+                        UrlSkype = x.UrlSkype,
+                        ImagenPerfil = x.ImagenPerfil,
+                        VCard = x.VCard,
                         NombreCargo = x.Cargo.Nombre,
                         Orden = x.Orden
                     }).OrderBy(x => x.Orden).ToList();
@@ -92,6 +104,12 @@ namespace CCLRAbogados.Core.BL
                     Estado = r.Estado,
                     Uri = r.Uri,
                     ShortUrl = r.ShortUrl,
+                    UrlFacebook = r.UrlFacebook,
+                    UrlTwitter = r.UrlTwitter,
+                    UrlLinkedIn = r.UrlLinkedIn,
+                    UrlSkype = r.UrlSkype,
+                    ImagenPerfil = r.ImagenPerfil,
+                    VCard = r.VCard,
                     NombreCargo = r.Cargo.Nombre,
                     Orden = r.Orden,
                     listaExperiencia = r.Experiencia.Select(x => new ExperienciaDTO
@@ -133,6 +151,13 @@ namespace CCLRAbogados.Core.BL
                     nuevo.Imagen = Miembro.Imagen;
                     nuevo.Estado = true;
                     nuevo.Uri = Miembro.Uri;
+                    nuevo.ImagenPerfil = Miembro.ImagenPerfil;
+                    nuevo.VCard = Miembro.VCard;
+                    //Redes Sociales
+                    nuevo.UrlFacebook = Miembro.UrlFacebook;
+                    nuevo.UrlTwitter = Miembro.UrlTwitter;
+                    nuevo.UrlLinkedIn = Miembro.UrlLinkedIn;
+                    nuevo.UrlSkype = Miembro.UrlSkype;
                     //Orden
                     nuevo.Orden = ultimoM + 1;
                     context.Miembro.Add(nuevo);
@@ -167,6 +192,13 @@ namespace CCLRAbogados.Core.BL
                     dataRow.Imagen = Miembro.Imagen;
                     dataRow.Estado = Miembro.Estado;
                     dataRow.Uri = Miembro.Uri;
+                    dataRow.ImagenPerfil = Miembro.ImagenPerfil;
+                    dataRow.VCard = Miembro.VCard;
+                    //Redes Sociales
+                    dataRow.UrlFacebook = Miembro.UrlFacebook;
+                    dataRow.UrlTwitter = Miembro.UrlTwitter;
+                    dataRow.UrlLinkedIn = Miembro.UrlLinkedIn;
+                    dataRow.UrlSkype = Miembro.UrlSkype;
                     //Orden
                     dataRow.Orden = Miembro.Orden;
                     dataRow.ShortUrl = Miembro.ShortUrl;
@@ -275,6 +307,12 @@ namespace CCLRAbogados.Core.BL
                         Estado = r.Estado,
                         Uri = r.Uri,
                         ShortUrl = r.ShortUrl,
+                        UrlFacebook = r.UrlFacebook,
+                        UrlTwitter = r.UrlTwitter,
+                        UrlLinkedIn = r.UrlLinkedIn,
+                        UrlSkype = r.UrlSkype,
+                        ImagenPerfil = r.ImagenPerfil,
+                        VCard = r.VCard,
                         NombreCargo = r.Cargo.Nombre,
                         listaExperiencia = r.Experiencia.Select(x => new ExperienciaDTO
                         {
@@ -408,6 +446,37 @@ namespace CCLRAbogados.Core.BL
                 }
             }
         }
+
+        public IList<TipoExperienciaDTO> getExperienciasPorMiembro(int id)
+        {
+            using(var context = getContext())
+            {
+                try
+                {
+                    var result = context.TipoExperiencia.Select(x => new TipoExperienciaDTO
+                    {
+                        IdTipoExperiencia = x.IdTipoExperiencia,
+                        Nombre = x.Nombre,
+                        listaExperiencia = x.Experiencia.Where(r => r.IdMiembro == id).Select(r => new ExperienciaDTO
+                        {
+                            IdExperiencia = r.IdExperiencia,
+                            IdTipoExperiencia = r.IdTipoExperiencia,
+                            IdMiembro = r.IdMiembro,
+                            Titulo = r.Titulo,
+                            Texto = r.Texto,
+                            Orden = r.Orden,
+                            Active = r.Active
+                        }).ToList()
+                    }).ToList();
+                    return result;
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public IList<TipoExperienciaDTO> getTipoExperienciasViewBag(bool AsSelectList = false)
         {
             if (!AsSelectList)

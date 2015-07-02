@@ -26,7 +26,9 @@ namespace CCLRAbogados.Web.Controllers
 
             if(!String.IsNullOrWhiteSpace(page))
             {
-                ViewBag.TipoExperiencias = objBL.getTipoExperienciasViewBag(false);
+                //ViewBag.TipoExperiencias = objBL.getTipoExperienciasViewBag(false);
+                int idMiembro = (objBL.getMiembroPorUri(page)).IdMiembro;
+                ViewBag.TipoExperiencias = objBL.getExperienciasPorMiembro(idMiembro);
                 return View(getPaginaMiembro(objBL, page, id));
             }
             ViewBag.Cargos = objBL.getCargosViewBag(false);

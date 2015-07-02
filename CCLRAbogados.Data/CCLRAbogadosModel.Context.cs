@@ -32,7 +32,6 @@ namespace CCLRAbogados.Data
         public virtual DbSet<DynamicContent> DynamicContent { get; set; }
         public virtual DbSet<Experiencia> Experiencia { get; set; }
         public virtual DbSet<HighLight> HighLight { get; set; }
-        public virtual DbSet<Miembro> Miembro { get; set; }
         public virtual DbSet<Pagina> Pagina { get; set; }
         public virtual DbSet<PaginaHistorial> PaginaHistorial { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
@@ -40,5 +39,6 @@ namespace CCLRAbogados.Data
         public virtual DbSet<TipoExperiencia> TipoExperiencia { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Cargo> Cargo { get; set; }
+        public virtual DbSet<Miembro> Miembro { get; set; }
     }
 }

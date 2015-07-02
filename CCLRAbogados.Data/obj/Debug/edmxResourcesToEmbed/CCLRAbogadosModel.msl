@@ -89,29 +89,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Miembro">
-      <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
-        <MappingFragment StoreEntitySet="Miembro">
-          <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
-          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-          <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
-          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-          <ScalarProperty Name="Celular" ColumnName="Celular" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
-          <ScalarProperty Name="Orden" ColumnName="Orden" />
-          <ScalarProperty Name="Estado" ColumnName="Estado" />
-          <ScalarProperty Name="Uri" ColumnName="Uri" />
-          <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
-          <ScalarProperty Name="UrlFacebook" ColumnName="UrlFacebook" />
-          <ScalarProperty Name="UrlTwitter" ColumnName="UrlTwitter" />
-          <ScalarProperty Name="UrlLinkedIn" ColumnName="UrlLinkedIn" />
-          <ScalarProperty Name="UrlSkype" ColumnName="UrlSkype" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Pagina">
       <EntityTypeMapping TypeName="CCLRA.WebDbModel.Pagina">
         <MappingFragment StoreEntitySet="Pagina">
@@ -195,6 +172,31 @@
           <ScalarProperty Name="Plural" ColumnName="Plural" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Miembro">
+      <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
+        <MappingFragment StoreEntitySet="Miembro">
+          <ScalarProperty Name="VCard" ColumnName="VCard" />
+          <ScalarProperty Name="ImagenPerfil" ColumnName="ImagenPerfil" />
+          <ScalarProperty Name="UrlSkype" ColumnName="UrlSkype" />
+          <ScalarProperty Name="UrlLinkedIn" ColumnName="UrlLinkedIn" />
+          <ScalarProperty Name="UrlTwitter" ColumnName="UrlTwitter" />
+          <ScalarProperty Name="UrlFacebook" ColumnName="UrlFacebook" />
+          <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
+          <ScalarProperty Name="Uri" ColumnName="Uri" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Celular" ColumnName="Celular" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

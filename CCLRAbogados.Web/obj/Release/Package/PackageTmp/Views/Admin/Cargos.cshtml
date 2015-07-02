@@ -9,13 +9,13 @@
 <section class="panel panel-default">
     <div class="row text-sm wrapper">
         @*<div class="col-sm-8">
-            <div class="btn-group">
-                @if (ViewBag.EsAdmin)
-                {
-                    <label><input type="checkbox" id="btn-showInactive" /> Mostrar Inactivos</label>
-                }
-            </div>
-        </div>*@
+                <div class="btn-group">
+                    @if (ViewBag.EsAdmin)
+                    {
+                        <label><input type="checkbox" id="btn-showInactive" /> Mostrar Inactivos</label>
+                    }
+                </div>
+            </div>*@
         <div class="col-sm-12">
             <a class="btn btn-sm btn-success pull-right" href="@Url.Action("Cargo")"><i class="fa fa-user"></i> Crear nuevo cargo</a>
         </div>
@@ -25,10 +25,11 @@
             <thead>
                 <tr>
                     <th width="10%">ID</th>
-                    <th width="80%">Nombre</th>
+                    <th width="70%">Nombre</th>
+                    <th width="10%" style="text-align:center;">Plural</th>
                     @if (ViewBag.EsAdmin)
                     {
-                        <th width="10%">Opciones</th>
+                        <th width="10%" style="text-align:center;">Opciones</th>
                     }
                 </tr>
             </thead>
@@ -37,14 +38,22 @@
                 @foreach (var cargo in Model)
                 {
                     <tr>
-                    <td>@cont</td>
-                    <td>@cargo.Nombre</td>
-                    @if (ViewBag.EsAdmin)
-                    {
-                        <td align="center"><a href="@Url.Action("Cargo", new { id = cargo.IdCargo})"><i class="fa fa-pencil"></i></a></td>
-                    }
-                </tr>
-                    cont++;
+                        <td>@cont</td>
+                        <td>@cargo.Nombre</td>
+                        @{
+                    var plural = "";
+                    if (cargo.Plural)
+                    { plural = "fa fa-check-square-o"; }
+                    else
+                    { plural = "fa fa-square-o"; }
+                        }
+                        <td align="center"><i class="@plural"></i></td>
+                            @if (ViewBag.EsAdmin)
+                            {
+                            <td align="center"><a href="@Url.Action("Cargo", new { id = cargo.IdCargo})"><i class="fa fa-pencil"></i></a></td>
+                            }
+                        </tr>
+                            cont++;
                 }
             </tbody>
         </table>

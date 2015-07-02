@@ -2940,9 +2940,9 @@ ul.list9 {
 	margin-bottom: 20px;
 }
 .graybgraph_box ul {
-	float: left;
-	padding: 0px;
-	margin: 0px 0px 0px 40px;
+    float: left;
+    padding: 0px;
+    margin: 0px 20px 0px 40px;
 }
 .graybgraph_box li {
 	padding: 0px;

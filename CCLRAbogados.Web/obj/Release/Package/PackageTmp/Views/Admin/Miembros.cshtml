@@ -4,6 +4,14 @@
 }
 @model IList<CCLRAbogados.Core.DTO.MiembroDTO>
 
+@*@section scripts{
+    <script type="text/javascript">
+        $(function () {
+
+        });
+    </script>
+}*@
+
 <h2>Miembros</h2>
 @Html.Partial("_showAlertMessages")
 <section class="panel panel-default">
@@ -24,13 +32,14 @@
         <table class="table table-striped m-b-none">
             <thead>
                 <tr>
-                    <th width="10%">ID</th>
+                    <th width="5%">ID</th>
                     <th width="30%">Nombre</th>
                     <th width="20%">Cargo</th>
                     <th width="30%">Email</th>
+                    <th width="5%">Orden</th>
                     @if (ViewBag.EsAdmin)
                     {
-                        <th width="10%">Opciones</th>
+                        <th width="10%" style="text-align:center;">Opciones</th>
                     }
                 </tr>
             </thead>
@@ -47,9 +56,14 @@
                         <td>@miembro.Nombre</td>
                         <td>@miembro.NombreCargo</td>
                         <td>@miembro.Email</td>
+                        <td align="center">@miembro.Orden</td>
                         @if (ViewBag.EsAdmin)
                         {
-                            <td align="center"><a href="@Url.Action("Miembro", new { id = miembro.IdMiembro})"><i class="fa fa-pencil"></i></a></td>
+                            <td align="center">
+                                <a href="@Url.Action("CambiarOrdenDown", new { id = miembro.IdMiembro })" title="Subir de orden"><i class="fa fa-chevron-up"></i></a>&nbsp;&nbsp;
+                                <a href="@Url.Action("CambiarOrdenUp", new { id = miembro.IdMiembro })" title="Bajar de orden"><i class="fa fa-chevron-down"></i></a>&nbsp;&nbsp;
+                                <a href="@Url.Action("Miembro", new { id = miembro.IdMiembro})" title="Editar"><i class="fa fa-pencil"></i></a>
+                            </td>
                         }
                     </tr>
                         cont++;

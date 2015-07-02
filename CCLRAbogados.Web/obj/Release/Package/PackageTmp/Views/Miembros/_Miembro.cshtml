@@ -7,8 +7,11 @@
 <div class="full_biohead">
     <div class="container">
         @{var imagen = "http://placehold.it/360x330";
-        if (Model.Imagen != null)
-        { imagen = Model.Imagen; }}
+        if (Model.ImagenPerfil != null)
+        { imagen = Model.ImagenPerfil; }
+        else if (Model.Imagen != null)
+        { imagen = Model.Imagen; }
+        }
         <img src="@imagen" alt="" width="450" height="400" />
 
         <h3>@Model.Nombre</h3>
@@ -20,16 +23,38 @@
             { telefonos = Model.Telefono + " - " + Model.Celular; }
             else { if (Model.Telefono != null) { telefonos = Model.Telefono; } else { telefonos = Model.Celular; } }}
             <li><i class="fa fa-phone-square"></i>@telefonos</li>
-            <li><i class="fa fa-envelope"></i> <a href="mailto:correo@correo.com">@Model.Email</a></li>
+            <li><i class="fa fa-envelope"></i> <a href="mailto:@Model.Email">@Model.Email</a></li>
         </ul>
 
-        <p><a href="#" class="button5">Descargar vCard</a> &nbsp;&nbsp; <a href="mailto:info@websitename.com" class="button5">Enviar un correo</a></p>
+        <p>
+            @{
+                if (Model.VCard != null)
+                {
+                    <a href="@Model.VCard" class="button5" download>Descargar vCard</a>@Html.Raw("&nbsp;&nbsp;")
+                }
+            }
+            <a href="mailto:@Model.Email" class="button5">Enviar un correo</a>
+        </p>
 
         <ul class="csocial">
-            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fa fa-skype"></i></a></li>
+            @{
+                if (Model.UrlFacebook != null)
+                {
+                <li><a href="@Model.UrlFacebook"><i class="fa fa-facebook"></i></a></li>}
+                if (Model.UrlTwitter != null)
+                {
+                <li><a href="@Model.UrlTwitter"><i class="fa fa-twitter"></i></a></li>}
+                if (Model.UrlLinkedIn != null)
+                {
+                <li><a href="@Model.UrlLinkedIn"><i class="fa fa-linkedin"></i></a></li>}
+                if (Model.UrlSkype != null)
+                {
+                <li><a href="@Model.UrlSkype"><i class="fa fa-skype"></i></a></li>}
+            }
+            @*<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fa fa-skype"></i></a></li>*@
         </ul>
 
     </div>
@@ -46,43 +71,53 @@
     @Html.Raw(Model.Descripcion)
 
     <div class="clearfix margin_top5"></div>
-    
+
     @{var cont = 1;}
-    @if (Model.listaExperiencia != null)
+    @if (ViewBag.TipoExperiencias != null)
     {
+        var numTipos = 0;
+        foreach (var lista in (List<TipoExperienciaDTO>)ViewBag.TipoExperiencias)
+        {
+            if (lista.listaExperiencia != null)
+            { numTipos++; }
+        }
+
         foreach (var lsExp in (List<TipoExperienciaDTO>)ViewBag.TipoExperiencias)
         {
-            var classHalf = (cont % 3 != 0) ? "class='one_third'" : "class='one_third last'";
-            <div @Html.Raw(classHalf)>
-                <div class="graybgraph_box">
-                    <h3>@lsExp.Nombre</h3>
-                    <ul>
-                        @foreach (var exp in Model.listaExperiencia)
-                        {
-                            if(lsExp.IdTipoExperiencia == exp.IdTipoExperiencia)
-                            { 
-                            <li>
-                                @switch (lsExp.IdTipoExperiencia)
+            if (lsExp.listaExperiencia.Count != 0)
+            {
+                var classHalf = (cont % numTipos != 0) ? "class='one_third'" : "class='one_third last'";
+                <div @Html.Raw(classHalf)>
+                    <div class="graybgraph_box">
+                        <h3>@lsExp.Nombre</h3>
+                        <ul>
+                            @foreach (var exp in lsExp.listaExperiencia)
+                            {
+                                if (lsExp.IdTipoExperiencia == exp.IdTipoExperiencia)
                                 {
-                                    case 1:
-                                        <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
-                                        break;
-                                    case 2:
-                                        <strong class="color">@exp.Titulo:</strong> <br />@exp.Texto<br />
-                                        break;
-                                    case 3:
-                                        <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
-                                        break;
-                                    default:
-                                        break;
+                                    <li>
+                                        @switch (lsExp.IdTipoExperiencia)
+                                        {
+                                            case 1:
+                                                <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
+                                                break;
+                                            case 2:
+                                            <strong class="color">@exp.Titulo:</strong> <br />@exp.Texto<br />
+                                                break;
+                                            case 3:
+                                            <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    </li>
                                 }
-                            </li>
                             }
-                        }
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
                 cont++;
+            }
         }
     }
 </div><!-- end content area -->

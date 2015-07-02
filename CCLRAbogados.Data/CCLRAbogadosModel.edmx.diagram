@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="CCLRA.WebDbModel.DynamicContent" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Experiencia" Width="1.5" PointX="12.25" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.HighLight" Width="1.5" PointX="7.5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CCLRA.WebDbModel.Miembro" Width="1.5" PointX="10" PointY="8.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Pagina" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.PaginaHistorial" Width="1.5" PointX="10.5" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Rol" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
@@ -21,7 +20,6 @@
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Usuario" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_CategoriaPagina" ManuallyRouted="false" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_DynamicContent_TipoDynamicContent" ManuallyRouted="false" />
-        <AssociationConnector Association="CCLRA.WebDbModel.FK_Experiencia_Miembro" ManuallyRouted="false" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Experiencia_TipoExperiencia" ManuallyRouted="false" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_HighLight_Pagina" ManuallyRouted="false" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Pagina_Pagina" ManuallyRouted="false" />
@@ -30,7 +28,9 @@
         <AssociationConnector Association="CCLRA.WebDbModel.FK_PaginaHistorial_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Usuario_Rol" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CCLRA.WebDbModel.Cargo" Width="1.5" PointX="7.75" PointY="10" />
+        <EntityTypeShape EntityType="CCLRA.WebDbModel.Miembro" Width="1.5" PointX="10" PointY="16.375" />
         <AssociationConnector Association="CCLRA.WebDbModel.FK_Miembro_Cargo" />
+        <AssociationConnector Association="CCLRA.WebDbModel.FK_Experiencia_Miembro" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
