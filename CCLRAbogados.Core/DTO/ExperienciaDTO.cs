@@ -16,5 +16,7 @@ namespace CCLRAbogados.Core.DTO
         public string Texto { get; set; }
         public int Orden { get; set; }
         public bool Active { get; set; }
+        public string NombreTipoExperiencia { get; set; }
+        public string NombreMiembro { get; set; }
     }
 }

@@ -370,7 +370,9 @@ namespace CCLRAbogados.Core.BL
                             Titulo = x.Titulo,
                             Texto = x.Texto,
                             Orden = x.Orden,
-                            Active = x.Active
+                            Active = x.Active,
+                            NombreMiembro = x.Miembro.Nombre,
+                            NombreTipoExperiencia = x.TipoExperiencia.Nombre
                         }).SingleOrDefault();
                     return result;
                 }
@@ -429,6 +431,26 @@ namespace CCLRAbogados.Core.BL
             }
         }
 
+        public TipoExperienciaDTO getTipoExperiencia(int id)
+        {
+            using(var context = getContext())
+            {
+                try
+                {
+                    var result = context.TipoExperiencia.Where(x => x.IdTipoExperiencia == id).Select(x => new TipoExperienciaDTO
+                        {
+                            IdTipoExperiencia = x.IdTipoExperiencia,
+                            Nombre = x.Nombre
+                        }).SingleOrDefault();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public IList<TipoExperienciaDTO> getTipoExperiencias()
         {
             using (var context = getContext())
@@ -439,6 +461,31 @@ namespace CCLRAbogados.Core.BL
                     {
                         IdTipoExperiencia = x.IdTipoExperiencia,
                         Nombre = x.Nombre
+                    }).ToList();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public IList<ExperienciaDTO> getExperienciasPorMiembroYPorTipo(int idMiembro, int idTipoExperiencia)
+        {
+            using(var context = getContext())
+            {
+                try
+                {
+                    var result = context.Experiencia.Where(x => x.IdMiembro == idMiembro && x.IdTipoExperiencia == idTipoExperiencia).Select(x => new ExperienciaDTO
+                    {
+                        IdExperiencia = x.IdExperiencia,
+                        IdTipoExperiencia = x.IdTipoExperiencia,
+                        IdMiembro = x.IdMiembro,
+                        Titulo = x.Titulo,
+                        Texto = x.Texto,
+                        Orden = x.Orden,
+                        Active = x.Active
                     }).ToList();
                     return result;
                 }
@@ -473,6 +520,36 @@ namespace CCLRAbogados.Core.BL
                     return result;
                 }
                 catch(Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public IList<TipoExperienciaDTO> getExperienciasActivasPorMiembro(int id)
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    var result = context.TipoExperiencia.Select(x => new TipoExperienciaDTO
+                    {
+                        IdTipoExperiencia = x.IdTipoExperiencia,
+                        Nombre = x.Nombre,
+                        listaExperiencia = x.Experiencia.Where(r => r.IdMiembro == id && r.Active == true).Select(r => new ExperienciaDTO
+                        {
+                            IdExperiencia = r.IdExperiencia,
+                            IdTipoExperiencia = r.IdTipoExperiencia,
+                            IdMiembro = r.IdMiembro,
+                            Titulo = r.Titulo,
+                            Texto = r.Texto,
+                            Orden = r.Orden,
+                            Active = r.Active
+                        }).ToList()
+                    }).ToList();
+                    return result;
+                }
+                catch (Exception e)
                 {
                     throw e;
                 }

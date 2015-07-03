@@ -1,4 +1,5 @@
-﻿@model CCLRAbogados.Core.DTO.MiembroDTO
+﻿@using CCLRAbogados.Core.DTO
+@model CCLRAbogados.Core.DTO.MiembroDTO
 @{
     if (Model == null || Model.IdMiembro == 0)
     {
@@ -140,28 +141,13 @@ else
 @if (Model != null && Model.IdMiembro != 0)
 {
     <section class="panel panel-default">
-        <header class="panel-heading font-bold">Movimientos</header>
-        @*<section class="panel panel-default">*@
-            @if (ViewBag.EsAdmin)
-            {
-                <div class="row text-sm wrapper">
-                    <div class="col-sm-8">
-                        <div class="btn-group">
-                            <label><input type="checkbox" id="btn-showInactive" /> Mostrar Inactivos</label>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <a class="btn btn-sm btn-success pull-right" href="@Url.Action("Experiencia", new { id = 0, idMiembro = Model.IdMiembro })"><i class="fa fa-plus"></i> Crear nueva Experiencia</a>
-                    </div>
-                </div>
-            }
+        <header class="panel-heading font-bold">Tipos de Experiencia</header>
             <div class="table-responsive">
                 <table class="table table-striped m-b-none">
                     <thead>
                         <tr>
                             <th class="text-c" width="10%">ID</th>
-                            <th width="40%">Titulo</th>
-                            <th class="text-c" width="30%">Orden</th>
+                            <th width="70%">Tipo</th>                            
                             @if (ViewBag.EsAdmin)
                             {
                                 <th class="text-c" width="20%">Opciones</th>
@@ -169,24 +155,19 @@ else
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Model.listaExperiencia != null)
+                        @if ((List<TipoExperienciaDTO>)ViewBag.TipoExperiencias != null)
                         {
                             int cont = 1;
-                            foreach (var obj in Model.listaExperiencia)
+                            foreach (var obj in (List<TipoExperienciaDTO>)ViewBag.TipoExperiencias)
                             {
-                                var classInactive = (ViewBag.EsAdmin && !obj.Active) ? "class='inactive'" : "";
-                                <tr @Html.Raw(classInactive)>
+                                <tr>
                                     <td align="center">
-                                        @if (ViewBag.EsAdmin && !obj.Active)
-                                        { <span class="badge bg-danger" data-toggle="tooltip" data-placement="left" data-original-title="Inactivo">@cont</span>}
-                                        else
-                                        {@cont}
+                                        @cont
                                     </td>
-                                    <td>@obj.Titulo</td>
-                                    <td class="text-c">@obj.Orden</td>
+                                    <td>@obj.Nombre</td>
                                     @if (ViewBag.EsAdmin)
                                     {
-                                        <td class="text-c"><a href="@Url.Action("Experiencia", new { id = obj.IdExperiencia, idMiembro = Model.IdMiembro })"><i class="fa fa-pencil"></i></a></td>
+                                        <td class="text-c"><a href="@Url.Action("Experiencias", new { idMiembro = Model.IdMiembro, idTipoExperiencia = obj.IdTipoExperiencia })"><i class="fa fa-pencil"></i></a></td>
                                     }
                                 </tr>
                                 cont++;

@@ -487,6 +487,7 @@ namespace CCLRAbogados.Web.Controllers
             MiembrosBL objBL = new MiembrosBL();
             ViewBag.IdEntidad = id;
             ViewBag.Cargos = objBL.getCargosViewBag(false);
+            ViewBag.TipoExperiencias = objBL.getTipoExperiencias();
 
             var objSent = TempData["Miembro"];
             if (objSent != null) { TempData["Miembro"] = null; return View(objSent); }
@@ -543,26 +544,33 @@ namespace CCLRAbogados.Web.Controllers
             return RedirectToAction("Miembro");
         }
 
-        public ActionResult Experiencias()
+        public ActionResult Experiencias(int idMiembro, int idTipoExperiencia)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
             if (!isAdministrator()) { return RedirectToAction("Index"); }
             MiembrosBL objBL = new MiembrosBL();
-            return View(objBL.getExperiencias());
+            ViewBag.IdMiembro = idMiembro;
+            ViewBag.IdTipoExperiencia = idTipoExperiencia;
+            ViewBag.NombreMiembro = idMiembro != 0 ? objBL.getMiembro(idMiembro).Nombre : "No asignado";
+            ViewBag.NombreTipoExp = idTipoExperiencia != 0 ? objBL.getTipoExperiencia(idTipoExperiencia).Nombre : "Sin Tipo";
+            return View(objBL.getExperienciasPorMiembroYPorTipo(idMiembro, idTipoExperiencia));
         }
 
-        public ActionResult Experiencia(int? id = null, int? idMiembro = null)
+        public ActionResult Experiencia(int? id = null, int? idTipoExperiencia = null, int? idMiembro = null)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
             //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
             MiembrosBL objBL = new MiembrosBL();
             ViewBag.IdExperiencia = id;
             ViewBag.IdMiembro = idMiembro;
-            ViewBag.TipoExperiencias = objBL.getTipoExperienciasViewBag(false);
+            ViewBag.IdTipoExperiencia = idTipoExperiencia;
+            ViewBag.NombreMiembro = idMiembro != null ? objBL.getMiembro(idMiembro.GetValueOrDefault()).Nombre : "No asignado";
+            ViewBag.NombreTipoExp = idTipoExperiencia != null ? objBL.getTipoExperiencia(idTipoExperiencia.GetValueOrDefault()).Nombre : "Sin Tipo";
+            //ViewBag.TipoExperiencias = objBL.getTipoExperienciasViewBag(false);
 
             var objSent = TempData["Experiencia"];
             if (objSent != null) { TempData["Experiencia"] = null; return View(objSent); }
-            if (id != null)
+            if (id != null && id != 0)
             {
                 ExperienciaDTO obj = objBL.getExperiencia((int)id);
                 return View(obj);
@@ -581,7 +589,8 @@ namespace CCLRAbogados.Web.Controllers
                     if (objBL.addExperiencia(dto))
                     {
                         createResponseMessage(CONSTANTES.SUCCESS);
-                        return RedirectToAction("Miembro", new { id = dto.IdMiembro });
+                        return RedirectToAction("Experiencias", "Admin", new { idMiembro = dto.IdMiembro, idTipoExperiencia = dto.IdTipoExperiencia });
+                        //return RedirectToAction("Miembro", new { id = dto.IdMiembro });
                     }
                 }
                 else if (dto.IdExperiencia != 0)
@@ -589,7 +598,8 @@ namespace CCLRAbogados.Web.Controllers
                     if (objBL.updateExperiencia(dto))
                     {
                         createResponseMessage(CONSTANTES.SUCCESS);
-                        return RedirectToAction("Miembro", new { id = dto.IdMiembro });
+                        return RedirectToAction("Experiencias", "Admin", new { idMiembro = dto.IdMiembro, idTipoExperiencia = dto.IdTipoExperiencia });
+                        //return RedirectToAction("Miembro", new { id = dto.IdMiembro });
                     }
                     else
                     {
@@ -608,7 +618,7 @@ namespace CCLRAbogados.Web.Controllers
                 else createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_INSERT_MESSAGE);
             }
             TempData["Experiencia"] = dto;
-            return RedirectToAction("Experiencia");
+            return RedirectToAction("Experiencia", "Admin", new { id = dto.IdExperiencia, idTipoExperiencia = dto.IdTipoExperiencia, idMiembro = dto.IdMiembro });
         }
         public ActionResult CambiarOrdenUp(int id)
         {
