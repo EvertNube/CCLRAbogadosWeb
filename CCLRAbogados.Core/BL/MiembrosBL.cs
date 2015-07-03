@@ -275,20 +275,22 @@ namespace CCLRAbogados.Core.BL
                 }
             }
         }
+
         public IList<CargoDTO> getCargosViewBag(bool AsSelectList = false)
         {
             CargoBL objBL = new CargoBL();
             if (!AsSelectList)
             {
-                return objBL.getCargos();
+                return objBL.getCargosActivos();
             }
             else
             {
-                var lista = objBL.getCargos();
+                var lista = objBL.getCargosActivos();
                 lista.Insert(0, new CargoDTO() { IdCargo = 0, Nombre = "Seleccione el Tipo de Cargo." });
                 return lista;
             }
         }
+
         public MiembroDTO getMiembroPorUri(string uri)
         {
             using (var context = getContext())

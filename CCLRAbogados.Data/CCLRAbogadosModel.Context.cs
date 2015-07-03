@@ -38,7 +38,8 @@ namespace CCLRAbogados.Data
         public virtual DbSet<TipoDynamicContent> TipoDynamicContent { get; set; }
         public virtual DbSet<TipoExperiencia> TipoExperiencia { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-        public virtual DbSet<Cargo> Cargo { get; set; }
         public virtual DbSet<Miembro> Miembro { get; set; }
+        public virtual DbSet<Cargo> Cargo { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

@@ -39,6 +39,7 @@
           <Property Name="IdCargo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Plural" Type="bit" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CategoriaPagina">
           <Key>
@@ -159,6 +160,16 @@
           <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DescripcionRol" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TipoDynamicContent">
           <Key>
@@ -334,6 +345,7 @@
           <EntitySet Name="Pagina" EntityType="Self.Pagina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaginaHistorial" EntityType="Self.PaginaHistorial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoDynamicContent" EntityType="Self.TipoDynamicContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoExperiencia" EntityType="Self.TipoExperiencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
@@ -715,26 +727,18 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <EntitySet Name="Cargo" EntityType="CCLRA.WebDbModel.Cargo" />
           <EntitySet Name="Miembro" EntityType="CCLRA.WebDbModel.Miembro" />
-          <AssociationSet Name="FK_Miembro_Cargo" Association="CCLRA.WebDbModel.FK_Miembro_Cargo">
-            <End Role="Cargo" EntitySet="Cargo" />
-            <End Role="Miembro" EntitySet="Miembro" />
-          </AssociationSet>
           <AssociationSet Name="FK_Experiencia_Miembro" Association="CCLRA.WebDbModel.FK_Experiencia_Miembro">
             <End Role="Miembro" EntitySet="Miembro" />
             <End Role="Experiencia" EntitySet="Experiencia" />
           </AssociationSet>
+          <EntitySet Name="Cargo" EntityType="CCLRA.WebDbModel.Cargo" />
+          <EntitySet Name="sysdiagrams" EntityType="CCLRA.WebDbModel.sysdiagrams" />
+          <AssociationSet Name="FK_Miembro_Cargo" Association="CCLRA.WebDbModel.FK_Miembro_Cargo">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="Miembro" EntitySet="Miembro" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Cargo">
-          <Key>
-            <PropertyRef Name="IdCargo" />
-          </Key>
-          <Property Name="IdCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Plural" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Cargo" ToRole="Miembro" />
-        </EntityType>
         <EntityType Name="Miembro">
           <Key>
             <PropertyRef Name="IdMiembro" />
@@ -758,8 +762,40 @@
           <Property Name="UrlSkype" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ImagenPerfil" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="VCard" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Cargo" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
           <NavigationProperty Name="Experiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Miembro" ToRole="Experiencia" />
+          <NavigationProperty Name="Cargo" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
+        </EntityType>
+        <Association Name="FK_Experiencia_Miembro">
+          <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="1" />
+          <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="IdMiembro" />
+            </Principal>
+            <Dependent Role="Experiencia">
+              <PropertyRef Name="IdMiembro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="IdCargo" />
+          </Key>
+          <Property Name="IdCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Plural" Type="Boolean" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Cargo" ToRole="Miembro" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <Association Name="FK_Miembro_Cargo">
           <End Type="CCLRA.WebDbModel.Cargo" Role="Cargo" Multiplicity="1" />
@@ -770,18 +806,6 @@
             </Principal>
             <Dependent Role="Miembro">
               <PropertyRef Name="IdCargo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Experiencia_Miembro">
-          <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="1" />
-          <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Miembro">
-              <PropertyRef Name="IdMiembro" />
-            </Principal>
-            <Dependent Role="Experiencia">
-              <PropertyRef Name="IdMiembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -956,15 +980,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Cargo">
-            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Cargo">
-              <MappingFragment StoreEntitySet="Cargo">
-                <ScalarProperty Name="Plural" ColumnName="Plural" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Miembro">
             <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
               <MappingFragment StoreEntitySet="Miembro">
@@ -987,6 +1002,27 @@
                 <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargo">
+            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Cargo">
+              <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Plural" ColumnName="Plural" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="CCLRA.WebDbModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

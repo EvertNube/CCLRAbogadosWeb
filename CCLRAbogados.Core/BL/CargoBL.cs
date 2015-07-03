@@ -21,7 +21,30 @@ namespace CCLRAbogados.Core.BL
                     {
                         IdCargo = x.IdCargo,
                         Nombre = x.Nombre,
-                        Plural = x.Plural
+                        Plural = x.Plural,
+                        Estado = x.Estado
+                    }).ToList();
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
+        public IList<CargoDTO> getCargosActivos()
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    var result = context.Cargo.Where(x => x.Estado == true).Select(x => new CargoDTO
+                    {
+                        IdCargo = x.IdCargo,
+                        Nombre = x.Nombre,
+                        Plural = x.Plural,
+                        Estado = x.Estado
                     }).ToList();
                     return result;
                 }
@@ -40,7 +63,8 @@ namespace CCLRAbogados.Core.BL
                 {
                     IdCargo = r.IdCargo,
                     Nombre = r.Nombre,
-                    Plural = r.Plural
+                    Plural = r.Plural,
+                    Estado = r.Estado
                 }).SingleOrDefault();
                 return result;
             }
@@ -56,6 +80,7 @@ namespace CCLRAbogados.Core.BL
                     nuevo.IdCargo = Cargo.IdCargo;
                     nuevo.Nombre = Cargo.Nombre;
                     nuevo.Plural = Cargo.Plural;
+                    nuevo.Estado = true;
                     context.Cargo.Add(nuevo);
                     context.SaveChanges();
                     return true;
@@ -77,6 +102,7 @@ namespace CCLRAbogados.Core.BL
                     dataRow.IdCargo = Cargo.IdCargo;
                     dataRow.Nombre = Cargo.Nombre;
                     dataRow.Plural = Cargo.Plural;
+                    dataRow.Estado = Cargo.Estado;
                     context.SaveChanges();
                     return true;
                 }

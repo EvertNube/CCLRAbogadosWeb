@@ -12,18 +12,12 @@ namespace CCLRAbogados.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Cargo
+    public partial class sysdiagrams
     {
-        public Cargo()
-        {
-            this.Miembro = new HashSet<Miembro>();
-        }
-    
-        public int IdCargo { get; set; }
-        public string Nombre { get; set; }
-        public bool Plural { get; set; }
-        public bool Estado { get; set; }
-    
-        public virtual ICollection<Miembro> Miembro { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
