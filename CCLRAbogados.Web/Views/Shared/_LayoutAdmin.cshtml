@@ -64,15 +64,15 @@
                                     <ul class="nav">
                                         @if (ViewBag.EsAdmin)
                                         {
-                                            <li class="active">
-                                                <a href="@Url.Action("index")" class="active">
+                                            <li class="@ViewBag.navbar.dangerActive">
+                                                <a href="@Url.Action("index")">
                                                     <i class="fa fa-files-o icon">
                                                         <b class="bg-danger"></b>
                                                     </i>
                                                     <span>Páginas</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <li class="@ViewBag.navbar.infoActive">
                                                 <a href="@Url.Action("Archivos")">
                                                     <i class="fa fa-cloud-upload icon">
                                                         <b class="bg-info"></b>
@@ -80,7 +80,7 @@
                                                     <span>Archivos</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <li class="@ViewBag.navbar.primaryActive">
                                                 <a href="@Url.Action("Miembros")">
                                                     <i class="fa fa-users icon">
                                                         <b class="bg-success"></b>
@@ -88,7 +88,7 @@
                                                     <span>Miembros</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <li class="@ViewBag.navbar.warningActive">
                                                 <a href="@Url.Action("Usuarios")">
                                                     <i class="fa fa-unlock-alt icon">
                                                         <b class="bg-warning"></b>
@@ -96,7 +96,7 @@
                                                     <span>Usuarios</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <li class="@ViewBag.navbar.successActive">
                                                 <a href="@Url.Action("Cargos")">
                                                     <i class="fa fa-users icon">
                                                         <b class="bg-success"></b>

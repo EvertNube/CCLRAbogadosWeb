@@ -12,11 +12,13 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using CCLRAbogados.Web.Models;
 
 namespace CCLRAbogados.Web.Controllers
 {
     public class AdminController : Controller
     {
+        protected Navbar navbar { get; set; }
         private bool currentUser()
         {
             if (System.Web.HttpContext.Current.Session != null && System.Web.HttpContext.Current.Session["User"] != null) { return true; }
@@ -48,6 +50,9 @@ namespace CCLRAbogados.Web.Controllers
             UsuarioDTO user = getCurrentUser();
             if (user != null)
             {
+                this.navbar = new Navbar();
+                ViewBag.Navbar = this.navbar;
+
                 ViewBag.currentUser = user;
                 ViewBag.EsAdmin = isAdministrator();
                 ViewBag.EsSuperAdmin = isSuperAdministrator();
@@ -58,6 +63,9 @@ namespace CCLRAbogados.Web.Controllers
         public ActionResult Index()
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+
+            MenuNavBarSelected(1);
+
             PaginasBL paginasBL = new PaginasBL();
             IList<EnlaceDTO> paginas = paginasBL.getPaginasTree();
             return View(paginas);
@@ -66,6 +74,9 @@ namespace CCLRAbogados.Web.Controllers
         public ActionResult Pagina(int id)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+
+            MenuNavBarSelected(1);
+
             PaginasBL paginasBL = new PaginasBL();
             PaginaDTO pagina = paginasBL.getPaginaById(id, true);
             if (pagina.Padre != null || (pagina.Padre == null && isAdministrator()))
@@ -162,6 +173,9 @@ namespace CCLRAbogados.Web.Controllers
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
             if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+
+            MenuNavBarSelected(4);
+
             UsuariosBL usuariosBL = new UsuariosBL();
             return View(usuariosBL.getUsuarios());
         }
@@ -172,16 +186,25 @@ namespace CCLRAbogados.Web.Controllers
             UsuarioDTO currentUser = getCurrentUser();
             if (!this.isAdministrator() && id != currentUser.IdUsuario) { return RedirectToAction("Index"); }
             if (id == 1 && !this.isSuperAdministrator()) { return RedirectToAction("Index"); }
+
+            MenuNavBarSelected(4);
+
             UsuariosBL usuariosBL = new UsuariosBL();
-            IEnumerable<RolDTO> roles = usuariosBL.getRoles();
+            /*IEnumerable<RolDTO> roles = usuariosBL.getRoles();
             var rolesList = roles.ToList();
             rolesList.Insert(0, new RolDTO() { IdRol = 0, Nombre = "Seleccione un Rol" });
-            ViewBag.Roles = rolesList.AsEnumerable();
+            ViewBag.Roles =  rolesList.AsEnumerable();*/
+            IList<RolDTO> roles = usuariosBL.getRolesCurrent(this.getCurrentUser().IdRol);
+            roles.Insert(0, new RolDTO() { IdRol = 0, Nombre = "Seleccione un Rol" });
+            ViewBag.vbRls = roles;
+
             var objSent = TempData["Usuario"];
             if (objSent != null) { TempData["Usuario"] = null; return View(objSent); }
             if (id != null)
             {
                 UsuarioDTO usuario = usuariosBL.getUsuario((int)id);
+                ViewBag.vbRls = usuariosBL.getRolesCurrent(currentUser.IdRol);
+
                 return View(usuario);
             }
             return View();
@@ -191,8 +214,11 @@ namespace CCLRAbogados.Web.Controllers
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
             UsuarioDTO currentUser = getCurrentUser();
-            if (!this.isAdministrator() && user.IdUsuario != currentUser.IdUsuario) { return RedirectToAction("Index"); }
-            if (user.IdUsuario == 1 && !this.isSuperAdministrator()) { return RedirectToAction("Index"); }
+            if (!this.isAdministrator() && user.IdUsuario != currentUser.IdUsuario) { createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_ROL_PERMISSION); return RedirectToAction("Usuarios"); }
+            if (user.IdRol == 1 && !this.isSuperAdministrator()) { createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_ROL_PERMISSION); return RedirectToAction("Usuarios"); }
+            if (user.IdRol == 2 && !this.isAdministrator()) { createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_ROL_PERMISSION); return RedirectToAction("Usuarios"); }
+            if (currentUser.IdRol == 2 && user.IdRol == 2 && user.IdUsuario != currentUser.IdUsuario) { createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_ROL_PERMISSION); return RedirectToAction("Usuarios"); }
+            if (currentUser.IdRol >= 3 && user.IdUsuario != currentUser.IdUsuario) { createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_ROL_PERMISSION); return RedirectToAction("Usuarios"); }
             try
             {
                 UsuariosBL usuariosBL = new UsuariosBL();
@@ -204,6 +230,9 @@ namespace CCLRAbogados.Web.Controllers
                 }
                 else if (user.IdUsuario != 0)
                 {
+                    if (usuariosBL.getUsuario(user.IdUsuario).IdRol == 1 && !this.isSuperAdministrator()) { createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_ROL_PERMISSION); return RedirectToAction("Usuarios"); }
+                    if (usuariosBL.getUsuario(user.IdUsuario).IdRol == 2 && !this.isAdministrator()) { createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_ROL_PERMISSION); return RedirectToAction("Usuarios"); }
+
                     if (usuariosBL.update(user, passUser, passChange, this.getCurrentUser()))
                     {
                         createResponseMessage(CONSTANTES.SUCCESS);
@@ -216,7 +245,11 @@ namespace CCLRAbogados.Web.Controllers
                     }
                     else
                     {
-                        createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE + "<br>Si está intentando actualizar la contraseña, verifique que ha ingresado la contraseña actual correctamente.");
+                        //createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE + "<br>Si está intentando actualizar la contraseña, verifique que ha ingresado la contraseña actual correctamente.");
+                        if (currentUser.IdRol <= 2)
+                            createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE + "<br>Si está intentando actualizar una contraseña, verifique que conozca la <strong>actual contraseña del usuario a modificar</strong>.");
+                        else
+                            createResponseMessage(CONSTANTES.ERROR, CONSTANTES.ERROR_UPDATE_MESSAGE + "<br>Si está intentando actualizar la contraseña, verifique que ha ingresado la contraseña actual correctamente.");
                     }
 
                 }
@@ -239,13 +272,19 @@ namespace CCLRAbogados.Web.Controllers
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
             if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+
+            MenuNavBarSelected(5);
+
             CargoBL cargosBL = new CargoBL();
             return View(cargosBL.getCargos());
         }
         public ActionResult Cargo(int? id = null)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
-            //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            
+            MenuNavBarSelected(5);
+
             CargoBL objBL = new CargoBL();
             ViewBag.IdEntidad = id;
             var objSent = TempData["Cargo"];
@@ -319,14 +358,17 @@ namespace CCLRAbogados.Web.Controllers
         public ActionResult Archivos()
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
-            ArchivosBL archivosBL = new ArchivosBL();
 
+            MenuNavBarSelected(2);
+
+            ArchivosBL archivosBL = new ArchivosBL();
             return View(archivosBL.getArchivos());
         }
 
         public ActionResult Subir()
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            MenuNavBarSelected(2);
             return View();
         }
         public ActionResult Ingresar()
@@ -439,6 +481,8 @@ namespace CCLRAbogados.Web.Controllers
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
 
+            MenuNavBarSelected(1);
+
             PaginasBL paginasBL = new PaginasBL();
             HighLight paginaHighlight = paginasBL.getHighlight(id);
             if (paginaHighlight == null)
@@ -476,6 +520,9 @@ namespace CCLRAbogados.Web.Controllers
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
             if (!isAdministrator()) { return RedirectToAction("Index"); }
+
+            MenuNavBarSelected(3);
+
             MiembrosBL objBL = new MiembrosBL();
             return View(objBL.getMiembros());
         }
@@ -483,7 +530,10 @@ namespace CCLRAbogados.Web.Controllers
         public ActionResult Miembro(int? id = null)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
-            //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            
+            MenuNavBarSelected(3);
+
             MiembrosBL objBL = new MiembrosBL();
             ViewBag.IdEntidad = id;
             ViewBag.Cargos = objBL.getCargosViewBag(false);
@@ -548,6 +598,9 @@ namespace CCLRAbogados.Web.Controllers
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
             if (!isAdministrator()) { return RedirectToAction("Index"); }
+
+            MenuNavBarSelected(3);
+
             MiembrosBL objBL = new MiembrosBL();
             ViewBag.IdMiembro = idMiembro;
             ViewBag.IdTipoExperiencia = idTipoExperiencia;
@@ -559,7 +612,10 @@ namespace CCLRAbogados.Web.Controllers
         public ActionResult Experiencia(int? id = null, int? idTipoExperiencia = null, int? idMiembro = null)
         {
             if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
-            //if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+            if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+
+            MenuNavBarSelected(3);
+
             MiembrosBL objBL = new MiembrosBL();
             ViewBag.IdExperiencia = id;
             ViewBag.IdMiembro = idMiembro;
@@ -631,6 +687,31 @@ namespace CCLRAbogados.Web.Controllers
             MiembrosBL objBL = new MiembrosBL();
             objBL.OrdenBajar(objBL.getMiembro(id));
             return RedirectToAction("Miembros");
+        }
+
+        public void MenuNavBarSelected(int num)
+        {
+            navbar.clearAll();
+            switch (num)
+            {
+                case 1:
+                    navbar.dangerActive = "active";
+                    break;
+                case 2:
+                    navbar.infoActive = "active";
+                    break;
+                case 3:
+                    navbar.primaryActive = "active";
+                    break;
+                case 4:
+                    navbar.warningActive = "active";
+                    break;
+                case 5:
+                    navbar.successActive = "active";
+                    break;
+            }
+
+            ViewBag.navbar = navbar;
         }
     }
 }

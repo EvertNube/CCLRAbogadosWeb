@@ -70,23 +70,23 @@
 
     @Html.Raw(Model.Descripcion)
 
-    <div class="clearfix margin_top5"></div>
-
     @{var cont = 1;}
     @if (ViewBag.TipoExperiencias != null)
     {
-        var numTipos = 0;
+        /*var numTipos = 0;
         foreach (var lista in (List<TipoExperienciaDTO>)ViewBag.TipoExperiencias)
         {
             if (lista.listaExperiencia != null)
             { numTipos++; }
-        }
+        }*/
 
         foreach (var lsExp in (List<TipoExperienciaDTO>)ViewBag.TipoExperiencias)
         {
             if (lsExp.listaExperiencia.Count != 0)
             {
-                var classHalf = (cont % numTipos != 0) ? "class='one_third'" : "class='one_third last'";
+                if (cont % 3 == 1)
+                {<div class="clearfix margin_top4"></div>}
+                var classHalf = (cont % 3 != 0) ? "class='one_third'" : "class='one_third last'";
                 <div @Html.Raw(classHalf)>
                     <div class="graybgraph_box">
                         <h3>@lsExp.Nombre</h3>
@@ -105,9 +105,10 @@
                                             <strong class="color">@exp.Titulo:</strong> <br />@exp.Texto<br />
                                                 break;
                                             case 3:
-                                            <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
+                                                <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
                                                 break;
                                             default:
+                                                <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
                                                 break;
                                         }
                                     </li>

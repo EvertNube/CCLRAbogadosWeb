@@ -13,19 +13,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/02/2015 20:12:32</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Core.dll">
-      <publishTime>07/02/2015 15:14:06</publishTime>
+      <publishTime>07/05/2015 20:15:06</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Data.dll">
-      <publishTime>07/02/2015 15:14:06</publishTime>
+      <publishTime>07/05/2015 20:15:06</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Helpers.dll">
-      <publishTime>07/02/2015 15:14:06</publishTime>
+      <publishTime>07/05/2015 20:15:06</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Helpers.Razor.dll">
-      <publishTime>07/02/2015 15:14:06</publishTime>
+      <publishTime>07/05/2015 20:15:06</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Web.dll">
-      <publishTime>07/02/2015 15:14:07</publishTime>
+      <publishTime>07/05/2015 20:15:07</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>05/28/2015 22:41:30</publishTime>
@@ -1998,6 +1998,33 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Content/themes/cclra/css/style.css">
       <publishTime>06/30/2015 11:26:58</publishTime>
     </File>
+    <File Include="Content/themes/cclra/htmls/derecho-civil.html">
+      <publishTime>07/05/2015 20:10:36</publishTime>
+    </File>
+    <File Include="Content/themes/cclra/htmls/derecho-corporativo.html">
+      <publishTime>07/05/2015 19:24:46</publishTime>
+    </File>
+    <File Include="Content/themes/cclra/htmls/derecho-inmobiliario.html">
+      <publishTime>07/05/2015 19:24:46</publishTime>
+    </File>
+    <File Include="Content/themes/cclra/htmls/derecho-laboral-migraciones.html">
+      <publishTime>07/05/2015 19:24:46</publishTime>
+    </File>
+    <File Include="Content/themes/cclra/htmls/derecho-regulatorio-administrativo.html">
+      <publishTime>07/05/2015 19:24:46</publishTime>
+    </File>
+    <File Include="Content/themes/cclra/htmls/derecho-tributario.html">
+      <publishTime>07/05/2015 19:24:46</publishTime>
+    </File>
+    <File Include="Content/themes/cclra/htmls/inversion-privada-contratacion-publica.html">
+      <publishTime>07/05/2015 19:24:46</publishTime>
+    </File>
+    <File Include="Content/themes/cclra/htmls/prevencion-solucion-controversias.html">
+      <publishTime>07/05/2015 19:24:46</publishTime>
+    </File>
+    <File Include="Content/themes/cclra/htmls/propiedad-intelectual-derecho-competencia.html">
+      <publishTime>07/05/2015 19:24:46</publishTime>
+    </File>
     <File Include="Content/themes/cclra/images/accordion-ico.png">
       <publishTime>05/28/2015 22:41:29</publishTime>
     </File>
@@ -3211,10 +3238,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/28/2015 22:41:29</publishTime>
     </File>
     <File Include="Views/Admin/Cargo.cshtml">
-      <publishTime>07/02/2015 09:58:25</publishTime>
+      <publishTime>07/03/2015 11:31:20</publishTime>
     </File>
     <File Include="Views/Admin/Cargos.cshtml">
-      <publishTime>07/02/2015 09:58:25</publishTime>
+      <publishTime>07/03/2015 11:33:51</publishTime>
     </File>
     <File Include="Views/Admin/Elemento.cshtml">
       <publishTime>05/28/2015 22:41:29</publishTime>
@@ -3223,10 +3250,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/28/2015 22:41:29</publishTime>
     </File>
     <File Include="Views/Admin/Experiencia.cshtml">
-      <publishTime>06/19/2015 00:37:54</publishTime>
+      <publishTime>07/05/2015 19:24:46</publishTime>
     </File>
     <File Include="Views/Admin/Experiencias.cshtml">
-      <publishTime>06/19/2015 00:37:54</publishTime>
+      <publishTime>07/05/2015 20:13:53</publishTime>
     </File>
     <File Include="Views/Admin/Highlight.cshtml">
       <publishTime>05/28/2015 22:41:29</publishTime>
@@ -3241,7 +3268,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/28/2015 22:41:29</publishTime>
     </File>
     <File Include="Views/Admin/Miembro.cshtml">
-      <publishTime>07/02/2015 15:12:32</publishTime>
+      <publishTime>07/05/2015 19:24:47</publishTime>
     </File>
     <File Include="Views/Admin/Miembros.cshtml">
       <publishTime>07/02/2015 10:43:54</publishTime>
@@ -3289,7 +3316,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2015 03:05:30</publishTime>
     </File>
     <File Include="Views/AreasDePractica/Pagina.cshtml">
-      <publishTime>06/30/2015 14:11:43</publishTime>
+      <publishTime>07/05/2015 19:24:47</publishTime>
     </File>
     <File Include="Views/AreasDePractica/prevencion-solucion-controversias.html">
       <publishTime>06/29/2015 03:04:56</publishTime>
@@ -3319,7 +3346,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/07/2015 00:07:17</publishTime>
     </File>
     <File Include="Views/Miembros/_Miembro.cshtml">
-      <publishTime>07/02/2015 15:07:31</publishTime>
+      <publishTime>07/05/2015 19:24:47</publishTime>
     </File>
     <File Include="Views/Miembros/_Miembros.cshtml">
       <publishTime>07/02/2015 09:58:25</publishTime>

@@ -144,7 +144,7 @@ namespace CCLRAbogados.Core.BL
                     nuevo.Nombre = Miembro.Nombre;
                     nuevo.IdCargo = Miembro.IdCargo;
                     nuevo.Telefono = Miembro.Telefono;
-                    nuevo.Celular = Miembro.Telefono;
+                    nuevo.Celular = Miembro.Celular;
                     nuevo.Email = Miembro.Email;
                     nuevo.Titulo = Miembro.Titulo;
                     nuevo.Descripcion = Miembro.Descripcion;
@@ -185,7 +185,7 @@ namespace CCLRAbogados.Core.BL
                     dataRow.Nombre = Miembro.Nombre;
                     dataRow.IdCargo = Miembro.IdCargo;
                     dataRow.Telefono = Miembro.Telefono;
-                    dataRow.Celular = Miembro.Telefono;
+                    dataRow.Celular = Miembro.Celular;
                     dataRow.Email = Miembro.Email;
                     dataRow.Titulo = Miembro.Titulo;
                     dataRow.Descripcion = Miembro.Descripcion;

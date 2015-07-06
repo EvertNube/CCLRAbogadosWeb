@@ -2,17 +2,17 @@
 @{
     if (Model == null || Model.IdMiembro == 0)
     {
-        ViewBag.Title = "Miembro";
+        ViewBag.Title = "Experiencia";
     }
     else { ViewBag.Title = Model.Titulo; }
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @if (Model == null || Model.IdMiembro == 0)
 {
-    <h2>Nuevo Miembro</h2>
+    <h2>Nueva Experiencia - @ViewBag.NombreTipoExp </h2>
 }
 else
-{<h2>Actualizar Miembro</h2>}
+{<h2>Actualizar Experiencia - @ViewBag.NombreTipoExp </h2>}
 
 @using (Html.BeginForm("AddExperiencia", "Admin", FormMethod.Post))
 {
@@ -22,18 +22,18 @@ else
             @Html.Partial("_showAlertMessages")
 
             <section class="panel panel-default">
-                <header class="panel-heading font-bold">Formulario de Registro</header>
+                <header class="panel-heading font-bold">@ViewBag.NombreMiembro &nbsp; > &nbsp; @ViewBag.NombreTipoExp &nbsp; > &nbsp; Experiencia</header>
                 <div class="panel-body">
-                    <div class="form-group col-md-7" style="padding-left:0px;">
+                    <div class="form-group" style="padding-left:0px;">
                         <label>Titulo</label>
                         @Html.TextBoxFor(u => u.Titulo, new { @class = "form-control", @placeholder = "Ingrese el titulo", @type = "text" })
                         @Html.ValidationMessageFor(u => u.Titulo)
                     </div>
-                    <div class="form-group col-md-5" style="padding-right:0px;">
+                    @*<div class="form-group col-md-5" style="padding-right:0px;">
                         <label>Tipo de Experiencia</label>
                         @Html.DropDownListFor(u => u.IdTipoExperiencia, new SelectList(ViewBag.TipoExperiencias, "IdTipoExperiencia", "Nombre", Model != null ? (Model.IdTipoExperiencia != null ? Model.IdTipoExperiencia : 0) : 0), new { @class = "form-control parsley-validated" })
                         @Html.ValidationMessageFor(u => u.IdTipoExperiencia)
-                    </div>
+                    </div>*@
                     <div class="form-group">
                         <label>Descripción</label>
                         @*@Html.TextBoxFor(u => u.Texto, new { @class = "form-control", @placeholder = "Ingrese la descripción", @type = "text" })*@
@@ -55,17 +55,18 @@ else
                         @Html.TextBoxFor(u => u.Active, new { @value = Model != null ? Model.Active : false, @type = "hidden" })
                     }
                     <div class="line line-dashed line-lg pull-in"></div>
+                    @Html.TextBoxFor(u => u.IdTipoExperiencia, new { @value = ViewBag.IdTipoExperiencia, @type = "hidden" })
                     @Html.TextBoxFor(u => u.IdMiembro, new { @value = ViewBag.IdMiembro, @type = "hidden" })
                     @Html.TextBoxFor(u => u.IdExperiencia, new { @value = Model != null ? Model.IdExperiencia.ToString() : "", @type = "hidden" })
                     @{var btnName = (Model != null && Model.IdMiembro > 0) ? "Guardar Cambios" : "Crear";}
                     <button type="submit" class="btn btn-sm btn-primary">@btnName</button>
                     @if (ViewBag.EsAdmin)
                     {
-                        <a class="btn btn-sm btn-danger" href="@Url.Action("Miembro", new { id = ViewBag.IdMiembro })">Salir</a>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Experiencias", "Admin", new { idMiembro = ViewBag.IdMiembro, idTipoExperiencia = ViewBag.IdTipoExperiencia })">Salir</a>
                     }
                     else
                     {
-                        <a class="btn btn-sm btn-danger" href="@Url.Action("Index")">Salir</a>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Experiencias", "Admin", new { idMiembro = ViewBag.IdMiembro, idTipoExperiencia = ViewBag.IdTipoExperiencia })">Salir</a>
                     }
                 </div>
             </section>

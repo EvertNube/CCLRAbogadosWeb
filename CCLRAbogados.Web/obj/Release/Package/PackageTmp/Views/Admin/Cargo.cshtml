@@ -39,6 +39,21 @@ else
                             @Html.ValidationMessageFor(u => u.Plural)
                         </div>
                     </div>
+                    @if (ViewBag.EsAdmin && Model != null && Model.IdCargo > 0)
+                    {
+                        <div class="line line-dashed line-lg pull-in"></div>
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(u => u.Estado)
+                                Activo
+                            </label>
+                            @Html.ValidationMessageFor(u => u.Estado)
+                        </div>
+                    }
+                    else
+                    {
+                        @Html.TextBoxFor(u => u.Estado, new { @value = Model != null ? Model.Estado : false, @type = "hidden" })
+                    }
                     <div class="line line-dashed line-lg pull-in"></div>
                     @Html.TextBoxFor(u => u.IdCargo, new { @value = Model != null ? Model.IdCargo.ToString() : "", @type = "hidden" })
                     @{var btnName = (Model != null && Model.IdCargo > 0) ? "Guardar Cambios" : "Crear";}

@@ -98,6 +98,7 @@
     <Compile Include="DTO\PostulacionDTO.cs" />
     <Compile Include="DTO\RevistaDTO.cs" />
     <Compile Include="DTO\RolDTO.cs" />
+    <Compile Include="DTO\SelectDTO.cs" />
     <Compile Include="DTO\SocialDTO.cs" />
     <Compile Include="DTO\TipoExperienciaDTO.cs" />
     <Compile Include="DTO\TipoRevistaDTO.cs" />

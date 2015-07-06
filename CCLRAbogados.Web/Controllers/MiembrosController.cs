@@ -15,6 +15,13 @@ namespace CCLRAbogados.Web.Controllers
 {
     public class MiembrosController : BaseDynamicController
     {
+        public MiembrosController()
+        {
+            base.navbar.clearAll();
+            //base.navbar.activeAll();
+            base.navbar.gold2Active = "active";
+            ViewBag.Navbar = base.navbar;
+        }
         public ActionResult Index(string page, string id, int? pagina)
         {
             cleanViewBag();

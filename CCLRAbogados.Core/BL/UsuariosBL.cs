@@ -29,6 +29,69 @@ namespace CCLRAbogados.Core.BL
                 return result.AsEnumerable<UsuarioDTO>().OrderByDescending(x => x.IdUsuario).ToList<UsuarioDTO>();
             }
         }
+
+        public IList<UsuarioDTO> getUsuarios(int IdRol)
+        {
+            using (var context = getContext())
+            {
+                var result = from r in context.Usuario.AsEnumerable()
+                             where getRoleKeys(IdRol).Contains(r.IdRol.GetValueOrDefault())//& r.IdRol != CONSTANTES.SUPER_ADMIN_ROL & r.Estado == true
+                             select new UsuarioDTO
+                             {
+                                 IdUsuario = r.IdUsuario,
+                                 Nombre = r.Nombre,
+                                 Email = r.Email,
+                                 Cuenta = r.Cuenta,
+                                 Estado = r.Estado,
+                                 IdRol = r.IdRol ?? 0 //?? 0
+                             };
+                return result.ToList<UsuarioDTO>();//.AsEnumerable<UsuarioDTO>().OrderByDescending(x => x.Nombre).ToList<UsuarioDTO>();
+            }
+        }
+        public int[] getRoleKeys(int IdRol)
+        {
+            var roles = new int[1];
+            if (IdRol == CONSTANTES.SUPER_ADMIN_ROL) roles = new int[] { CONSTANTES.ROL_ADMIN, CONSTANTES.ROL_RESPONSABLE };
+            if (IdRol == CONSTANTES.ROL_ADMIN) roles = new int[] { CONSTANTES.ROL_RESPONSABLE };
+            if (IdRol == CONSTANTES.ROL_RESPONSABLE) roles = new int[] { CONSTANTES.ROL_RESPONSABLE };
+            return roles;
+        }
+
+        public IList<UsuarioDTO> getUsuarios(int IdRol, int[] usuariosIds)
+        {
+            using (var context = getContext())
+            {
+                var result = from r in context.Usuario
+                             where r.Estado == true & r.IdRol != CONSTANTES.SUPER_ADMIN_ROL & r.IdRol == IdRol & usuariosIds.Contains(r.IdUsuario)
+                             select new UsuarioDTO
+                             {
+                                 IdUsuario = r.IdUsuario,
+                                 Nombre = r.Nombre,
+                                 Email = r.Email,
+                                 Cuenta = r.Cuenta,
+                                 Estado = r.Estado,
+                                 IdRol = r.IdRol ?? 0 //?? 0
+                             };
+                return result.AsEnumerable<UsuarioDTO>().OrderByDescending(x => x.Nombre).ToList<UsuarioDTO>();
+            }
+        }
+
+        public System.Collections.IList getUsuarios2(int IdRol)
+        {
+            using (var context = getContext())
+            {
+                var result = from r in context.Usuario
+                             where r.Estado == true & r.IdRol != CONSTANTES.SUPER_ADMIN_ROL & r.IdRol == IdRol
+                             select new
+                             {
+                                 name = r.Nombre,
+                                 id = r.IdUsuario,
+                                 //tareas = context.Tarea.Where(x => x.IdResponsable == r.IdUsuario).Select(y => new { IdTarea = y.IdTarea, Nombre = y.Nombre, FechaInicio = y.FechaInicio, FechaFin = y.FechaFin })
+                             };
+                return result.ToList();//.AsEnumerable().OrderByDescending(x => x.name).ToList();
+            }
+        }
+
         public bool add(UsuarioDTO user)
         {
             using (var context = getContext())
@@ -36,10 +99,12 @@ namespace CCLRAbogados.Core.BL
                 try{
                     Usuario usuario = new Usuario();
                     usuario.Nombre = user.Nombre;
+                    usuario.InicialesNombre = user.InicialesNombre;
                     usuario.Email = user.Email;
                     usuario.Cuenta = user.Cuenta;
                     usuario.Pass = Encrypt.GetCrypt(user.Pass);
-                    usuario.IdRol = user.IdRol >= 2 ? user.IdRol : 3;
+                    usuario.IdRol = user.IdRol;
+                    //usuario.IdRol = user.IdRol >= 2 ? user.IdRol : 3;
                     usuario.Estado = true;
                     usuario.FechaRegistro = DateTime.Now;
                     context.Usuario.Add(usuario);
@@ -68,16 +133,86 @@ namespace CCLRAbogados.Core.BL
                 return false;
             }
         }
-        public IEnumerable<RolDTO> getRoles() {
+        public List<RolDTO> getRoles()
+        {
+            using (var context = getContext())
+            {
+                var result = context.Rol.Where(x => x.IdRol != CONSTANTES.SUPER_ADMIN_ROL).Select(r => new RolDTO
+                {
+                    IdRol = r.IdRol,
+                    Nombre = r.Nombre
+                }).ToList();
+
+                return result;
+            }
+        }
+
+        public IList<RolDTO> getRolesCurrent(int idCurrentRol)
+        {
             using (var context = getContext())
             {
                 var result = from r in context.Rol
-                             where r.IdRol != CONSTANTES.SUPER_ADMIN_ROL
-                             select new RolDTO { 
-                                IdRol = r.IdRol,
-                                Nombre = r.Nombre
+                             where r.IdRol >= idCurrentRol
+                             select new RolDTO
+                             {
+                                 IdRol = r.IdRol,
+                                 Nombre = r.Nombre
                              };
                 return result.ToList<RolDTO>();
+            }
+        }
+
+        public List<SelectDTO> getSelectRoles()
+        {
+            using (var context = getContext())
+            {
+                var result = context.Rol.Where(x => x.IdRol != CONSTANTES.SUPER_ADMIN_ROL).Select(r => new SelectDTO
+                {
+                    SelectItemId = r.IdRol,
+                    SelectItemName = r.Nombre
+                }).ToList();
+                return result;
+            }
+        }
+
+        public List<SelectDTO> getSelectAllRoles()
+        {
+            using (var context = getContext())
+            {
+                var result = context.Rol.Select(r => new SelectDTO
+                {
+                    SelectItemId = r.IdRol,
+                    SelectItemName = r.Nombre
+                }).ToList();
+                return result;
+            }
+        }
+
+        public IList<SelectDTO> getRolesViewBag(bool AsSelectList = false)
+        {
+            if (!AsSelectList)
+            {
+                return getSelectRoles();
+            }
+            else
+            {
+                var lista = getSelectRoles();
+                lista.Insert(0, new SelectDTO() { SelectItemId = 0, SelectItemName = "Seleccione el Tipo de Usuario." });
+                return lista;
+            }
+        }
+
+        public IList<SelectDTO> getAllRolesViewBag(bool AsSelectList = false)
+        {
+            if (!AsSelectList)
+            {
+                return getSelectAllRoles();
+            }
+            else
+            {
+                var lista = getSelectAllRoles();
+                lista.Insert(0, new SelectDTO() { SelectItemId = 0, SelectItemName = "Seleccione el Tipo de Usuario." });
+                return lista;
             }
         }
 
@@ -122,18 +257,20 @@ namespace CCLRAbogados.Core.BL
         {
             using (var context = getContext())
             {
-                var result = from r in context.Usuario
-                             where r.IdUsuario == id
-                             select new UsuarioDTO{ 
-                                Cuenta = r.Cuenta,
-                                Email = r.Email,
-                                Estado = r.Estado,
-                                IdRol = r.IdRol ?? 0,
-                                IdUsuario = r.IdUsuario,
-                                Nombre = r.Nombre,
-                                Pass = r.Pass
-                             };
-                return result.SingleOrDefault();
+                var result = context.Usuario.Where(x => x.IdUsuario == id).Select(r => new UsuarioDTO
+                {
+                    IdUsuario = r.IdUsuario,
+                    Nombre = r.Nombre,
+                    InicialesNombre = r.InicialesNombre,
+                    Email = r.Email,
+                    Cuenta = r.Cuenta,
+                    Pass = r.Pass,
+                    Estado = r.Estado,
+                    IdRol = r.IdRol ?? 0,
+                    IdCargo = r.IdCargo,
+                    NombreRol = r.Rol.Nombre
+                }).SingleOrDefault();
+                return result;
             }
         }
 

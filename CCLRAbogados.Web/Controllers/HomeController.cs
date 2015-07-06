@@ -13,7 +13,8 @@ namespace CCLRAbogados.Web.Controllers
         public HomeController()
         {
             base.navbar.clearAll();
-            base.navbar.activeAll();
+            //base.navbar.activeAll();
+            base.navbar.gold1Active = "active";
             ViewBag.Navbar = base.navbar;
         }
         public ActionResult Index()

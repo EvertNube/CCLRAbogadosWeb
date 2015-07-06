@@ -11,6 +11,13 @@ namespace CCLRAbogados.Web.Controllers
 {
     public class ContactoController : BaseDynamicController
     {
+        public ContactoController()
+        {
+            base.navbar.clearAll();
+            //base.navbar.activeAll();
+            base.navbar.gold4Active = "active";
+            ViewBag.Navbar = base.navbar;
+        }
         public ActionResult Index(string page, string id, string subid)
         {
             showPagina(CONSTANTES.URI_CONTACTO, HttpContext.Request.Url, page, id, subid);
