@@ -54,18 +54,18 @@
 
                                         <li class="dropdown">
                                             @*<a href="index.html" class="active">El Estudio</a>*@
-                                            <a href="@Url.Action("Index", "Home", new { page = "", id = "" }, Request.Url.Scheme)">El Estudio</a>
+                                            <a href="@Url.Action("Index", "Home", new { page = "", id = "" }, Request.Url.Scheme)" class="@ViewBag.Navbar.gold1Active">El Estudio</a>
                                         </li>
                                         <li class="dropdown">
-                                            <a href="@Url.Action("Index", "Miembros", new { page = "", id = "" }, Request.Url.Scheme)">Miembros</a>
+                                            <a href="@Url.Action("Index", "Miembros", new { page = "", id = "" }, Request.Url.Scheme)" class="@ViewBag.Navbar.gold2Active">Miembros</a>
                                             @*<a href="miembros.html">Miembros</a>*@
                                         </li>
                                         <li class="dropdown">
-                                            <a href="@Url.Action("Index", "AreasDePractica", new { page = "", id = "" }, Request.Url.Scheme)">Áreas de Práctica</a>
+                                            <a href="@Url.Action("Index", "AreasDePractica", new { page = "", id = "" }, Request.Url.Scheme)" class="@ViewBag.Navbar.gold3Active">Áreas de Práctica</a>
                                             @*<a href="areas-practica.html">Áreas de Práctica</a>*@
                                         </li>
                                         <li class="dropdown">
-                                            <a href="@Url.Action("Index", "Contacto", new { page = "", id = "" }, Request.Url.Scheme)">Contacto</a>
+                                            <a href="@Url.Action("Index", "Contacto", new { page = "", id = "" }, Request.Url.Scheme)" class="@ViewBag.Navbar.gold4Active">Contacto</a>
                                             @*<a href="contacto.html">Contacto</a>*@
                                         </li>
 

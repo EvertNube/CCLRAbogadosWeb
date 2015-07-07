@@ -99,16 +99,22 @@
                                         @switch (lsExp.IdTipoExperiencia)
                                         {
                                             case 1:
-                                                <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
+                                                <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo 
+                                        if(exp.Texto != null)
+                                        {<span>&nbsp;- @exp.Texto</span> }
                                                 break;
                                             case 2:
                                             <strong class="color">@exp.Titulo:</strong> <br />@exp.Texto<br />
                                                 break;
                                             case 3:
                                                 <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
+                                                if (exp.Texto != null)
+                                                {<span>&nbsp;- @exp.Texto</span> }
                                                 break;
                                             default:
                                                 <i class="fa fa-arrow-circle-o-right"></i>@exp.Titulo
+                                                if (exp.Texto != null)
+                                                {<span>&nbsp;- @exp.Texto</span> }
                                                 break;
                                         }
                                     </li>
