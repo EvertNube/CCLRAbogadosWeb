@@ -28,5 +28,23 @@ namespace CCLRAbogados.Helpers
                 throw e;
             }
         }
+        public static void Send2(string from, string subject, string body, string? names = null)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage(from, ConfigurationManager.AppSettings["MailFrom"], subject, body);
+                mail.Bcc.Add(new MailAddress(from));
+                //mail.Bcc.Add(new MailAddress("boris@nube.la"));
+                mail.IsBodyHtml = true;
+                SmtpClient client = new SmtpClient();
+                //client.UseDefaultCredentials = false;
+                client.EnableSsl = true;
+                client.Send(mail);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
     }
 }

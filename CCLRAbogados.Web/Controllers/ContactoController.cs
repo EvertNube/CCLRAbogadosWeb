@@ -31,5 +31,10 @@ namespace CCLRAbogados.Web.Controllers
             }
             return View("Pagina", contacto);
         }
+
+        public ActionResult EnviarCorreo(ContactoDTO contacto)
+        {
+            return View();
+        }
     }
 }

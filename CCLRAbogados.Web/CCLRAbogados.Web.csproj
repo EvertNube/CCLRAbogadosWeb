@@ -850,6 +850,7 @@
     <Content Include="Content\themes\cclra\images\sliders\bg-1.jpg" />
     <Content Include="Content\themes\cclra\images\sliders\bg-2.jpg" />
     <Content Include="Content\themes\cclra\images\sliders\bg-21.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\bg-3.jpg" />
     <Content Include="Content\themes\cclra\images\sliders\bg1.jpg" />
     <Content Include="Content\themes\cclra\images\sliders\bg2.jpg" />
     <Content Include="Content\themes\cclra\images\sliders\bg3.jpg" />
@@ -865,6 +866,7 @@
     <Content Include="Content\themes\cclra\images\sliders\slide-2.png" />
     <Content Include="Content\themes\cclra\images\sliders\slide-3.png" />
     <Content Include="Content\themes\cclra\images\sliders\slide-4.jpg" />
+    <Content Include="Content\themes\cclra\images\sliders\_bg-2.jpg" />
     <Content Include="Content\themes\cclra\images\spacer.gif" />
     <Content Include="Content\themes\cclra\images\texture1.jpg" />
     <Content Include="Content\themes\cclra\images\texture2.png" />
@@ -1022,6 +1024,7 @@
     <Content Include="Content\themes\cclra\js\slidepanel\open.png" />
     <Content Include="Content\themes\cclra\js\slidepanel\slidepanel.css" />
     <Content Include="Content\themes\cclra\js\slidepanel\slidepanel.js" />
+    <Content Include="Content\themes\cclra\js\smoothscroll\smooth-scroll.js" />
     <Content Include="Content\themes\cclra\js\style-switcher\color-switcher.css" />
     <Content Include="Content\themes\cclra\js\style-switcher\colors-swi.png" />
     <Content Include="Content\themes\cclra\js\style-switcher\jquery-1.js" />

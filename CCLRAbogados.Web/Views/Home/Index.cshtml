@@ -9,15 +9,15 @@ Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/main.js")
 <script src="~/Content/themes/cclra/js/mainmenu/bootstrap.min.js"></script>*@
 <div class="mstslider">
 
-    <!-- masterslider -->
     <div class="master-slider ms-skin-default" id="masterslider">
-
+        
         <!-- begin slide 1 -->
         <div class="ms-slide slide-1" data-delay="7">
 
             <!-- slide background -->
-            <img src="~/Content/themes/cclra/images/sliders/dark-bg-1.jpg" alt="" />
-            <img src="~/Content/themes/cclra/images/sliders/slide-1.png" alt="" class="ms-layer"
+            <img src="Content/themes/cclra/images/sliders/dark-bg-1.jpg" alt="" />
+
+            <img src="Content/themes/cclra/images/sliders/slide-1.png" alt="" class="ms-layer"
                  style="bottom:0; right:0px"
                  data-effect="right(72)"
                  data-delay="0"
@@ -43,7 +43,7 @@ Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/main.js")
                  data-effect="right(50)"
                  data-duration="2000"
                  data-delay="500"
-                 data-ease="easeOutExpo"><a href="#sobre-nosotros">Conócenos</a></div>
+                 data-ease="easeOutExpo"><a href="#sobre-nosotros">Entérate</a></div>
 
         </div>
         <!-- end slide 1 -->
@@ -51,9 +51,23 @@ Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/main.js")
         <div class="ms-slide slide-2" data-delay="7">
 
             <!-- slide background -->
-            <img src="~/Content/themes/cclra/images/sliders/bg-21.jpg" alt="" />
+            <img src="Content/themes/cclra/images/sliders/bg-2.jpg" alt="" />
 
-            <img src="~/Content/themes/cclra/images/sliders/slide-2.png" alt="" class="ms-layer"
+            <div class="ms-layer sldbut1"
+                 style="left:608px; top:505px"
+                 data-effect="top(50)"
+                 data-duration="2000"
+                 data-delay="300"
+                 data-ease="easeOutExpo"><a href="@Url.Action("Index", "Miembros", new { page = "", id = "" }, Request.Url.Scheme)">Conócenos</a></div>
+            
+        </div><!-- end slide -->
+        <!-- begin slide 3 -->
+        <div class="ms-slide slide-3" data-delay="7">
+
+            <!-- slide background -->
+            <img src="Content/themes/cclra/images/sliders/bg-3.jpg" alt="" />
+
+            <img src="Content/themes/cclra/images/sliders/slide-2.png" alt="" class="ms-layer"
                  style="bottom:0; right:0px"
                  data-effect="right(72)"
                  data-delay="0"
@@ -79,17 +93,17 @@ Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/main.js")
                  data-effect="right(50)"
                  data-duration="2000"
                  data-delay="1300"
-                 data-ease="easeOutExpo"><a href="miembros.html">Infórmate</a></div>
+                 data-ease="easeOutExpo"><a href="@Url.Action("Index", "AreasDePractica", new { page = "", id = "" }, Request.Url.Scheme)">Infórmate</a></div>
 
         </div>
-        <!-- end slide 2-->
-        <!-- begin slide 3 -->
-        <div class="ms-slide slide-3" data-delay="7">
+        <!-- end slide 3-->
+        <!-- begin slide 4 -->
+        <div class="ms-slide slide-4" data-delay="7">
 
             <!-- slide background -->
-            <img src="~/Content/themes/cclra/images/sliders/bg6.jpg" alt="" />
+            <img src="Content/themes/cclra/images/sliders/bg6.jpg" alt="" />
 
-            <img src="~/Content/themes/cclra/images/sliders/slide-3.png" alt="" class="ms-layer"
+            <img src="Content/themes/cclra/images/sliders/slide-3.png" alt="" class="ms-layer"
                  style="bottom:0; right:30px"
                  data-effect="bottom(72)"
                  data-delay="0"
@@ -108,9 +122,9 @@ Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/main.js")
                  data-effect="right(50)"
                  data-duration="2000"
                  data-delay="900"
-                 data-ease="easeOutExpo"><a href="contacto.html">Contáctanos</a></div>
+                 data-ease="easeOutExpo"><a href="@Url.Action("Index", "Contacto", new { page = "", id = "" }, Request.Url.Scheme)">Contáctanos</a></div>
 
-        </div><!-- end slide 3 -->
+        </div><!-- end slide 4 -->
 
 
     </div><!-- end of masterslider -->
@@ -156,3 +170,4 @@ Scripts.Render("~/Content/themes/cclra/js/cubeportfolio/main.js")
 
     </div>
 </div>
+

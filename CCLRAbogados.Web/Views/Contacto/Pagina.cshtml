@@ -39,8 +39,34 @@
             <p>Complete el formulario para enviarnos su mensaje. Agradeceremos su paciencia mientras atendemos su solicitud.</p>
             <br /><br />
 
-            <div class="cforms">
+            @using (Html.BeginForm("AddMiembro", "Admin", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <div class="row m-b">
+                    <section class="panel panel-default">
+                        <header>Formulario de <strong>Contacto</strong></header>
+                        <div class="panel-body">
+                            <div class="form-group col col-6">
+                                <label>Nombre y Apellidos</label>
+                                @Html.TextBoxFor(u => u.Nombres, new { @class = "form-control", @placeholder = "Ingrese su nombre completo", @type = "text" })
+                                @Html.ValidationMessageFor(u => u.Nombres)
+                            </div>
+                            <div class="form-group col col-6">
+                                <label>Correo Electrónico</label>
+                                @Html.TextBoxFor(u => u.Correo, new { @class = "form-control", @placeholder = "Ingrese su email", @type = "email", @name = "email" })
+                                @Html.ValidationMessageFor(u => u.Correo)
+                            </div>
+                            <div class="form-group col col-6">
+                                <label>Nombre y Apellidos</label>
+                                @Html.TextBoxFor(u => u.Nombres, new { @class = "form-control", @placeholder = "Ingrese su nombre completo", @type = "text" })
+                                @Html.ValidationMessageFor(u => u.Nombres)
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            }
 
+            <div class="cforms">
                 <form action="demo-contacts.php" method="post" id="sky-form" class="sky-form">
                     <header>Formulario de <strong>Contacto</strong></header>
                     <fieldset>

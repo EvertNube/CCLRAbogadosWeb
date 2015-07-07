@@ -91,6 +91,7 @@
     <Compile Include="BL\UsuariosBL.cs" />
     <Compile Include="DTO\CargoDTO.cs" />
     <Compile Include="DTO\ContactoDTO.cs" />
+    <Compile Include="DTO\CorreoDTO.cs" />
     <Compile Include="DTO\EnlaceDTO.cs" />
     <Compile Include="DTO\ExperienciaDTO.cs" />
     <Compile Include="DTO\MiembroDTO.cs" />

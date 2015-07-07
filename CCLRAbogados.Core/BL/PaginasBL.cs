@@ -492,5 +492,18 @@ namespace CCLRAbogados.Core
             }
             
         }
+
+        public bool SendEmailContacto(ContactoDTO contacto)
+        {
+            try
+            {
+                MailHandler.Send2(contacto.Direccion, contacto.Asunto, contacto.Mensaje, contacto.Nombres);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }
