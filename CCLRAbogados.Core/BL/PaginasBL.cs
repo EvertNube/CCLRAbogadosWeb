@@ -497,7 +497,7 @@ namespace CCLRAbogados.Core
         {
             try
             {
-                MailHandler.Send2(contacto.Direccion, contacto.Asunto, contacto.Mensaje, contacto.Nombres);
+                MailHandler.Send2(contacto.Correo, contacto.Asunto, contacto.Mensaje, contacto.Nombres, contacto.Copia);
                 return true;
             }
             catch (Exception)

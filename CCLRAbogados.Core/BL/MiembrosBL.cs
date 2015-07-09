@@ -431,6 +431,27 @@ namespace CCLRAbogados.Core.BL
             }
         }
 
+        public bool deleteExperiencia(int id)
+        {
+            using (var context = getContext())
+            {
+                try
+                {
+                    var obj = context.Experiencia.Find(id);
+                    if (obj == null)
+                        return false;
+
+                    context.Experiencia.Remove(obj);
+                    context.SaveChanges();
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+        }
+
         public TipoExperienciaDTO getTipoExperiencia(int id)
         {
             using(var context = getContext())
@@ -506,7 +527,7 @@ namespace CCLRAbogados.Core.BL
                     {
                         IdTipoExperiencia = x.IdTipoExperiencia,
                         Nombre = x.Nombre,
-                        listaExperiencia = x.Experiencia.Where(r => r.IdMiembro == id).Select(r => new ExperienciaDTO
+                        listaExperiencia = x.Experiencia.Where(r => r.IdMiembro == id && r.Active == true).Select(r => new ExperienciaDTO
                         {
                             IdExperiencia = r.IdExperiencia,
                             IdTipoExperiencia = r.IdTipoExperiencia,

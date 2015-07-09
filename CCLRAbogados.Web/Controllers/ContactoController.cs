@@ -1,4 +1,6 @@
-﻿using CCLRAbogados.Core.DTO;
+﻿using CCLRAbogados.Core;
+using CCLRAbogados.Core.BL;
+using CCLRAbogados.Core.DTO;
 using CCLRAbogados.Helpers;
 using System;
 using System.Collections.Generic;
@@ -30,11 +32,6 @@ namespace CCLRAbogados.Web.Controllers
                 contacto.fillAreas();
             }
             return View("Pagina", contacto);
-        }
-
-        public ActionResult EnviarCorreo(ContactoDTO contacto)
-        {
-            return View();
         }
     }
 }

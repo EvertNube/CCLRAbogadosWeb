@@ -59,6 +59,10 @@ namespace CCLRAbogados.Helpers
         public static string ERROR_MESSAGE = "<strong>Hubo un error.</strong> Por favor, llene todos los campos.";
         public static string SUCCESS_MESSAGE = "<strong>Actualizado.</strong> Los datos se han guardado correctamente.";
         public static string SUCCESS = "success";
+        
+        public static string SUCCESS_MAIL = "<strong>Enviado.</strong> Su correo ha sido enviado exitosamente.";
+        public static string FAIL_MAIL = "<strong>No enviado.</strong> Su correo no pudo ser enviado. Por favor revise la información.";
+
         public static string ERROR = "error";
         public static string ERROR_UPDATE_MESSAGE = "<strong>Hubo un error al actualizar.</strong> Por favor, verifique la información a actualizar.";
         public static string ERROR_INSERT_MESSAGE = "<strong>Hubo un error al insertar.</strong> Por favor, verifique que la información ingresada sea correcta.";

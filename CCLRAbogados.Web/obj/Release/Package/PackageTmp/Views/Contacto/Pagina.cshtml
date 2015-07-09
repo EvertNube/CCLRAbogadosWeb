@@ -38,60 +38,57 @@
             <br />
             <p>Complete el formulario para enviarnos su mensaje. Agradeceremos su paciencia mientras atendemos su solicitud.</p>
             <br /><br />
-
-            <div class="cforms">
-
-                <form action="demo-contacts.php" method="post" id="sky-form" class="sky-form">
-                    <header>Formulario de <strong>Contacto</strong></header>
-                    <fieldset>
-                        <div class="row">
-                            <section class="col col-6">
+            @using (Html.BeginForm("EnviarCorreo", "Admin", FormMethod.Post, new { @class = "sky-form" }))
+            {
+                @Html.ValidationSummary(true)
+                <div class="row m-b">
+                    <section class="panel panel-default">
+                        <header>Formulario de <strong>Contacto</strong></header>
+                        <fieldset>
+                            <section class="col col-6" style="padding-left:0px;">
                                 <label class="label">Nombre y Apellidos</label>
                                 <label class="input">
                                     <i class="icon-append icon-user"></i>
-                                    <input type="text" name="name" id="name">
+                                    @Html.TextBoxFor(u => u.Nombres, new { @class = "", @placeholder = "Ingrese su nombre completo", @type = "text" })
+                                    @Html.ValidationMessageFor(u => u.Nombres)
                                 </label>
                             </section>
-                            <section class="col col-6">
+                            <section class="col col-6" style="padding-right:0px;">
                                 <label class="label">Correo Electrónico</label>
                                 <label class="input">
                                     <i class="icon-append icon-envelope-alt"></i>
-                                    <input type="email" name="email" id="email">
+                                    @Html.TextBoxFor(u => u.Correo, new { @class = "", @placeholder = "Ingrese su email", @type = "email", @name = "email" })
+                                    @Html.ValidationMessageFor(u => u.Correo)
                                 </label>
                             </section>
-                        </div>
-                        <section>
-                            <label class="label">Asunto</label>
-                            <label class="input">
-                                <i class="icon-append icon-tag"></i>
-                                <input type="text" name="subject" id="subject">
-                            </label>
-                        </section>
-                        <section>
-                            <label class="label">Mensaje</label>
-                            <label class="textarea">
-                                <i class="icon-append icon-comment"></i>
-                                <textarea rows="4" name="message" id="message"></textarea>
-                            </label>
-                        </section>
-                        <section>
-                            <label class="checkbox">
-                                <input type="checkbox" name="copy" id="copy">
-                                <i></i>Enviar una copia de este mensaje a mi correo.
-                            </label>
-                        </section>
-                    </fieldset>
-                    <footer>
-                        <button type="submit" class="button">Enviar mensaje</button>
-                    </footer>
-                    <div class="message">
-                        <i class="icon-ok"></i>
-                        <p>¡Su mensaje fue enviado satisfactoriamente!</p>
-                    </div>
-                </form>
-
-            </div>
-
+                            <section>
+                                <label class="label">Asunto</label>
+                                <label class="input">
+                                    <i class="icon-append icon-tag"></i>
+                                    @Html.TextBoxFor(u => u.Asunto, new { @class = "", @placeholder = "Ingrese el asunto", @type = "text" })
+                                    @Html.ValidationMessageFor(u => u.Asunto)
+                                </label>
+                            </section>
+                            <section>
+                                <label class="label">Mensaje</label>
+                                <label class="textarea">
+                                    <i class="icon-append icon-comment"></i>
+                                    @Html.TextAreaFor(u => u.Mensaje, new { @rows = "5", @class = "", @placeholder = "Ingrese el mensaje", @type = "textarea" })
+                                    @Html.ValidationMessageFor(u => u.Mensaje)
+                                </label>
+                            </section>
+                            <section>
+                                <label class="label">
+                                    @Html.CheckBoxFor(u => u.Copia)
+                                    <i></i>Enviar una copia de este mensaje a mi correo.
+                                </label>
+                            </section>
+                                <button type="submit" class="button">Enviar mensaje</button>
+                        </fieldset>
+                    </section>
+                </div>
+            }
+            @Html.Partial("_showAlertMessages")
         </div>
 
         <div class="one_half last">

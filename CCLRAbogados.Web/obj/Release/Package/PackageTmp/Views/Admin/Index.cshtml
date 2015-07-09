@@ -25,9 +25,9 @@
             {
                 output.AppendFormat("<li class='dd-item' data-id='{0}'><div class='dd-handle'>{1} {2}<b class='badge bg-warning dot {3}'></b></div>", enlace.IdEnlace, enlace.EsEnlaceExterno == true ? enlaceExternoIcon : "", enlace.Titulo, !enlace.Estado ? "red" : "");
                 output.AppendFormat("<a class='btn-edit btn-preview' href='{0}' title='Vista previa' target='_blank'><i class='fa fa-search'></i></a>", enlace.Path);
-                if (enlace.Padre != null || ViewBag.EsAdmin) { output.AppendFormat("<a class='btn-edit' href='{0}'><i class='fa fa-pencil'></i></a>", Url.Action("Pagina", new { id = enlace.IdEnlace })); }
-                if (nivel < 4 && !enlace.EsEnlaceExterno) { output.AppendFormat("<a class='btn-edit btn-add' href='{0}' title='Nueva Página Interna'><i class='fa fa-plus'></i></a>", Url.Action("NuevaPagina", new { id = enlace.IdEnlace })); }
-                if (enlace.Hijos != null && enlace.Hijos.Count != 0) { output.Append(printTree(enlace.Hijos, nivel + 1)); }
+                //if (enlace.Padre != null || ViewBag.EsAdmin) { output.AppendFormat("<a class='btn-edit' href='{0}'><i class='fa fa-pencil'></i></a>", Url.Action("Pagina", new { id = enlace.IdEnlace })); }
+                //if (nivel < 4 && !enlace.EsEnlaceExterno) { output.AppendFormat("<a class='btn-edit btn-add' href='{0}' title='Nueva Página Interna'><i class='fa fa-plus'></i></a>", Url.Action("NuevaPagina", new { id = enlace.IdEnlace })); }
+                //if (enlace.Hijos != null && enlace.Hijos.Count != 0) { output.Append(printTree(enlace.Hijos, nivel + 1)); }
                 output.Append("</li>");
             }
 
@@ -39,19 +39,19 @@
 }
 <h2>
     Páginas
-    @if (ViewBag.EsAdmin)
+    @*@if (ViewBag.EsAdmin)
     {
-        <a class="btn-edit btn-add" href="@Url.Action("NuevaPagina", new { id = "" })" title="Nueva Página"><i class="fa fa-plus"></i></a>}
+        <a class="btn-edit btn-add" href="@Url.Action("NuevaPagina", new { id = "" })" title="Nueva Página"><i class="fa fa-plus"></i></a>}*@
 </h2>
 <div class="row m-b">
     <div class="col-xs-12 col-md-8">
         @Html.Partial("_showAlertMessages")
     </div>
 </div>
-<button id="nestable-menu" class="btn btn-xs btn-default" data-toggle="class:show">
+@*<button id="nestable-menu" class="btn btn-xs btn-default" data-toggle="class:show">
     <i class="fa fa-minus text"></i> <span class="text">Colapsar</span> <i class="fa fa-plus text-active"></i>
     <span class="text-active">Expandir</span>
-</button>
+</button>*@
 <div class="row m-b">
     <div class="col-md-10">
         <div class="dd" id="nestable1">

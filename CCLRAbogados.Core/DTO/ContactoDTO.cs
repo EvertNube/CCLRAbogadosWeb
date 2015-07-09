@@ -14,14 +14,14 @@ namespace CCLRAbogados.Core.DTO
         public IDictionary<int, string> Areas { get; set; }
         public IDictionary<int, string> Referencias { get; set; }
         public IDictionary<int, string> Destinatarios { get; set; }
-        [Required]
+        [Required(ErrorMessage = "El nombre y apellido son obligatorios.")]
         [DisplayFormat(ConvertEmptyStringToNull = false)]
         [StringLength(100, MinimumLength = 4)]
         public string Nombres { get; set; }
         [Required]
         public string Apellidos { get; set; }
         public string Direccion { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Este campo es obligatorio.")]
         public string Correo { get; set; }
         [Required]
         public string Telefono { get; set; }
@@ -29,13 +29,14 @@ namespace CCLRAbogados.Core.DTO
         public int Area { get; set; }
         [Required]
         public int Referencia { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Este campo es obligatorio.")]
         public string Asunto { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Este campo es obligatorio.")]
         public string Mensaje { get; set; }
         [MustBeTrue(ErrorMessage = "Por favor, lea y acepte las Condiciones de Uso y Políticas de Privacidad para poder enviar su consulta")]
         public bool privacidad { get; set; }
 
+        public bool Copia { get; set; }
         public ContactoDTO()
         {
             Areas = new Dictionary<int, string>();

@@ -676,6 +676,17 @@ namespace CCLRAbogados.Web.Controllers
             TempData["Experiencia"] = dto;
             return RedirectToAction("Experiencia", "Admin", new { id = dto.IdExperiencia, idTipoExperiencia = dto.IdTipoExperiencia, idMiembro = dto.IdMiembro });
         }
+        public ActionResult DeleteExperiencia(int id, int idMiembro, int idTipoExperiencia)
+        {
+            if (!this.currentUser()) { return RedirectToAction("Ingresar"); }
+            if (!this.isAdministrator()) { return RedirectToAction("Index"); }
+
+            MenuNavBarSelected(3);
+
+            MiembrosBL objBL = new MiembrosBL();
+            objBL.deleteExperiencia(id);
+            return RedirectToAction("Experiencias", "Admin", new { idMiembro = idMiembro, idTipoExperiencia = idTipoExperiencia });
+        }
         public ActionResult CambiarOrdenUp(int id)
         {
             MiembrosBL objBL = new MiembrosBL();
@@ -687,6 +698,20 @@ namespace CCLRAbogados.Web.Controllers
             MiembrosBL objBL = new MiembrosBL();
             objBL.OrdenBajar(objBL.getMiembro(id));
             return RedirectToAction("Miembros");
+        }
+
+        public ActionResult EnviarCorreo(ContactoDTO contacto)
+        {
+            PaginasBL objBL = new PaginasBL();
+            if (objBL.SendEmailContacto(contacto))
+            {
+                createResponseMessage(CONSTANTES.SUCCESS, CONSTANTES.SUCCESS_MAIL);
+            }
+            else
+            {
+                createResponseMessage(CONSTANTES.ERROR, CONSTANTES.FAIL_MAIL);
+            }
+            return RedirectToAction("Index", "Contacto", new { page = "", id = "" });
         }
 
         public void MenuNavBarSelected(int num)

@@ -50,7 +50,10 @@
                         <td>@experiencia.Texto</td>
                         @if (ViewBag.EsAdmin)
                         {
-                            <td align="center"><a href="@Url.Action("Experiencia", new { id = experiencia.IdExperiencia, idTipoExperiencia = ViewBag.IdTipoExperiencia, idMiembro = ViewBag.IdMiembro })"><i class="fa fa-pencil"></i></a></td>
+                            <td class="text-c" style="text-align:center;">
+                                <a href="@Url.Action("Experiencia", "Admin", new { id = experiencia.IdExperiencia, idTipoExperiencia = ViewBag.IdTipoExperiencia, idMiembro = ViewBag.IdMiembro })"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+                                <a href="@Url.Action("DeleteExperiencia", "Admin", new { id = experiencia.IdExperiencia, idTipoExperiencia = ViewBag.IdTipoExperiencia, idMiembro = ViewBag.IdMiembro })" onclick="return confirm('¿Está seguro de eliminar este elemento?')"><i class="fa fa-times"></i></a>
+                            </td>
                         }
                     </tr>
                         cont++;
