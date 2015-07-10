@@ -27,6 +27,16 @@
     <Property Name="Estado" Type="Boolean" Nullable="false" />
     <Property Name="ShortUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
+  <EntityType Name="Cargo">
+    <Key>
+      <PropertyRef Name="IdCargo" />
+    </Key>
+    <Property Name="IdCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Plural" Type="Boolean" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Miembro" Relationship="Self.FK_Miembro_Cargo" FromRole="Cargo" ToRole="Miembro" />
+  </EntityType>
   <EntityType Name="CategoriaPagina">
     <Key>
       <PropertyRef Name="IdCategoriaPagina" />
@@ -65,12 +75,12 @@
     <Property Name="IdExperiencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="IdTipoExperiencia" Type="Int32" Nullable="false" />
     <Property Name="IdMiembro" Type="Int32" Nullable="false" />
-    <Property Name="Titulo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Texto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Titulo" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Texto" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
     <Property Name="Orden" Type="Int32" Nullable="false" />
     <Property Name="Active" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Miembro" Relationship="Self.FK_Experiencia_Miembro" FromRole="Experiencia" ToRole="Miembro" />
     <NavigationProperty Name="TipoExperiencia" Relationship="Self.FK_Experiencia_TipoExperiencia" FromRole="Experiencia" ToRole="TipoExperiencia" />
-    <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Experiencia" ToRole="Miembro" />
   </EntityType>
   <EntityType Name="HighLight">
     <Key>
@@ -85,6 +95,32 @@
     <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Estado" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Pagina" Relationship="Self.FK_HighLight_Pagina" FromRole="HighLight" ToRole="Pagina" />
+  </EntityType>
+  <EntityType Name="Miembro">
+    <Key>
+      <PropertyRef Name="IdMiembro" />
+    </Key>
+    <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IdCargo" Type="Int32" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Orden" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrlFacebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UrlTwitter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UrlLinkedIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="UrlSkype" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ImagenPerfil" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="VCard" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Cargo" Relationship="Self.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
+    <NavigationProperty Name="Experiencia" Relationship="Self.FK_Experiencia_Miembro" FromRole="Miembro" ToRole="Experiencia" />
   </EntityType>
   <EntityType Name="Pagina">
     <Key>
@@ -171,6 +207,18 @@
     <NavigationProperty Name="PaginaHistorial" Relationship="Self.FK_PaginaHistorial_Usuario" FromRole="Usuario" ToRole="PaginaHistorial" />
     <NavigationProperty Name="Rol" Relationship="Self.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
   </EntityType>
+  <Association Name="FK_Miembro_Cargo">
+    <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+    <End Role="Miembro" Type="Self.Miembro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cargo">
+        <PropertyRef Name="IdCargo" />
+      </Principal>
+      <Dependent Role="Miembro">
+        <PropertyRef Name="IdCargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Pagina_CategoriaPagina">
     <End Role="CategoriaPagina" Type="Self.CategoriaPagina" Multiplicity="0..1" />
     <End Role="Pagina" Type="Self.Pagina" Multiplicity="*" />
@@ -192,6 +240,18 @@
       </Principal>
       <Dependent Role="DynamicContent">
         <PropertyRef Name="IdTipoDynamicContent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Experiencia_Miembro">
+    <End Role="Miembro" Type="Self.Miembro" Multiplicity="1" />
+    <End Role="Experiencia" Type="Self.Experiencia" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Miembro">
+        <PropertyRef Name="IdMiembro" />
+      </Principal>
+      <Dependent Role="Experiencia">
+        <PropertyRef Name="IdMiembro" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -282,17 +342,23 @@
   <EntityContainer Name="CCLRAbogadosEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Agenda" EntityType="Self.Agenda" />
     <EntitySet Name="Archivo" EntityType="Self.Archivo" />
+    <EntitySet Name="Cargo" EntityType="Self.Cargo" />
     <EntitySet Name="CategoriaPagina" EntityType="Self.CategoriaPagina" />
     <EntitySet Name="Configuracion" EntityType="Self.Configuracion" />
     <EntitySet Name="DynamicContent" EntityType="Self.DynamicContent" />
     <EntitySet Name="Experiencia" EntityType="Self.Experiencia" />
     <EntitySet Name="HighLight" EntityType="Self.HighLight" />
+    <EntitySet Name="Miembro" EntityType="Self.Miembro" />
     <EntitySet Name="Pagina" EntityType="Self.Pagina" />
     <EntitySet Name="PaginaHistorial" EntityType="Self.PaginaHistorial" />
     <EntitySet Name="Rol" EntityType="Self.Rol" />
     <EntitySet Name="TipoDynamicContent" EntityType="Self.TipoDynamicContent" />
     <EntitySet Name="TipoExperiencia" EntityType="Self.TipoExperiencia" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <AssociationSet Name="FK_Miembro_Cargo" Association="Self.FK_Miembro_Cargo">
+      <End Role="Cargo" EntitySet="Cargo" />
+      <End Role="Miembro" EntitySet="Miembro" />
+    </AssociationSet>
     <AssociationSet Name="FK_Pagina_CategoriaPagina" Association="Self.FK_Pagina_CategoriaPagina">
       <End Role="CategoriaPagina" EntitySet="CategoriaPagina" />
       <End Role="Pagina" EntitySet="Pagina" />
@@ -300,6 +366,10 @@
     <AssociationSet Name="FK_DynamicContent_TipoDynamicContent" Association="Self.FK_DynamicContent_TipoDynamicContent">
       <End Role="TipoDynamicContent" EntitySet="TipoDynamicContent" />
       <End Role="DynamicContent" EntitySet="DynamicContent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Experiencia_Miembro" Association="Self.FK_Experiencia_Miembro">
+      <End Role="Miembro" EntitySet="Miembro" />
+      <End Role="Experiencia" EntitySet="Experiencia" />
     </AssociationSet>
     <AssociationSet Name="FK_Experiencia_TipoExperiencia" Association="Self.FK_Experiencia_TipoExperiencia">
       <End Role="TipoExperiencia" EntitySet="TipoExperiencia" />
@@ -329,86 +399,5 @@
       <End Role="Rol" EntitySet="Rol" />
       <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
-    <EntitySet Name="Miembro" EntityType="CCLRA.WebDbModel.Miembro" />
-    <AssociationSet Name="FK_Experiencia_Miembro" Association="CCLRA.WebDbModel.FK_Experiencia_Miembro">
-      <End Role="Miembro" EntitySet="Miembro" />
-      <End Role="Experiencia" EntitySet="Experiencia" />
-    </AssociationSet>
-    <EntitySet Name="Cargo" EntityType="CCLRA.WebDbModel.Cargo" />
-    <EntitySet Name="sysdiagrams" EntityType="CCLRA.WebDbModel.sysdiagrams" />
-    <AssociationSet Name="FK_Miembro_Cargo" Association="CCLRA.WebDbModel.FK_Miembro_Cargo">
-      <End Role="Cargo" EntitySet="Cargo" />
-      <End Role="Miembro" EntitySet="Miembro" />
-    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Miembro">
-    <Key>
-      <PropertyRef Name="IdMiembro" />
-    </Key>
-    <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="IdCargo" Type="Int32" Nullable="false" />
-    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="Orden" Type="Int32" Nullable="false" />
-    <Property Name="Estado" Type="Boolean" Nullable="false" />
-    <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="UrlFacebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="UrlTwitter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="UrlLinkedIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="UrlSkype" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="ImagenPerfil" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="VCard" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Experiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Miembro" ToRole="Experiencia" />
-    <NavigationProperty Name="Cargo" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
-  </EntityType>
-  <Association Name="FK_Experiencia_Miembro">
-    <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="1" />
-    <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Miembro">
-        <PropertyRef Name="IdMiembro" />
-      </Principal>
-      <Dependent Role="Experiencia">
-        <PropertyRef Name="IdMiembro" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Cargo">
-    <Key>
-      <PropertyRef Name="IdCargo" />
-    </Key>
-    <Property Name="IdCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Plural" Type="Boolean" Nullable="false" />
-    <Property Name="Estado" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Cargo" ToRole="Miembro" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-  </EntityType>
-  <Association Name="FK_Miembro_Cargo">
-    <End Type="CCLRA.WebDbModel.Cargo" Role="Cargo" Multiplicity="1" />
-    <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Cargo">
-        <PropertyRef Name="IdCargo" />
-      </Principal>
-      <Dependent Role="Miembro">
-        <PropertyRef Name="IdCargo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

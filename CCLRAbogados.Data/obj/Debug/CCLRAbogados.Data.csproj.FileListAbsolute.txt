@@ -36,4 +36,3 @@ C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Data\bi
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Data\obj\Debug\CCLRAbogados.Data.dll
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Data\obj\Debug\CCLRAbogados.Data.pdb
 C:\Archivos\Personal_Pro\NubeLabs\CCLR\CCLRAbogadosWeb_last\CCLRAbogados.Data\obj\Debug\CCLRAbogados.Data.csprojResolveAssemblyReference.cache
-C:\Archivos\NubeLabs\CCLRA\CCLRAbogadosWeb\CCLRAbogados.Data\obj\Debug\CCLRAbogados.Data.csprojResolveAssemblyReference.cache

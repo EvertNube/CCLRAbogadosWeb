@@ -102,9 +102,6 @@
     <Compile Include="Rol.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="TipoDynamicContent.cs">
       <DependentUpon>CCLRAbogadosModel.tt</DependentUpon>
     </Compile>

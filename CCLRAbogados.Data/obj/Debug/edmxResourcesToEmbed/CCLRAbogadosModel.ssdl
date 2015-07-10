@@ -72,8 +72,8 @@
     <Property Name="IdExperiencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdTipoExperiencia" Type="int" Nullable="false" />
     <Property Name="IdMiembro" Type="int" Nullable="false" />
-    <Property Name="Titulo" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="Texto" Type="nvarchar" MaxLength="200" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="1500" Nullable="false" />
+    <Property Name="Texto" Type="nvarchar" MaxLength="2000" />
     <Property Name="Orden" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>
@@ -155,16 +155,6 @@
     <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="DescripcionRol" Type="nvarchar" MaxLength="255" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TipoDynamicContent">
     <Key>
@@ -340,7 +330,6 @@
     <EntitySet Name="Pagina" EntityType="Self.Pagina" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PaginaHistorial" EntityType="Self.PaginaHistorial" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoDynamicContent" EntityType="Self.TipoDynamicContent" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoExperiencia" EntityType="Self.TipoExperiencia" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CCLRA.WebDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CCLRA.WebDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Agenda">
           <Key>
             <PropertyRef Name="IdAgenda" />
@@ -77,8 +77,8 @@
           <Property Name="IdExperiencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdTipoExperiencia" Type="int" Nullable="false" />
           <Property Name="IdMiembro" Type="int" Nullable="false" />
-          <Property Name="Titulo" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Texto" Type="nvarchar" MaxLength="200" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="1500" Nullable="false" />
+          <Property Name="Texto" Type="nvarchar" MaxLength="2000" />
           <Property Name="Orden" Type="int" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
         </EntityType>
@@ -160,16 +160,6 @@
           <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DescripcionRol" Type="nvarchar" MaxLength="255" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TipoDynamicContent">
           <Key>
@@ -345,7 +335,6 @@
           <EntitySet Name="Pagina" EntityType="Self.Pagina" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PaginaHistorial" EntityType="Self.PaginaHistorial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoDynamicContent" EntityType="Self.TipoDynamicContent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoExperiencia" EntityType="Self.TipoExperiencia" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
@@ -394,7 +383,8 @@
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CCLRA.WebDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -424,6 +414,16 @@
           <Property Name="Alt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <Property Name="ShortUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cargo">
+          <Key>
+            <PropertyRef Name="IdCargo" />
+          </Key>
+          <Property Name="IdCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Plural" Type="Boolean" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Miembro" Relationship="Self.FK_Miembro_Cargo" FromRole="Cargo" ToRole="Miembro" />
         </EntityType>
         <EntityType Name="CategoriaPagina">
           <Key>
@@ -463,12 +463,12 @@
           <Property Name="IdExperiencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdTipoExperiencia" Type="Int32" Nullable="false" />
           <Property Name="IdMiembro" Type="Int32" Nullable="false" />
-          <Property Name="Titulo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Texto" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Titulo" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Texto" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
           <Property Name="Orden" Type="Int32" Nullable="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Miembro" Relationship="Self.FK_Experiencia_Miembro" FromRole="Experiencia" ToRole="Miembro" />
           <NavigationProperty Name="TipoExperiencia" Relationship="Self.FK_Experiencia_TipoExperiencia" FromRole="Experiencia" ToRole="TipoExperiencia" />
-          <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Experiencia" ToRole="Miembro" />
         </EntityType>
         <EntityType Name="HighLight">
           <Key>
@@ -483,6 +483,32 @@
           <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Estado" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Pagina" Relationship="Self.FK_HighLight_Pagina" FromRole="HighLight" ToRole="Pagina" />
+        </EntityType>
+        <EntityType Name="Miembro">
+          <Key>
+            <PropertyRef Name="IdMiembro" />
+          </Key>
+          <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdCargo" Type="Int32" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Orden" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+          <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UrlFacebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UrlTwitter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UrlLinkedIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UrlSkype" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ImagenPerfil" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="VCard" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cargo" Relationship="Self.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
+          <NavigationProperty Name="Experiencia" Relationship="Self.FK_Experiencia_Miembro" FromRole="Miembro" ToRole="Experiencia" />
         </EntityType>
         <EntityType Name="Pagina">
           <Key>
@@ -569,6 +595,18 @@
           <NavigationProperty Name="PaginaHistorial" Relationship="Self.FK_PaginaHistorial_Usuario" FromRole="Usuario" ToRole="PaginaHistorial" />
           <NavigationProperty Name="Rol" Relationship="Self.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
         </EntityType>
+        <Association Name="FK_Miembro_Cargo">
+          <End Role="Cargo" Type="Self.Cargo" Multiplicity="1" />
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cargo">
+              <PropertyRef Name="IdCargo" />
+            </Principal>
+            <Dependent Role="Miembro">
+              <PropertyRef Name="IdCargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pagina_CategoriaPagina">
           <End Role="CategoriaPagina" Type="Self.CategoriaPagina" Multiplicity="0..1" />
           <End Role="Pagina" Type="Self.Pagina" Multiplicity="*" />
@@ -590,6 +628,18 @@
             </Principal>
             <Dependent Role="DynamicContent">
               <PropertyRef Name="IdTipoDynamicContent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Experiencia_Miembro">
+          <End Role="Miembro" Type="Self.Miembro" Multiplicity="1" />
+          <End Role="Experiencia" Type="Self.Experiencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miembro">
+              <PropertyRef Name="IdMiembro" />
+            </Principal>
+            <Dependent Role="Experiencia">
+              <PropertyRef Name="IdMiembro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -680,17 +730,23 @@
         <EntityContainer Name="CCLRAbogadosEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Agenda" EntityType="Self.Agenda" />
           <EntitySet Name="Archivo" EntityType="Self.Archivo" />
+          <EntitySet Name="Cargo" EntityType="Self.Cargo" />
           <EntitySet Name="CategoriaPagina" EntityType="Self.CategoriaPagina" />
           <EntitySet Name="Configuracion" EntityType="Self.Configuracion" />
           <EntitySet Name="DynamicContent" EntityType="Self.DynamicContent" />
           <EntitySet Name="Experiencia" EntityType="Self.Experiencia" />
           <EntitySet Name="HighLight" EntityType="Self.HighLight" />
+          <EntitySet Name="Miembro" EntityType="Self.Miembro" />
           <EntitySet Name="Pagina" EntityType="Self.Pagina" />
           <EntitySet Name="PaginaHistorial" EntityType="Self.PaginaHistorial" />
           <EntitySet Name="Rol" EntityType="Self.Rol" />
           <EntitySet Name="TipoDynamicContent" EntityType="Self.TipoDynamicContent" />
           <EntitySet Name="TipoExperiencia" EntityType="Self.TipoExperiencia" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK_Miembro_Cargo" Association="Self.FK_Miembro_Cargo">
+            <End Role="Cargo" EntitySet="Cargo" />
+            <End Role="Miembro" EntitySet="Miembro" />
+          </AssociationSet>
           <AssociationSet Name="FK_Pagina_CategoriaPagina" Association="Self.FK_Pagina_CategoriaPagina">
             <End Role="CategoriaPagina" EntitySet="CategoriaPagina" />
             <End Role="Pagina" EntitySet="Pagina" />
@@ -698,6 +754,10 @@
           <AssociationSet Name="FK_DynamicContent_TipoDynamicContent" Association="Self.FK_DynamicContent_TipoDynamicContent">
             <End Role="TipoDynamicContent" EntitySet="TipoDynamicContent" />
             <End Role="DynamicContent" EntitySet="DynamicContent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experiencia_Miembro" Association="Self.FK_Experiencia_Miembro">
+            <End Role="Miembro" EntitySet="Miembro" />
+            <End Role="Experiencia" EntitySet="Experiencia" />
           </AssociationSet>
           <AssociationSet Name="FK_Experiencia_TipoExperiencia" Association="Self.FK_Experiencia_TipoExperiencia">
             <End Role="TipoExperiencia" EntitySet="TipoExperiencia" />
@@ -727,88 +787,7 @@
             <End Role="Rol" EntitySet="Rol" />
             <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
-          <EntitySet Name="Miembro" EntityType="CCLRA.WebDbModel.Miembro" />
-          <AssociationSet Name="FK_Experiencia_Miembro" Association="CCLRA.WebDbModel.FK_Experiencia_Miembro">
-            <End Role="Miembro" EntitySet="Miembro" />
-            <End Role="Experiencia" EntitySet="Experiencia" />
-          </AssociationSet>
-          <EntitySet Name="Cargo" EntityType="CCLRA.WebDbModel.Cargo" />
-          <EntitySet Name="sysdiagrams" EntityType="CCLRA.WebDbModel.sysdiagrams" />
-          <AssociationSet Name="FK_Miembro_Cargo" Association="CCLRA.WebDbModel.FK_Miembro_Cargo">
-            <End Role="Cargo" EntitySet="Cargo" />
-            <End Role="Miembro" EntitySet="Miembro" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Miembro">
-          <Key>
-            <PropertyRef Name="IdMiembro" />
-          </Key>
-          <Property Name="IdMiembro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="IdCargo" Type="Int32" Nullable="false" />
-          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Celular" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Imagen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="Orden" Type="Int32" Nullable="false" />
-          <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <Property Name="Uri" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ShortUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="UrlFacebook" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UrlTwitter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UrlLinkedIn" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="UrlSkype" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="ImagenPerfil" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="VCard" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Experiencia" Relationship="CCLRA.WebDbModel.FK_Experiencia_Miembro" FromRole="Miembro" ToRole="Experiencia" />
-          <NavigationProperty Name="Cargo" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Miembro" ToRole="Cargo" />
-        </EntityType>
-        <Association Name="FK_Experiencia_Miembro">
-          <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="1" />
-          <End Type="CCLRA.WebDbModel.Experiencia" Role="Experiencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Miembro">
-              <PropertyRef Name="IdMiembro" />
-            </Principal>
-            <Dependent Role="Experiencia">
-              <PropertyRef Name="IdMiembro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Cargo">
-          <Key>
-            <PropertyRef Name="IdCargo" />
-          </Key>
-          <Property Name="IdCargo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Plural" Type="Boolean" Nullable="false" />
-          <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Miembro" Relationship="CCLRA.WebDbModel.FK_Miembro_Cargo" FromRole="Cargo" ToRole="Miembro" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Miembro_Cargo">
-          <End Type="CCLRA.WebDbModel.Cargo" Role="Cargo" Multiplicity="1" />
-          <End Type="CCLRA.WebDbModel.Miembro" Role="Miembro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cargo">
-              <PropertyRef Name="IdCargo" />
-            </Principal>
-            <Dependent Role="Miembro">
-              <PropertyRef Name="IdCargo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -841,6 +820,16 @@
                 <ScalarProperty Name="Alt" ColumnName="Alt" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cargo">
+            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Cargo">
+              <MappingFragment StoreEntitySet="Cargo">
+                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Plural" ColumnName="Plural" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -900,6 +889,31 @@
                 <ScalarProperty Name="Orden" ColumnName="Orden" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Miembro">
+            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
+              <MappingFragment StoreEntitySet="Miembro">
+                <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Orden" ColumnName="Orden" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Uri" ColumnName="Uri" />
+                <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
+                <ScalarProperty Name="UrlFacebook" ColumnName="UrlFacebook" />
+                <ScalarProperty Name="UrlTwitter" ColumnName="UrlTwitter" />
+                <ScalarProperty Name="UrlLinkedIn" ColumnName="UrlLinkedIn" />
+                <ScalarProperty Name="UrlSkype" ColumnName="UrlSkype" />
+                <ScalarProperty Name="ImagenPerfil" ColumnName="ImagenPerfil" />
+                <ScalarProperty Name="VCard" ColumnName="VCard" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -977,52 +991,6 @@
                 <ScalarProperty Name="FechaRegistro" ColumnName="FechaRegistro" />
                 <ScalarProperty Name="IdRol" ColumnName="IdRol" />
                 <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Miembro">
-            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Miembro">
-              <MappingFragment StoreEntitySet="Miembro">
-                <ScalarProperty Name="VCard" ColumnName="VCard" />
-                <ScalarProperty Name="ImagenPerfil" ColumnName="ImagenPerfil" />
-                <ScalarProperty Name="UrlSkype" ColumnName="UrlSkype" />
-                <ScalarProperty Name="UrlLinkedIn" ColumnName="UrlLinkedIn" />
-                <ScalarProperty Name="UrlTwitter" ColumnName="UrlTwitter" />
-                <ScalarProperty Name="UrlFacebook" ColumnName="UrlFacebook" />
-                <ScalarProperty Name="ShortUrl" ColumnName="ShortUrl" />
-                <ScalarProperty Name="Uri" ColumnName="Uri" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Orden" ColumnName="Orden" />
-                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Celular" ColumnName="Celular" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdMiembro" ColumnName="IdMiembro" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cargo">
-            <EntityTypeMapping TypeName="CCLRA.WebDbModel.Cargo">
-              <MappingFragment StoreEntitySet="Cargo">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Plural" ColumnName="Plural" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdCargo" ColumnName="IdCargo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="CCLRA.WebDbModel.sysdiagrams">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

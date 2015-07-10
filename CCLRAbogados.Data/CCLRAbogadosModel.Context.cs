@@ -27,19 +27,18 @@ namespace CCLRAbogados.Data
     
         public virtual DbSet<Agenda> Agenda { get; set; }
         public virtual DbSet<Archivo> Archivo { get; set; }
+        public virtual DbSet<Cargo> Cargo { get; set; }
         public virtual DbSet<CategoriaPagina> CategoriaPagina { get; set; }
         public virtual DbSet<Configuracion> Configuracion { get; set; }
         public virtual DbSet<DynamicContent> DynamicContent { get; set; }
         public virtual DbSet<Experiencia> Experiencia { get; set; }
         public virtual DbSet<HighLight> HighLight { get; set; }
+        public virtual DbSet<Miembro> Miembro { get; set; }
         public virtual DbSet<Pagina> Pagina { get; set; }
         public virtual DbSet<PaginaHistorial> PaginaHistorial { get; set; }
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<TipoDynamicContent> TipoDynamicContent { get; set; }
         public virtual DbSet<TipoExperiencia> TipoExperiencia { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
-        public virtual DbSet<Miembro> Miembro { get; set; }
-        public virtual DbSet<Cargo> Cargo { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

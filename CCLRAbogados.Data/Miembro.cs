@@ -39,7 +39,7 @@ namespace CCLRAbogados.Data
         public string ImagenPerfil { get; set; }
         public string VCard { get; set; }
     
-        public virtual ICollection<Experiencia> Experiencia { get; set; }
         public virtual Cargo Cargo { get; set; }
+        public virtual ICollection<Experiencia> Experiencia { get; set; }
     }
 }
