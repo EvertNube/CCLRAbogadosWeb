@@ -146,7 +146,7 @@ else
                 <table class="table table-striped m-b-none">
                     <thead>
                         <tr>
-                            <th class="text-c" width="10%">ID</th>
+                            <th class="text-c" style="text-align:center;" width="10%">ID</th>
                             <th width="70%">Tipo</th>                            
                             @if (ViewBag.EsAdmin)
                             {
@@ -161,7 +161,7 @@ else
                             foreach (var obj in (List<TipoExperienciaDTO>)ViewBag.TipoExperiencias)
                             {
                                 <tr>
-                                    <td align="center">
+                                    <td class="text-c" style="text-align:center;">
                                         @cont
                                     </td>
                                     <td>@obj.Nombre</td>
