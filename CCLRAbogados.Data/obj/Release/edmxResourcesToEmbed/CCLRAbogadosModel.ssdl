@@ -72,8 +72,8 @@
     <Property Name="IdExperiencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdTipoExperiencia" Type="int" Nullable="false" />
     <Property Name="IdMiembro" Type="int" Nullable="false" />
-    <Property Name="Titulo" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="Texto" Type="nvarchar" MaxLength="200" />
+    <Property Name="Titulo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Texto" Type="nvarchar(max)" />
     <Property Name="Orden" Type="int" Nullable="false" />
     <Property Name="Active" Type="bit" Nullable="false" />
   </EntityType>

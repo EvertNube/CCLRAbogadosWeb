@@ -15,13 +15,12 @@ namespace CCLRAbogados.Core.DTO
         public IDictionary<int, string> Referencias { get; set; }
         public IDictionary<int, string> Destinatarios { get; set; }
         [Required(ErrorMessage = "El nombre y apellido son obligatorios.")]
-        [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [StringLength(100, MinimumLength = 4)]
         public string Nombres { get; set; }
         [Required]
         public string Apellidos { get; set; }
         public string Direccion { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
+        [EmailAddress(ErrorMessage = "E-mail no válido")]
         public string Correo { get; set; }
         [Required]
         public string Telefono { get; set; }
@@ -29,7 +28,6 @@ namespace CCLRAbogados.Core.DTO
         public int Area { get; set; }
         [Required]
         public int Referencia { get; set; }
-        [Required(ErrorMessage = "Este campo es obligatorio.")]
         public string Asunto { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio.")]
         public string Mensaje { get; set; }
