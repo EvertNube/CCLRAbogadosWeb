@@ -50,7 +50,7 @@
                                 <label class="input">
                                     <i class="icon-append icon-user"></i>
                                     @Html.TextBoxFor(u => u.Nombres, new { @class = "", @placeholder = "Ingrese su nombre completo", @type = "text" })
-                                    @Html.ValidationMessageFor(u => u.Nombres)
+                                    @Html.ValidationMessageFor(u => u.Nombres, "", new { @style = "font-weight:normal;font-size:smaller;" })
                                 </label>
                             </section>
                             <section class="col col-6" style="padding-right:0px;">
@@ -58,7 +58,7 @@
                                 <label class="input">
                                     <i class="icon-append icon-envelope-alt"></i>
                                     @Html.TextBoxFor(u => u.Correo, new { @class = "", @placeholder = "Ingrese su email", @type = "email", @name = "email" })
-                                    @Html.ValidationMessageFor(u => u.Correo)
+                                    @Html.ValidationMessageFor(u => u.Correo, "", new { @style = "font-weight:normal;font-size:smaller;" })
                                 </label>
                             </section>
                             <section>
@@ -66,7 +66,6 @@
                                 <label class="input">
                                     <i class="icon-append icon-tag"></i>
                                     @Html.TextBoxFor(u => u.Asunto, new { @class = "", @placeholder = "Ingrese el asunto", @type = "text" })
-                                    @Html.ValidationMessageFor(u => u.Asunto)
                                 </label>
                             </section>
                             <section>
@@ -74,7 +73,7 @@
                                 <label class="textarea">
                                     <i class="icon-append icon-comment"></i>
                                     @Html.TextAreaFor(u => u.Mensaje, new { @rows = "5", @class = "", @placeholder = "Ingrese el mensaje", @type = "textarea" })
-                                    @Html.ValidationMessageFor(u => u.Mensaje)
+                                    @Html.ValidationMessageFor(u => u.Mensaje, "", new { @style = "font-weight:normal;font-size:smaller;" })
                                 </label>
                             </section>
                             <section>

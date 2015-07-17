@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CCLRAbogados.Web.Models;
+using System.Configuration;
 
 namespace CCLRAbogados.Web.Controllers
 {
@@ -16,7 +17,6 @@ namespace CCLRAbogados.Web.Controllers
         public ContactoController()
         {
             base.navbar.clearAll();
-            //base.navbar.activeAll();
             base.navbar.gold4Active = "active";
             ViewBag.Navbar = base.navbar;
         }

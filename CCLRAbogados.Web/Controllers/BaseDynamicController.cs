@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CCLRAbogados.Web.Models;
+using System.Configuration;
 
 namespace CCLRAbogados.Web.Controllers
 {
@@ -55,7 +56,7 @@ namespace CCLRAbogados.Web.Controllers
                     }
 
                     /*ViewBag.Links = paginaBL.getSideBarLinks(pagina, url.AbsoluteUri);*/
-                    ViewBag.Title = pagina.Titulo;
+                    ViewBag.Title = ConfigurationManager.AppSettings["DefaultTitle"].ToString();
                     ViewBag.Content = pagina.Contenido;
                     ViewBag.Landing = pagina.Landing;
                     if (pagina.MostrarHighlights)
@@ -77,7 +78,8 @@ namespace CCLRAbogados.Web.Controllers
             {
                 pagina = paginaBL.getPagina(controller);
                 base.currentPage = pagina;
-                ViewBag.Title = pagina.Titulo;
+                //ViewBag.Title = pagina.Titulo;
+                ViewBag.Title = pagina.Nombre;
                 ViewBag.Name = pagina.Nombre;
                 ViewBag.Content = pagina.Contenido;
                 /*ViewBag.Links = paginaBL.getSideBarLinks(pagina, HttpContext.Request.Url.AbsoluteUri);*/

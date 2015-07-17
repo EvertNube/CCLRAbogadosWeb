@@ -13,19 +13,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2015 12:48:50</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Core.dll">
-      <publishTime>07/14/2015 17:06:58</publishTime>
+      <publishTime>07/17/2015 15:32:11</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Data.dll">
       <publishTime>07/14/2015 13:19:49</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Helpers.dll">
-      <publishTime>07/14/2015 17:06:57</publishTime>
+      <publishTime>07/17/2015 15:32:10</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Helpers.Razor.dll">
-      <publishTime>07/14/2015 17:06:58</publishTime>
+      <publishTime>07/17/2015 15:32:12</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Web.dll">
-      <publishTime>07/14/2015 17:07:00</publishTime>
+      <publishTime>07/17/2015 15:32:14</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>07/13/2015 12:48:51</publishTime>
@@ -2566,7 +2566,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2015 12:48:32</publishTime>
     </File>
     <File Include="Content/themes/cclra/images/sliders/full-bg-1.jpg">
-      <publishTime>07/13/2015 12:48:32</publishTime>
+      <publishTime>07/16/2015 17:14:48</publishTime>
     </File>
     <File Include="Content/themes/cclra/images/sliders/full-bg-2.jpg">
       <publishTime>07/13/2015 12:48:32</publishTime>
@@ -3259,10 +3259,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2015 12:48:33</publishTime>
     </File>
     <File Include="Views/Admin/Experiencia.cshtml">
-      <publishTime>07/13/2015 16:41:33</publishTime>
+      <publishTime>07/16/2015 19:02:37</publishTime>
     </File>
     <File Include="Views/Admin/Experiencias.cshtml">
-      <publishTime>07/13/2015 12:48:33</publishTime>
+      <publishTime>07/16/2015 19:47:25</publishTime>
     </File>
     <File Include="Views/Admin/Highlight.cshtml">
       <publishTime>07/13/2015 12:48:33</publishTime>
@@ -3337,7 +3337,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2015 12:48:33</publishTime>
     </File>
     <File Include="Views/Contacto/Pagina.cshtml">
-      <publishTime>07/14/2015 16:41:58</publishTime>
+      <publishTime>07/14/2015 17:40:04</publishTime>
     </File>
     <File Include="Views/Estudio/Index.cshtml">
       <publishTime>07/13/2015 12:48:33</publishTime>
@@ -3349,16 +3349,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2015 12:48:33</publishTime>
     </File>
     <File Include="Views/Miembros/Index.cshtml">
-      <publishTime>07/13/2015 12:48:33</publishTime>
+      <publishTime>07/17/2015 14:41:18</publishTime>
     </File>
     <File Include="Views/Miembros/Pagina.cshtml">
       <publishTime>07/13/2015 12:48:33</publishTime>
     </File>
     <File Include="Views/Miembros/_Miembro.cshtml">
-      <publishTime>07/13/2015 13:10:46</publishTime>
+      <publishTime>07/17/2015 15:25:22</publishTime>
     </File>
     <File Include="Views/Miembros/_Miembros.cshtml">
-      <publishTime>07/13/2015 12:48:33</publishTime>
+      <publishTime>07/17/2015 14:34:52</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>07/13/2015 12:48:33</publishTime>
@@ -3370,7 +3370,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2015 12:48:33</publishTime>
     </File>
     <File Include="Views/Shared/_menubar.cshtml">
-      <publishTime>07/13/2015 13:11:09</publishTime>
+      <publishTime>07/17/2015 15:11:16</publishTime>
     </File>
     <File Include="Views/Shared/_showAlertMessages.cshtml">
       <publishTime>07/13/2015 12:48:33</publishTime>
@@ -3382,7 +3382,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2015 12:48:33</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/13/2015 16:42:11</publishTime>
+      <publishTime>07/17/2015 15:32:24</publishTime>
     </File>
   </ItemGroup>
 </Project>

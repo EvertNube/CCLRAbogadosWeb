@@ -39,6 +39,7 @@
                 @foreach (var experiencia in Model)
                 {
                     var classInactive = (ViewBag.EsAdmin && !experiencia.Active) ? "class='inactive'" : "";
+                    
                     <tr @Html.Raw(classInactive)>
                         <td align="center">
                             @if (ViewBag.EsAdmin && !experiencia.Active)
@@ -47,7 +48,7 @@
                             {@cont}
                         </td>
                         <td>@experiencia.Titulo</td>
-                        <td>@experiencia.Texto</td>
+                        <td>@Html.Raw(experiencia.Texto)</td>
                         @if (ViewBag.EsAdmin)
                         {
                             <td class="text-c" style="text-align:center;">

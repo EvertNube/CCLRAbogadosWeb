@@ -64,6 +64,7 @@ namespace CCLRAbogados.Web.Controllers
             socialData.Type = CONSTANTES.SOCIAL_DEFAULT_TYPE;
             socialData.Image = CONSTANTES.SOCIAL_DEFAULT_IMAGE;
             ViewBag.Social = this.socialData;
+            ViewBag.Title = ConfigurationManager.AppSettings["DefaultTitle"].ToString();
         }
 
         protected virtual void cleanViewBag()

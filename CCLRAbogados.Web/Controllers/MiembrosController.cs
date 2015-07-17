@@ -10,6 +10,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CCLRAbogados.Web.Models;
+using System.Configuration;
 
 namespace CCLRAbogados.Web.Controllers
 {
@@ -18,20 +19,19 @@ namespace CCLRAbogados.Web.Controllers
         public MiembrosController()
         {
             base.navbar.clearAll();
-            //base.navbar.activeAll();
             base.navbar.gold2Active = "active";
             ViewBag.Navbar = base.navbar;
         }
-        public ActionResult Index(string page, string id, int? pagina)
+        public ActionResult Index(string page, string id, string subid)
         {
-            cleanViewBag();
+            showPagina(CONSTANTES.URI_MIEMBROS, HttpContext.Request.Url, null, page, id);
 
             MiembrosBL objBL = new MiembrosBL();
-            base.getPaginaInfo(CONSTANTES.URI_MIEMBROS);
+            //base.getPaginaInfo(CONSTANTES.URI_MIEMBROS);
             ViewBag.page = page ?? "";
             ViewBag.id = id ?? "";
 
-            if(!String.IsNullOrWhiteSpace(page))
+            if (!String.IsNullOrWhiteSpace(page))
             {
                 //ViewBag.TipoExperiencias = objBL.getTipoExperienciasViewBag(false);
                 int idMiembro = (objBL.getMiembroPorUri(page)).IdMiembro;
@@ -50,13 +50,13 @@ namespace CCLRAbogados.Web.Controllers
             { 
                 ViewBag.ParentName = "Miembros";
                 ViewBag.ParentUrl = Url.Action("Index", "Miembros", new { page = "", id = "" });
-                ViewBag.Miembro = true;
-                ViewBag.Title = miembro.Titulo;
+                ViewBag.EsMiembro = true;
+                ViewBag.Title = miembro.Nombre;
 
-                socialData.Title = miembro.Titulo;
+                /*socialData.Title = miembro.Titulo;
                 socialData.ShortUrl = miembro.ShortUrl;
 
-                ViewBag.Social = socialData;
+                ViewBag.Social = socialData;*/
                 return miembro;
             }
             return null;

@@ -1,4 +1,5 @@
 ﻿using CCLRAbogados.Core.BL;
+using CCLRAbogados.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -15,6 +16,7 @@ namespace CCLRAbogados.Web.Controllers
             base.navbar.clearAll();
             //base.navbar.activeAll();
             base.navbar.gold1Active = "active";
+            base.getPaginaInfo(CONSTANTES.URI_ESTUDIO);
             ViewBag.Navbar = base.navbar;
         }
         public ActionResult Index()
@@ -22,15 +24,15 @@ namespace CCLRAbogados.Web.Controllers
             HomeBL contextBL = new HomeBL();
 
             //ViewBag.Noticias = contextBL.getNoticias();
-            ViewBag.Banner = contextBL.getBanners();
+            /*ViewBag.Banner = contextBL.getBanners();
             ViewBag.MiniBanner = contextBL.getMiniBanners();
             ViewBag.EnlacesGris = contextBL.getEnlacesGris();
-            ViewBag.Eventos = contextBL.getEventos();
+            ViewBag.Eventos = contextBL.getEventos();*/
             //ViewBag.Revistas = contextBL.getRevistas();
             //ViewBag.Libros = contextBL.getLibros();
-            ViewBag.SocialLinks = contextBL.getSocial();
+            /*ViewBag.SocialLinks = contextBL.getSocial();
             ViewBag.EnlacesFooter = contextBL.getEnlacesFooter();
-            ViewBag.Youtube = contextBL.getYoutube();
+            ViewBag.Youtube = contextBL.getYoutube();*/
 
             socialData.Url = System.Web.HttpContext.Current.Request.Url.AbsoluteUri;
             socialData.Title = ConfigurationManager.AppSettings["DefaultTitle"].ToString();
