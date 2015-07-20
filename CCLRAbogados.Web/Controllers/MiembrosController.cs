@@ -51,7 +51,7 @@ namespace CCLRAbogados.Web.Controllers
                 ViewBag.ParentName = "Miembros";
                 ViewBag.ParentUrl = Url.Action("Index", "Miembros", new { page = "", id = "" });
                 ViewBag.EsMiembro = true;
-                ViewBag.Title = miembro.Nombre;
+                ViewBag.Title = ConfigurationManager.AppSettings["DefaultTitle"].ToString() + " - " + miembro.Nombre;
 
                 /*socialData.Title = miembro.Titulo;
                 socialData.ShortUrl = miembro.ShortUrl;

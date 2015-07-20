@@ -36,7 +36,7 @@ namespace CCLRAbogados.Web.Controllers
 
             socialData.Url = System.Web.HttpContext.Current.Request.Url.AbsoluteUri;
             socialData.Title = ConfigurationManager.AppSettings["DefaultTitle"].ToString();
-            ViewBag.Title = ConfigurationManager.AppSettings["DefaultTitle"].ToString();
+            ViewBag.Title = ConfigurationManager.AppSettings["DefaultTitle"].ToString() + " - El " + CONSTANTES.URI_ESTUDIO;
             ViewBag.Social = socialData;
 
             //RevistasBL revistasBL = new RevistasBL();

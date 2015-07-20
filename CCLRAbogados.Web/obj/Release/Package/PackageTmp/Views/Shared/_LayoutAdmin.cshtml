@@ -105,65 +105,62 @@
                                                 </a>
                                             </li>
                                         }
-                                        @*<li>
-                                                <a href="@Url.Action("Home")">
-                                                    <i class="fa fa-dashboard icon">
-                                                        <b class="bg-dark"></b>
-                                                    </i>
-                                                    <span>Home</span>
-                                                </a>
-                                            </li>*@
-                                            @*<li>
-                                                    <a href="@Url.Action("Agenda")">
-                                                        <i class="fa fa-calendar icon">
-                                                            <b class="bg-success"></b>
-                                                        </i>
-                                                        <span>Agenda</span>
-                                                    </a>
-                                                </li>*@
-                                        </ul>
-                                    </nav>
-                                    <!-- / nav -->
-                                </div>
-                            </section>
-
-                            <footer class="footer lt hidden-xs b-t b-dark">
-                                <a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-dark btn-icon">
-                                    <i class="fa fa-angle-left text"></i>
-                                    <i class="fa fa-angle-right text-active"></i>
-                                </a>
-                            </footer>
+                                    </ul>
+                                </nav>
+                                <!-- / nav -->
+                            </div>
                         </section>
-                    </aside>
-                    <!-- /.aside -->
-                    <section id="content">
-                        <section class="vbox">
-                            <section class="scrollable padder">
-                                <div class="row m-b">
-                                    <div class="col-xs-12 col-md-10 col-md-offset-1">
-                                        @RenderBody()
-                                    </div>
-                                </div>
 
-                            </section>
-                        </section>
-                        <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
+                        <footer class="footer lt hidden-xs b-t b-dark">
+                            <a href="#nav" data-toggle="class:nav-xs" class="pull-right btn btn-sm btn-dark btn-icon">
+                                <i class="fa fa-angle-left text"></i>
+                                <i class="fa fa-angle-right text-active"></i>
+                            </a>
+                        </footer>
                     </section>
-                    <aside class="bg-light lter b-l aside-md hide" id="notes">
-                        <div class="wrapper">Notification</div>
-                    </aside>
+                </aside>
+                <!-- /.aside -->
+                <section id="content">
+                    <section class="vbox">
+                        <section class="scrollable padder">
+                            <div class="row m-b">
+                                <div class="col-xs-12 col-md-10 col-md-offset-1">
+                                    @RenderBody()
+                                </div>
+                            </div>
+
+                        </section>
+                    </section>
+                    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen" data-target="#nav"></a>
                 </section>
+                <aside class="bg-light lter b-l aside-md hide" id="notes">
+                    <div class="wrapper">Notification</div>
+                </aside>
             </section>
         </section>
-        @Scripts.Render("~/Content/themes/admin/js/jquery.min.js")
-        <!-- Bootstrap -->
-        @Scripts.Render("~/Content/themes/admin/js/bootstrap.js")
-        <!-- App -->
-        @Scripts.Render("~/Content/themes/admin/js/app.js")
-        @Scripts.Render("~/Content/themes/admin/js/app.plugin.js")
-        @Scripts.Render("~/Content/themes/admin/js/slimscroll/jquery.slimscroll.min.js")
-        @Scripts.Render("~/Content/themes/admin/js/sortable/jquery.sortable.js")
-        @Scripts.Render("~/Content/themes/admin/js/main.js")
-        @RenderSection("scripts", required: false)
-    </body>
+    </section>
+    @Scripts.Render("~/Content/themes/admin/js/jquery.min.js")
+    <!-- Bootstrap -->
+    @Scripts.Render("~/Content/themes/admin/js/bootstrap.js")
+    <!-- App -->
+    @Scripts.Render("~/Content/themes/admin/js/app.js")
+    @Scripts.Render("~/Content/themes/admin/js/app.plugin.js")
+    @Scripts.Render("~/Content/themes/admin/js/slimscroll/jquery.slimscroll.min.js")
+    @Scripts.Render("~/Content/themes/admin/js/sortable/jquery.sortable.js")
+    @Scripts.Render("~/Content/themes/admin/js/main.js")
+    <!-- Google Analytics -->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-65338310-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
 </html>

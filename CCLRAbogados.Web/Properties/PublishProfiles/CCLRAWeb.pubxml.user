@@ -25,7 +25,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/17/2015 15:32:12</publishTime>
     </File>
     <File Include="bin/CCLRAbogados.Web.dll">
-      <publishTime>07/17/2015 15:32:14</publishTime>
+      <publishTime>07/20/2015 13:01:29</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>07/13/2015 12:48:51</publishTime>
@@ -3325,7 +3325,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/29/2015 03:05:30</publishTime>
     </File>
     <File Include="Views/AreasDePractica/Pagina.cshtml">
-      <publishTime>07/13/2015 12:48:33</publishTime>
+      <publishTime>07/20/2015 12:50:36</publishTime>
     </File>
     <File Include="Views/AreasDePractica/prevencion-solucion-controversias.html">
       <publishTime>06/29/2015 03:04:56</publishTime>
@@ -3364,10 +3364,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/13/2015 12:48:33</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>07/13/2015 13:16:34</publishTime>
+      <publishTime>07/20/2015 12:55:36</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutAdmin.cshtml">
-      <publishTime>07/13/2015 12:48:33</publishTime>
+      <publishTime>07/20/2015 13:00:26</publishTime>
     </File>
     <File Include="Views/Shared/_menubar.cshtml">
       <publishTime>07/17/2015 15:11:16</publishTime>

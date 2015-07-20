@@ -79,7 +79,7 @@ namespace CCLRAbogados.Web.Controllers
                 pagina = paginaBL.getPagina(controller);
                 base.currentPage = pagina;
                 //ViewBag.Title = pagina.Titulo;
-                ViewBag.Title = pagina.Nombre;
+                ViewBag.Title = ConfigurationManager.AppSettings["DefaultTitle"].ToString() + " - " + pagina.Nombre;
                 ViewBag.Name = pagina.Nombre;
                 ViewBag.Content = pagina.Contenido;
                 /*ViewBag.Links = paginaBL.getSideBarLinks(pagina, HttpContext.Request.Url.AbsoluteUri);*/
