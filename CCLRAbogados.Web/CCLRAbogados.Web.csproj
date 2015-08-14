@@ -147,7 +147,9 @@
     <Compile Include="Controllers\AreasDePracticaController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\BaseDynamicController.cs" />
+    <Compile Include="Controllers\confidencialController.cs" />
     <Compile Include="Controllers\ContactoController.cs" />
+    <Compile Include="Controllers\disclaimerController.cs" />
     <Compile Include="Controllers\EstudioController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MiembrosController.cs" />
@@ -807,6 +809,7 @@
     <Content Include="Content\themes\cclra\images\elements\pattern8.png" />
     <Content Include="Content\themes\cclra\images\elements\pattern9.png" />
     <Content Include="Content\themes\cclra\images\fade1.png" />
+    <Content Include="Content\themes\cclra\images\favicon.ico" />
     <Content Include="Content\themes\cclra\images\footer-logo.png" />
     <Content Include="Content\themes\cclra\images\graph1.png" />
     <Content Include="Content\themes\cclra\images\graph2.png" />
@@ -1215,6 +1218,8 @@
     <Content Include="Views\Miembros\_Miembros.cshtml" />
     <Content Include="Views\Admin\Experiencia.cshtml" />
     <Content Include="Views\Admin\Experiencias.cshtml" />
+    <Content Include="Views\disclaimer\Index.cshtml" />
+    <Content Include="Views\confidencial\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

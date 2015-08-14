@@ -12,6 +12,8 @@ namespace CCLRAbogados.Helpers
         public static string URI_MIEMBROS = "Miembros";
         public static string URI_AREAS_DE_PRACTICA = "AreasDePractica";
         public static string URI_CONTACTO = "Contacto";
+        public static string URI_DISCLAIMER = "disclaimer";
+        public static string URI_CONFIDENCIAL = "confidencial";
         
         //Antiguos
         public static string URI_ADMISION = "Admision";
